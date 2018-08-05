@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06D973B59A4E608016DB228A /* Pods_SpartanParker_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872F70B657CE931E88C3CCA4 /* Pods_SpartanParker_iOS.framework */; };
+		0734D02E3E512582B77495AF /* Pods_SpartanParker_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6BDE7A86ACB1EC07AAD7622 /* Pods_SpartanParker_iOSTests.framework */; };
+		0A83D89E3A1087860FD04F68 /* Pods_SpartanParker_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7A877D24E7D35A0CB8657B /* Pods_SpartanParker_iOSUITests.framework */; };
+		639CC0972117E56100D9C7FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639CC0962117E56100D9C7FA /* LoginViewController.swift */; };
+		639CC09A2117E79B00D9C7FA /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639CC0992117E79B00D9C7FA /* Authentication.storyboard */; };
 		63A84226211693C30038C68B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84225211693C30038C68B /* AppDelegate.swift */; };
-		63A84228211693C30038C68B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84227211693C30038C68B /* ViewController.swift */; };
 		63A8422B211693C30038C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A84229211693C30038C68B /* Main.storyboard */; };
 		63A8422D211693C30038C68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422C211693C30038C68B /* Assets.xcassets */; };
 		63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422E211693C30038C68B /* LaunchScreen.storyboard */; };
 		63A8423B211693C30038C68B /* SpartanParker_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */; };
 		63A84246211693C30038C68B /* SpartanParker_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */; };
+		63C96AA5212AEDBD00F574D0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C96AA4212AEDBD00F574D0 /* UIColor.swift */; };
+		63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C96AA6212AF4D800F574D0 /* UIView.swift */; };
+		63E35CC7211B3B1700735870 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CC6211B3B1700735870 /* RegisterViewController.swift */; };
+		63E35CC9211B3B4600735870 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */; };
+		63E35CCC211B3BAE00735870 /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CCB211B3BAE00735870 /* SegmentedController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		319725A3BC472A899FC0B915 /* Pods-SpartanParker-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOSTests/Pods-SpartanParker-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B7A877D24E7D35A0CB8657B /* Pods_SpartanParker_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		639CC0962117E56100D9C7FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		639CC0992117E79B00D9C7FA /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		63A84222211693C20038C68B /* SpartanParker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpartanParker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A84225211693C30038C68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63A84227211693C30038C68B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63A8422A211693C30038C68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63A8422C211693C30038C68B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63A8422F211693C30038C68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +59,18 @@
 		63A84241211693C30038C68B /* SpartanParker-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SpartanParker-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpartanParker_iOSUITests.swift; sourceTree = "<group>"; };
 		63A84247211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C96AA4212AEDBD00F574D0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		63C96AA6212AF4D800F574D0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		63E35CC6211B3B1700735870 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		63E35CCB211B3BAE00735870 /* SegmentedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
+		6B8701C9377A8EAD902E42DB /* Pods-SpartanParker-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		872F70B657CE931E88C3CCA4 /* Pods_SpartanParker_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99470E58605B0D3B6E98DE6F /* Pods-SpartanParker-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		A03815269B5A6B96DD29A27D /* Pods-SpartanParker-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOSUITests/Pods-SpartanParker-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B6BDE7A86ACB1EC07AAD7622 /* Pods_SpartanParker_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93251430626975AAFFC8FE7 /* Pods-SpartanParker-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOSTests/Pods-SpartanParker-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		FE15CFCC6D38DC9B8CED0EE8 /* Pods-SpartanParker-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOSUITests/Pods-SpartanParker-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D973B59A4E608016DB228A /* Pods_SpartanParker_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0734D02E3E512582B77495AF /* Pods_SpartanParker_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +94,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A83D89E3A1087860FD04F68 /* Pods_SpartanParker_iOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		639CC0942117E53C00D9C7FA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				639CC0952117E54A00D9C7FA /* Authentication */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		639CC0952117E54A00D9C7FA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */,
+				639CC0962117E56100D9C7FA /* LoginViewController.swift */,
+				63E35CC6211B3B1700735870 /* RegisterViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		639CC0982117E78900D9C7FA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				63A8422E211693C30038C68B /* LaunchScreen.storyboard */,
+				63A84229211693C30038C68B /* Main.storyboard */,
+				639CC0992117E79B00D9C7FA /* Authentication.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		63A84219211693C20038C68B = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +136,8 @@
 				63A84239211693C30038C68B /* SpartanParker-iOSTests */,
 				63A84244211693C30038C68B /* SpartanParker-iOSUITests */,
 				63A84223211693C20038C68B /* Products */,
+				F40ABA6770D09979DB02143C /* Pods */,
+				D79DAE00D2753AEEC542061A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +154,15 @@
 		63A84224211693C20038C68B /* SpartanParker-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				63A84225211693C30038C68B /* AppDelegate.swift */,
-				63A84227211693C30038C68B /* ViewController.swift */,
-				63A84229211693C30038C68B /* Main.storyboard */,
-				63A8422C211693C30038C68B /* Assets.xcassets */,
 				63A8422E211693C30038C68B /* LaunchScreen.storyboard */,
+				63A84229211693C30038C68B /* Main.storyboard */,
+				63A84225211693C30038C68B /* AppDelegate.swift */,
+				63A84225211693C30038C68B /* AppDelegate.swift */,
+				63C96AA3212AEDAD00F574D0 /* Extensions */,
+				639CC0982117E78900D9C7FA /* Storyboards */,
+				63E35CCA211B3B6300735870 /* CustomViews */,
+				639CC0942117E53C00D9C7FA /* ViewControllers */,
+				63A8422C211693C30038C68B /* Assets.xcassets */,
 				63A84231211693C30038C68B /* Info.plist */,
 			);
 			path = "SpartanParker-iOS";
@@ -125,6 +186,46 @@
 			path = "SpartanParker-iOSUITests";
 			sourceTree = "<group>";
 		};
+		63C96AA3212AEDAD00F574D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63C96AA4212AEDBD00F574D0 /* UIColor.swift */,
+				63C96AA6212AF4D800F574D0 /* UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63E35CCA211B3B6300735870 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				63E35CCB211B3BAE00735870 /* SegmentedController.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		D79DAE00D2753AEEC542061A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				872F70B657CE931E88C3CCA4 /* Pods_SpartanParker_iOS.framework */,
+				B6BDE7A86ACB1EC07AAD7622 /* Pods_SpartanParker_iOSTests.framework */,
+				5B7A877D24E7D35A0CB8657B /* Pods_SpartanParker_iOSUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F40ABA6770D09979DB02143C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				99470E58605B0D3B6E98DE6F /* Pods-SpartanParker-iOS.debug.xcconfig */,
+				6B8701C9377A8EAD902E42DB /* Pods-SpartanParker-iOS.release.xcconfig */,
+				319725A3BC472A899FC0B915 /* Pods-SpartanParker-iOSTests.debug.xcconfig */,
+				B93251430626975AAFFC8FE7 /* Pods-SpartanParker-iOSTests.release.xcconfig */,
+				A03815269B5A6B96DD29A27D /* Pods-SpartanParker-iOSUITests.debug.xcconfig */,
+				FE15CFCC6D38DC9B8CED0EE8 /* Pods-SpartanParker-iOSUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +233,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63A8424A211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOS" */;
 			buildPhases = (
+				F52D4DB078CE6C63014F5645 /* [CP] Check Pods Manifest.lock */,
 				63A8421E211693C20038C68B /* Sources */,
 				63A8421F211693C20038C68B /* Frameworks */,
 				63A84220211693C20038C68B /* Resources */,
+				06B09657EC193D10AA7F314F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +252,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63A8424D211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOSTests" */;
 			buildPhases = (
+				2964CF22A3C7B433F74A4997 /* [CP] Check Pods Manifest.lock */,
 				63A84232211693C30038C68B /* Sources */,
 				63A84233211693C30038C68B /* Frameworks */,
 				63A84234211693C30038C68B /* Resources */,
@@ -167,6 +271,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63A84250211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOSUITests" */;
 			buildPhases = (
+				664B641200C52A43D8152905 /* [CP] Check Pods Manifest.lock */,
 				63A8423D211693C30038C68B /* Sources */,
 				63A8423E211693C30038C68B /* Frameworks */,
 				63A8423F211693C30038C68B /* Resources */,
@@ -229,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639CC09A2117E79B00D9C7FA /* Authentication.storyboard in Resources */,
 				63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */,
 				63A8422D211693C30038C68B /* Assets.xcassets in Resources */,
 				63A8422B211693C30038C68B /* Main.storyboard in Resources */,
@@ -251,12 +357,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		06B09657EC193D10AA7F314F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2964CF22A3C7B433F74A4997 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpartanParker-iOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		664B641200C52A43D8152905 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpartanParker-iOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F52D4DB078CE6C63014F5645 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpartanParker-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		63A8421E211693C20038C68B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63A84228211693C30038C68B /* ViewController.swift in Sources */,
+				63E35CC9211B3B4600735870 /* AuthenticationViewController.swift in Sources */,
+				63C96AA5212AEDBD00F574D0 /* UIColor.swift in Sources */,
+				63E35CC7211B3B1700735870 /* RegisterViewController.swift in Sources */,
+				63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */,
+				639CC0972117E56100D9C7FA /* LoginViewController.swift in Sources */,
+				63E35CCC211B3BAE00735870 /* SegmentedController.swift in Sources */,
 				63A84226211693C30038C68B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +614,7 @@
 		};
 		63A8424B211693C30038C68B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99470E58605B0D3B6E98DE6F /* Pods-SpartanParker-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -440,12 +627,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		63A8424C211693C30038C68B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B8701C9377A8EAD902E42DB /* Pods-SpartanParker-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -458,12 +646,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		63A8424E211693C30038C68B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319725A3BC472A899FC0B915 /* Pods-SpartanParker-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -485,6 +674,7 @@
 		};
 		63A8424F211693C30038C68B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B93251430626975AAFFC8FE7 /* Pods-SpartanParker-iOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -506,6 +696,7 @@
 		};
 		63A84251211693C30038C68B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A03815269B5A6B96DD29A27D /* Pods-SpartanParker-iOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -526,6 +717,7 @@
 		};
 		63A84252211693C30038C68B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE15CFCC6D38DC9B8CED0EE8 /* Pods-SpartanParker-iOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

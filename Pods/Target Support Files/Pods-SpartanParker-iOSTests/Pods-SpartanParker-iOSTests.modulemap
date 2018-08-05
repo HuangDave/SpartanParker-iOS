@@ -1,0 +1,6 @@
+framework module Pods_SpartanParker_iOSTests {
+  umbrella header "Pods-SpartanParker-iOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
