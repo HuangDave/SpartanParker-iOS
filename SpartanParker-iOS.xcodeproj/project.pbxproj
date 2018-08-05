@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63A84226211693C30038C68B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84225211693C30038C68B /* AppDelegate.swift */; };
+		63A84228211693C30038C68B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84227211693C30038C68B /* ViewController.swift */; };
+		63A8422B211693C30038C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A84229211693C30038C68B /* Main.storyboard */; };
+		63A8422D211693C30038C68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422C211693C30038C68B /* Assets.xcassets */; };
+		63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422E211693C30038C68B /* LaunchScreen.storyboard */; };
+		63A8423B211693C30038C68B /* SpartanParker_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */; };
+		63A84246211693C30038C68B /* SpartanParker_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		63A84237211693C30038C68B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63A8421A211693C20038C68B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63A84221211693C20038C68B;
+			remoteInfo = "SpartanParker-iOS";
+		};
+		63A84242211693C30038C68B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63A8421A211693C20038C68B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63A84221211693C20038C68B;
+			remoteInfo = "SpartanParker-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		63A84222211693C20038C68B /* SpartanParker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpartanParker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63A84225211693C30038C68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		63A84227211693C30038C68B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		63A8422A211693C30038C68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		63A8422C211693C30038C68B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63A8422F211693C30038C68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		63A84231211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63A84236211693C30038C68B /* SpartanParker-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SpartanParker-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpartanParker_iOSTests.swift; sourceTree = "<group>"; };
+		63A8423C211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63A84241211693C30038C68B /* SpartanParker-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SpartanParker-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpartanParker_iOSUITests.swift; sourceTree = "<group>"; };
+		63A84247211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63A8421F211693C20038C68B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63A84233211693C30038C68B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63A8423E211693C30038C68B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63A84219211693C20038C68B = {
+			isa = PBXGroup;
+			children = (
+				63A84224211693C20038C68B /* SpartanParker-iOS */,
+				63A84239211693C30038C68B /* SpartanParker-iOSTests */,
+				63A84244211693C30038C68B /* SpartanParker-iOSUITests */,
+				63A84223211693C20038C68B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63A84223211693C20038C68B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63A84222211693C20038C68B /* SpartanParker-iOS.app */,
+				63A84236211693C30038C68B /* SpartanParker-iOSTests.xctest */,
+				63A84241211693C30038C68B /* SpartanParker-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63A84224211693C20038C68B /* SpartanParker-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				63A84225211693C30038C68B /* AppDelegate.swift */,
+				63A84227211693C30038C68B /* ViewController.swift */,
+				63A84229211693C30038C68B /* Main.storyboard */,
+				63A8422C211693C30038C68B /* Assets.xcassets */,
+				63A8422E211693C30038C68B /* LaunchScreen.storyboard */,
+				63A84231211693C30038C68B /* Info.plist */,
+			);
+			path = "SpartanParker-iOS";
+			sourceTree = "<group>";
+		};
+		63A84239211693C30038C68B /* SpartanParker-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */,
+				63A8423C211693C30038C68B /* Info.plist */,
+			);
+			path = "SpartanParker-iOSTests";
+			sourceTree = "<group>";
+		};
+		63A84244211693C30038C68B /* SpartanParker-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */,
+				63A84247211693C30038C68B /* Info.plist */,
+			);
+			path = "SpartanParker-iOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63A84221211693C20038C68B /* SpartanParker-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63A8424A211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOS" */;
+			buildPhases = (
+				63A8421E211693C20038C68B /* Sources */,
+				63A8421F211693C20038C68B /* Frameworks */,
+				63A84220211693C20038C68B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SpartanParker-iOS";
+			productName = "SpartanParker-iOS";
+			productReference = 63A84222211693C20038C68B /* SpartanParker-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63A84235211693C30038C68B /* SpartanParker-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63A8424D211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOSTests" */;
+			buildPhases = (
+				63A84232211693C30038C68B /* Sources */,
+				63A84233211693C30038C68B /* Frameworks */,
+				63A84234211693C30038C68B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63A84238211693C30038C68B /* PBXTargetDependency */,
+			);
+			name = "SpartanParker-iOSTests";
+			productName = "SpartanParker-iOSTests";
+			productReference = 63A84236211693C30038C68B /* SpartanParker-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		63A84240211693C30038C68B /* SpartanParker-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63A84250211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOSUITests" */;
+			buildPhases = (
+				63A8423D211693C30038C68B /* Sources */,
+				63A8423E211693C30038C68B /* Frameworks */,
+				63A8423F211693C30038C68B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63A84243211693C30038C68B /* PBXTargetDependency */,
+			);
+			name = "SpartanParker-iOSUITests";
+			productName = "SpartanParker-iOSUITests";
+			productReference = 63A84241211693C30038C68B /* SpartanParker-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63A8421A211693C20038C68B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = David;
+				TargetAttributes = {
+					63A84221211693C20038C68B = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					63A84235211693C30038C68B = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 63A84221211693C20038C68B;
+					};
+					63A84240211693C30038C68B = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 63A84221211693C20038C68B;
+					};
+				};
+			};
+			buildConfigurationList = 63A8421D211693C20038C68B /* Build configuration list for PBXProject "SpartanParker-iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 63A84219211693C20038C68B;
+			productRefGroup = 63A84223211693C20038C68B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63A84221211693C20038C68B /* SpartanParker-iOS */,
+				63A84235211693C30038C68B /* SpartanParker-iOSTests */,
+				63A84240211693C30038C68B /* SpartanParker-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63A84220211693C20038C68B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */,
+				63A8422D211693C30038C68B /* Assets.xcassets in Resources */,
+				63A8422B211693C30038C68B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63A84234211693C30038C68B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63A8423F211693C30038C68B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63A8421E211693C20038C68B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63A84228211693C30038C68B /* ViewController.swift in Sources */,
+				63A84226211693C30038C68B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63A84232211693C30038C68B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63A8423B211693C30038C68B /* SpartanParker_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63A8423D211693C30038C68B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63A84246211693C30038C68B /* SpartanParker_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		63A84238211693C30038C68B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63A84221211693C20038C68B /* SpartanParker-iOS */;
+			targetProxy = 63A84237211693C30038C68B /* PBXContainerItemProxy */;
+		};
+		63A84243211693C30038C68B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63A84221211693C20038C68B /* SpartanParker-iOS */;
+			targetProxy = 63A84242211693C30038C68B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		63A84229211693C30038C68B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63A8422A211693C30038C68B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		63A8422E211693C30038C68B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63A8422F211693C30038C68B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		63A84248211693C30038C68B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63A84249211693C30038C68B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63A8424B211693C30038C68B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				INFOPLIST_FILE = "SpartanParker-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63A8424C211693C30038C68B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				INFOPLIST_FILE = "SpartanParker-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		63A8424E211693C30038C68B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				INFOPLIST_FILE = "SpartanParker-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpartanParker-iOS.app/SpartanParker-iOS";
+			};
+			name = Debug;
+		};
+		63A8424F211693C30038C68B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				INFOPLIST_FILE = "SpartanParker-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpartanParker-iOS.app/SpartanParker-iOS";
+			};
+			name = Release;
+		};
+		63A84251211693C30038C68B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				INFOPLIST_FILE = "SpartanParker-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SpartanParker-iOS";
+			};
+			name = Debug;
+		};
+		63A84252211693C30038C68B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				INFOPLIST_FILE = "SpartanParker-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SpartanParker-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63A8421D211693C20038C68B /* Build configuration list for PBXProject "SpartanParker-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63A84248211693C30038C68B /* Debug */,
+				63A84249211693C30038C68B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63A8424A211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63A8424B211693C30038C68B /* Debug */,
+				63A8424C211693C30038C68B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63A8424D211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63A8424E211693C30038C68B /* Debug */,
+				63A8424F211693C30038C68B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63A84250211693C30038C68B /* Build configuration list for PBXNativeTarget "SpartanParker-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63A84251211693C30038C68B /* Debug */,
+				63A84252211693C30038C68B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63A8421A211693C20038C68B /* Project object */;
+}
