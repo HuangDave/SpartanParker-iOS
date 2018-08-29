@@ -9,6 +9,34 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>SpartanParker-iOSTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>SpartanParker-iOSUITests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>63A84221211693C20038C68B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63A84235211693C30038C68B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63A84240211693C30038C68B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

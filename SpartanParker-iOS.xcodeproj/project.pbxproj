@@ -10,19 +10,35 @@
 		06D973B59A4E608016DB228A /* Pods_SpartanParker_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872F70B657CE931E88C3CCA4 /* Pods_SpartanParker_iOS.framework */; };
 		0734D02E3E512582B77495AF /* Pods_SpartanParker_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6BDE7A86ACB1EC07AAD7622 /* Pods_SpartanParker_iOSTests.framework */; };
 		0A83D89E3A1087860FD04F68 /* Pods_SpartanParker_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7A877D24E7D35A0CB8657B /* Pods_SpartanParker_iOSUITests.framework */; };
-		639CC0972117E56100D9C7FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639CC0962117E56100D9C7FA /* LoginViewController.swift */; };
-		639CC09A2117E79B00D9C7FA /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639CC0992117E79B00D9C7FA /* Authentication.storyboard */; };
+		637B91BC21347860003E9550 /* SpotSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91BB21347860003E9550 /* SpotSearchViewController.swift */; };
+		637B91BE213478A5003E9550 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91BD213478A5003E9550 /* AlertView.swift */; };
+		637B91C221347D34003E9550 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C121347D34003E9550 /* UIFont.swift */; };
+		637B91C42134AF2D003E9550 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C32134AF2D003E9550 /* ViewController.swift */; };
+		637B91C62134C6B8003E9550 /* AlertViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C52134C6B8003E9550 /* AlertViewTests.swift */; };
+		637B91C82134D2B2003E9550 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C72134D2B2003E9550 /* UIColorTests.swift */; };
+		637B91CA2134E655003E9550 /* DatabaseObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C92134E655003E9550 /* DatabaseObjectTests.swift */; };
+		637B91CE213609ED003E9550 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91CD213609ED003E9550 /* ParkingSpot.swift */; };
+		637B91D021364109003E9550 /* ParkingSpotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91CF21364109003E9550 /* ParkingSpotTests.swift */; };
+		637B91D1213642E6003E9550 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91CD213609ED003E9550 /* ParkingSpot.swift */; };
+		637B91D52137359F003E9550 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91D42137359F003E9550 /* RootViewController.swift */; };
+		637B91D821374930003E9550 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE6E212FECFC00E36AC5 /* User.swift */; };
+		637B91D921374ACF003E9550 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE72212FEFD500E36AC5 /* UserTests.swift */; };
+		63822C2C212CDBAF000D2B9D /* UserForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63822C2B212CDBAF000D2B9D /* UserForm.swift */; };
+		63822C30212CDE0E000D2B9D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63822C2F212CDE0E000D2B9D /* TextField.swift */; };
 		63A84226211693C30038C68B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84225211693C30038C68B /* AppDelegate.swift */; };
-		63A8422B211693C30038C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A84229211693C30038C68B /* Main.storyboard */; };
 		63A8422D211693C30038C68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422C211693C30038C68B /* Assets.xcassets */; };
 		63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422E211693C30038C68B /* LaunchScreen.storyboard */; };
-		63A8423B211693C30038C68B /* SpartanParker_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */; };
 		63A84246211693C30038C68B /* SpartanParker_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */; };
+		63AB52D6213015CF0079B005 /* DatabaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */; };
 		63C96AA5212AEDBD00F574D0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C96AA4212AEDBD00F574D0 /* UIColor.swift */; };
 		63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C96AA6212AF4D800F574D0 /* UIView.swift */; };
-		63E35CC7211B3B1700735870 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CC6211B3B1700735870 /* RegisterViewController.swift */; };
+		63CBFE5E212F7E1B00E36AC5 /* UserFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE58212F7D3800E36AC5 /* UserFormTests.swift */; };
+		63CBFE60212F7E1B00E36AC5 /* TextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE5A212F7D5600E36AC5 /* TextFieldTests.swift */; };
+		63CBFE66212F8BA900E36AC5 /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE65212F8BA900E36AC5 /* SegmentedController.swift */; };
+		63CBFE68212FCD2200E36AC5 /* SegmentedControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE67212FCD2200E36AC5 /* SegmentedControllerTests.swift */; };
+		63CBFE6F212FECFC00E36AC5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE6E212FECFC00E36AC5 /* User.swift */; };
+		63CBFE71212FED2A00E36AC5 /* DatabaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */; };
 		63E35CC9211B3B4600735870 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */; };
-		63E35CCC211B3BAE00735870 /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CCB211B3BAE00735870 /* SegmentedController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,25 +61,38 @@
 /* Begin PBXFileReference section */
 		319725A3BC472A899FC0B915 /* Pods-SpartanParker-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOSTests/Pods-SpartanParker-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B7A877D24E7D35A0CB8657B /* Pods_SpartanParker_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		639CC0962117E56100D9C7FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		639CC0992117E79B00D9C7FA /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		637B91BB21347860003E9550 /* SpotSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSearchViewController.swift; sourceTree = "<group>"; };
+		637B91BD213478A5003E9550 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		637B91C121347D34003E9550 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		637B91C32134AF2D003E9550 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		637B91C52134C6B8003E9550 /* AlertViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewTests.swift; sourceTree = "<group>"; };
+		637B91C72134D2B2003E9550 /* UIColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
+		637B91C92134E655003E9550 /* DatabaseObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseObjectTests.swift; sourceTree = "<group>"; };
+		637B91CD213609ED003E9550 /* ParkingSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
+		637B91CF21364109003E9550 /* ParkingSpotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpotTests.swift; sourceTree = "<group>"; };
+		637B91D42137359F003E9550 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		63822C2B212CDBAF000D2B9D /* UserForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForm.swift; sourceTree = "<group>"; };
+		63822C2F212CDE0E000D2B9D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		63A84222211693C20038C68B /* SpartanParker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpartanParker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A84225211693C30038C68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63A8422A211693C30038C68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63A8422C211693C30038C68B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63A8422F211693C30038C68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63A84231211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63A84236211693C30038C68B /* SpartanParker-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SpartanParker-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpartanParker_iOSTests.swift; sourceTree = "<group>"; };
 		63A8423C211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63A84241211693C30038C68B /* SpartanParker-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SpartanParker-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpartanParker_iOSUITests.swift; sourceTree = "<group>"; };
 		63A84247211693C30038C68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C96AA4212AEDBD00F574D0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		63C96AA6212AF4D800F574D0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		63E35CC6211B3B1700735870 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		63CBFE58212F7D3800E36AC5 /* UserFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFormTests.swift; sourceTree = "<group>"; };
+		63CBFE5A212F7D5600E36AC5 /* TextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTests.swift; sourceTree = "<group>"; };
+		63CBFE65212F8BA900E36AC5 /* SegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
+		63CBFE67212FCD2200E36AC5 /* SegmentedControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControllerTests.swift; sourceTree = "<group>"; };
+		63CBFE6E212FECFC00E36AC5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseObject.swift; sourceTree = "<group>"; };
+		63CBFE72212FEFD500E36AC5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
-		63E35CCB211B3BAE00735870 /* SegmentedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
 		6B8701C9377A8EAD902E42DB /* Pods-SpartanParker-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		872F70B657CE931E88C3CCA4 /* Pods_SpartanParker_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99470E58605B0D3B6E98DE6F /* Pods-SpartanParker-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,29 +133,12 @@
 		639CC0942117E53C00D9C7FA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				639CC0952117E54A00D9C7FA /* Authentication */,
+				63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */,
+				637B91BB21347860003E9550 /* SpotSearchViewController.swift */,
+				637B91D42137359F003E9550 /* RootViewController.swift */,
+				637B91C32134AF2D003E9550 /* ViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		639CC0952117E54A00D9C7FA /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */,
-				639CC0962117E56100D9C7FA /* LoginViewController.swift */,
-				63E35CC6211B3B1700735870 /* RegisterViewController.swift */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
-		639CC0982117E78900D9C7FA /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				63A8422E211693C30038C68B /* LaunchScreen.storyboard */,
-				63A84229211693C30038C68B /* Main.storyboard */,
-				639CC0992117E79B00D9C7FA /* Authentication.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		63A84219211693C20038C68B = {
@@ -155,15 +167,13 @@
 			isa = PBXGroup;
 			children = (
 				63A8422E211693C30038C68B /* LaunchScreen.storyboard */,
-				63A84229211693C30038C68B /* Main.storyboard */,
-				63A84225211693C30038C68B /* AppDelegate.swift */,
-				63A84225211693C30038C68B /* AppDelegate.swift */,
-				63C96AA3212AEDAD00F574D0 /* Extensions */,
-				639CC0982117E78900D9C7FA /* Storyboards */,
-				63E35CCA211B3B6300735870 /* CustomViews */,
-				639CC0942117E53C00D9C7FA /* ViewControllers */,
 				63A8422C211693C30038C68B /* Assets.xcassets */,
 				63A84231211693C30038C68B /* Info.plist */,
+				63A84225211693C30038C68B /* AppDelegate.swift */,
+				63C96AA3212AEDAD00F574D0 /* Extensions */,
+				63E35CCA211B3B6300735870 /* CustomViews */,
+				639CC0942117E53C00D9C7FA /* ViewControllers */,
+				63CBFE6D212FECE600E36AC5 /* Server */,
 			);
 			path = "SpartanParker-iOS";
 			sourceTree = "<group>";
@@ -171,8 +181,15 @@
 		63A84239211693C30038C68B /* SpartanParker-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				63A8423A211693C30038C68B /* SpartanParker_iOSTests.swift */,
 				63A8423C211693C30038C68B /* Info.plist */,
+				637B91C52134C6B8003E9550 /* AlertViewTests.swift */,
+				637B91C92134E655003E9550 /* DatabaseObjectTests.swift */,
+				637B91CF21364109003E9550 /* ParkingSpotTests.swift */,
+				63CBFE67212FCD2200E36AC5 /* SegmentedControllerTests.swift */,
+				63CBFE5A212F7D5600E36AC5 /* TextFieldTests.swift */,
+				637B91C72134D2B2003E9550 /* UIColorTests.swift */,
+				63CBFE58212F7D3800E36AC5 /* UserFormTests.swift */,
+				63CBFE72212FEFD500E36AC5 /* UserTests.swift */,
 			);
 			path = "SpartanParker-iOSTests";
 			sourceTree = "<group>";
@@ -180,8 +197,8 @@
 		63A84244211693C30038C68B /* SpartanParker-iOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */,
 				63A84247211693C30038C68B /* Info.plist */,
+				63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */,
 			);
 			path = "SpartanParker-iOSUITests";
 			sourceTree = "<group>";
@@ -190,15 +207,29 @@
 			isa = PBXGroup;
 			children = (
 				63C96AA4212AEDBD00F574D0 /* UIColor.swift */,
+				637B91C121347D34003E9550 /* UIFont.swift */,
 				63C96AA6212AF4D800F574D0 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		63CBFE6D212FECE600E36AC5 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */,
+				63CBFE6E212FECFC00E36AC5 /* User.swift */,
+				637B91CD213609ED003E9550 /* ParkingSpot.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
 		63E35CCA211B3B6300735870 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				63E35CCB211B3BAE00735870 /* SegmentedController.swift */,
+				637B91BD213478A5003E9550 /* AlertView.swift */,
+				63CBFE65212F8BA900E36AC5 /* SegmentedController.swift */,
+				63822C2F212CDE0E000D2B9D /* TextField.swift */,
+				63822C2B212CDBAF000D2B9D /* UserForm.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -334,10 +365,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				639CC09A2117E79B00D9C7FA /* Authentication.storyboard in Resources */,
 				63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */,
 				63A8422D211693C30038C68B /* Assets.xcassets in Resources */,
-				63A8422B211693C30038C68B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,11 +468,19 @@
 			files = (
 				63E35CC9211B3B4600735870 /* AuthenticationViewController.swift in Sources */,
 				63C96AA5212AEDBD00F574D0 /* UIColor.swift in Sources */,
-				63E35CC7211B3B1700735870 /* RegisterViewController.swift in Sources */,
+				63CBFE71212FED2A00E36AC5 /* DatabaseObject.swift in Sources */,
+				637B91C42134AF2D003E9550 /* ViewController.swift in Sources */,
+				637B91BE213478A5003E9550 /* AlertView.swift in Sources */,
+				637B91D52137359F003E9550 /* RootViewController.swift in Sources */,
 				63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */,
-				639CC0972117E56100D9C7FA /* LoginViewController.swift in Sources */,
-				63E35CCC211B3BAE00735870 /* SegmentedController.swift in Sources */,
+				637B91BC21347860003E9550 /* SpotSearchViewController.swift in Sources */,
+				63822C2C212CDBAF000D2B9D /* UserForm.swift in Sources */,
+				63822C30212CDE0E000D2B9D /* TextField.swift in Sources */,
+				637B91C221347D34003E9550 /* UIFont.swift in Sources */,
+				637B91CE213609ED003E9550 /* ParkingSpot.swift in Sources */,
 				63A84226211693C30038C68B /* AppDelegate.swift in Sources */,
+				63CBFE6F212FECFC00E36AC5 /* User.swift in Sources */,
+				63CBFE66212F8BA900E36AC5 /* SegmentedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +488,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63A8423B211693C30038C68B /* SpartanParker_iOSTests.swift in Sources */,
+				637B91D021364109003E9550 /* ParkingSpotTests.swift in Sources */,
+				63AB52D6213015CF0079B005 /* DatabaseObject.swift in Sources */,
+				63CBFE5E212F7E1B00E36AC5 /* UserFormTests.swift in Sources */,
+				63CBFE68212FCD2200E36AC5 /* SegmentedControllerTests.swift in Sources */,
+				637B91C82134D2B2003E9550 /* UIColorTests.swift in Sources */,
+				637B91D921374ACF003E9550 /* UserTests.swift in Sources */,
+				637B91D1213642E6003E9550 /* ParkingSpot.swift in Sources */,
+				63CBFE60212F7E1B00E36AC5 /* TextFieldTests.swift in Sources */,
+				637B91CA2134E655003E9550 /* DatabaseObjectTests.swift in Sources */,
+				637B91C62134C6B8003E9550 /* AlertViewTests.swift in Sources */,
+				637B91D821374930003E9550 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,14 +526,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		63A84229211693C30038C68B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63A8422A211693C30038C68B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		63A8422E211693C30038C68B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -627,7 +666,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -646,7 +685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

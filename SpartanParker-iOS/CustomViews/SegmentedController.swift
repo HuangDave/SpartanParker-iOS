@@ -15,30 +15,36 @@ protocol SegmentedControllerDelegate: class {
 }
 
 // MARK: -
-@IBDesignable
 class SegmentedController: UIControl {
+    
+    static let defaultHeight: CGFloat = 44.0
     
     weak var delegate: SegmentedControllerDelegate?
     
     /// Holds and evenly distributes individual segment controls.
     private var stackView: UIStackView?
+    
     /// Array of all segment controls.
-    private var segments: [UIButton] = []
+    private(set) var segments: [UIButton] = []
+    
     /// Indicates the current selected segment.
-    private var highlightIndicator: UIView?
+    private(set) var highlightIndicator: UIView = UIView()
+    
+    private var highlightIndicatorWidth:    NSLayoutConstraint?
     /// Used to move the position of the _highlightIndicator_.
-    private var highlightIndicatorLeftConstraint: NSLayoutConstraint?
+    private var highlightIndicatorPosition: NSLayoutConstraint!
     
     /// Comma seperated list of titles for each segment.
-    @IBInspectable var commaSeparatedTitles: String = " " {
+    var commaSeparatedTitles: String = "" {
         didSet { updateView() }
     }
     
-    @IBInspectable var highlightColor: UIColor = UIColor.spartanBlue {
-        didSet { highlightIndicator?.backgroundColor = highlightColor }
+    var highlightColor: UIColor? {
+        get { return highlightIndicator.backgroundColor     }
+        set { highlightIndicator.backgroundColor = newValue }
     }
     
-    @IBInspectable var titleColor: UIColor = UIColor.spartanGray {
+    var titleColor: UIColor = UIColor.spartanGray {
         didSet {
             segments.forEach { segment in
                 segment.setTitleColor(titleColor, for: .normal)
@@ -46,19 +52,30 @@ class SegmentedController: UIControl {
         }
     }
     
+    private var segmentWidth: CGFloat {
+        return frame.width / CGFloat(segments.count)
+    }
+    
+    // MARK: -
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        updateView()
+        commonInit()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        backgroundColor = .white
         updateView()
     }
     
     func updateView() {
         
-        removeSegmentControls()
+        invalidateView()
         generateSegmentControls()
         
         /// initialize _stackView_ and set layout constraints
@@ -70,23 +87,28 @@ class SegmentedController: UIControl {
         addSubview(stackView!)
         stackView!.translatesAutoresizingMaskIntoConstraints = false
         stackView!.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        stackView!.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         stackView!.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        stackView!.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         stackView!.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         
-        /// initialize _highLightIndicator_ and set layout constraints
-        highlightIndicator = UIView()
-        highlightIndicator!.backgroundColor = highlightColor
-        addSubview(highlightIndicator!)
-        highlightIndicator!.backgroundColor = highlightColor
-        highlightIndicator!.translatesAutoresizingMaskIntoConstraints = false
-        highlightIndicator!.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        highlightIndicator!.widthAnchor.constraint(equalToConstant: (frame.width / CGFloat(segments.count))).isActive = true
-        highlightIndicator!.heightAnchor.constraint(equalToConstant: 6.0).isActive = true
+        let indicatorHeight: CGFloat = 6.0
+        addSubview(highlightIndicator)
+        highlightIndicator.translatesAutoresizingMaskIntoConstraints = false
+        highlightIndicator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        highlightIndicator.heightAnchor.constraint(equalToConstant: indicatorHeight).isActive = true
+        highlightIndicatorPosition = highlightIndicator.leftAnchor.constraint(equalTo: leftAnchor)
+        highlightIndicatorPosition.isActive = true
         
-        highlightIndicatorLeftConstraint = highlightIndicator!.leftAnchor.constraint(equalTo: leftAnchor)
-        highlightIndicatorLeftConstraint!.constant = 0
-        highlightIndicatorLeftConstraint!.isActive = true
+        if highlightIndicatorWidth != nil {
+            highlightIndicatorWidth!.isActive = false
+            highlightIndicator.removeConstraint(highlightIndicatorWidth!)
+        }
+        highlightIndicatorWidth = highlightIndicator.widthAnchor.constraint(equalToConstant: segmentWidth)
+        highlightIndicatorWidth!.isActive = true
+    }
+    
+    func invalidateView() {
+        removeSegmentControls()
     }
     
     private func removeSegmentControls() {
@@ -94,7 +116,7 @@ class SegmentedController: UIControl {
             segment.removeFromSuperview()
         }
         segments.removeAll()
-        highlightIndicator?.removeFromSuperview()
+        highlightIndicator.removeFromSuperview()
         stackView?.removeFromSuperview()
     }
     
@@ -106,15 +128,18 @@ class SegmentedController: UIControl {
             segment.setTitle(segmentTitles[i], for: .normal)
             segment.setTitleColor(titleColor, for: .normal)
             segment.titleLabel!.textAlignment = .center
-            segment.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
+            segment.titleLabel!.font = UIFont.titleFont
             segment.tag = i
-            segment.addTarget(self, action: #selector(userDidTap), for: .touchUpInside)
+            segment.addTarget(self, action: #selector(userDidTapSegment), for: .touchUpInside)
             segments.append(segment)
         }
     }
     
-    @IBAction @objc func userDidTap(segment: UIButton) {
-        //UIView.anima
+    @IBAction @objc func userDidTapSegment(_ segment: UIButton) {
+        highlightIndicatorPosition.constant = CGFloat(segment.tag) * segmentWidth
+        UIView.animate(withDuration: 0.30) {
+            self.layoutIfNeeded()
+        }
         delegate?.segmentedController(self, didSelectSegmentAtIndex: segment.tag)
     }
     

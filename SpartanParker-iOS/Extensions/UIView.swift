@@ -10,12 +10,8 @@ import UIKit
 
 extension UIView {
     
-    func addTopBorder(width: CGFloat, color: UIColor, opacity: Float = 1.0) {
-        let border = CALayer()
-        border.backgroundColor = color.cgColor
-        border.opacity = opacity
-        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
-        layer.addSublayer(border)
+    enum Theme {
+        static var cornerRadius: CGFloat { return 14.0 }
     }
     
     func addBottomBorder(width: CGFloat, color: UIColor, opacity: Float = 1.0) {
@@ -25,5 +21,4 @@ extension UIView {
         border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
         layer.addSublayer(border)
     }
-    
 }
