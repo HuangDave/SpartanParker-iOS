@@ -11,7 +11,7 @@ import Foundation
 // MARK: -
 class User: DatabaseObject {
 
-    private enum AttributeKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case fullName
         case email
         case password
@@ -34,7 +34,7 @@ class User: DatabaseObject {
     var password: String = ""
     
     required init(from decoder: Decoder) throws {
-        let container         = try decoder.container(keyedBy: AttributeKeys.self)
+        let container         = try decoder.container(keyedBy: CodingKeys.self)
         let fullNameContainer = try container.nestedContainer(keyedBy: FullNameKeys.self, forKey: .fullName)
         fullName.first        = try fullNameContainer.decode(String.self, forKey: .first)
         fullName.last         = try fullNameContainer.decode(String.self, forKey: .last)
@@ -45,12 +45,12 @@ class User: DatabaseObject {
     
     override func serialized() -> [String: Any] {
         var data = super.serialized()
-        data[AttributeKeys.fullName.rawValue] = [
+        data[CodingKeys.fullName.rawValue] = [
             FullNameKeys.first.rawValue: fullName.first,
             FullNameKeys.last.rawValue:  fullName.last,
         ]
-        data[AttributeKeys.email.rawValue]    = email
-        data[AttributeKeys.password.rawValue] = password
+        data[CodingKeys.email.rawValue]    = email
+        data[CodingKeys.password.rawValue] = password
         return data
     }
 }

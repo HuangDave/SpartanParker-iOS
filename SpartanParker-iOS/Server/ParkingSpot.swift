@@ -11,7 +11,7 @@ import Foundation
 // MARK: -
 class ParkingSpot: DatabaseObject {
     
-    private enum AttributeKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case garageId
         case spotId
         case isOccupied
@@ -30,7 +30,7 @@ class ParkingSpot: DatabaseObject {
     
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-        let container = try decoder.container(keyedBy: AttributeKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         garageId      = try container.decode(String.self, forKey: .garageId)
         spotId        = try container.decode(String.self, forKey: .spotId)
         isOccupied    = try container.decode(Bool.self,   forKey: .isOccupied)
@@ -41,10 +41,10 @@ class ParkingSpot: DatabaseObject {
     
     override func serialized() -> [String : Any] {
         var data = super.serialized()
-        data[AttributeKeys.garageId.rawValue]   = garageId
-        data[AttributeKeys.spotId.rawValue]     = spotId
-        data[AttributeKeys.isOccupied.rawValue] = isOccupied
-        data[AttributeKeys.spotType.rawValue]   = spotType.rawValue
+        data[CodingKeys.garageId.rawValue]   = garageId
+        data[CodingKeys.spotId.rawValue]     = spotId
+        data[CodingKeys.isOccupied.rawValue] = isOccupied
+        data[CodingKeys.spotType.rawValue]   = spotType.rawValue
         return data
     }
 }

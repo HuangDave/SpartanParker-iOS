@@ -10,7 +10,7 @@ import Foundation
 
 class DatabaseObject: Codable {
     
-    private enum AttributeKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case uid
         case createdAt
         case updatedAt
@@ -22,9 +22,9 @@ class DatabaseObject: Codable {
     
     func serialized() -> [String: Any] {
         return [
-            AttributeKeys.uid.rawValue:       uid       as Any,
-            AttributeKeys.createdAt.rawValue: createdAt as Any,
-            AttributeKeys.updatedAt.rawValue: updatedAt as Any,
+            CodingKeys.uid.rawValue:       uid       as Any,
+            CodingKeys.createdAt.rawValue: createdAt as Any,
+            CodingKeys.updatedAt.rawValue: updatedAt as Any,
         ]
     }
 }

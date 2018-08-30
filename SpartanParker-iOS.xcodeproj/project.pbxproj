@@ -19,17 +19,15 @@
 		637B91CA2134E655003E9550 /* DatabaseObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C92134E655003E9550 /* DatabaseObjectTests.swift */; };
 		637B91CE213609ED003E9550 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91CD213609ED003E9550 /* ParkingSpot.swift */; };
 		637B91D021364109003E9550 /* ParkingSpotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91CF21364109003E9550 /* ParkingSpotTests.swift */; };
-		637B91D1213642E6003E9550 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91CD213609ED003E9550 /* ParkingSpot.swift */; };
 		637B91D52137359F003E9550 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91D42137359F003E9550 /* RootViewController.swift */; };
-		637B91D821374930003E9550 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE6E212FECFC00E36AC5 /* User.swift */; };
 		637B91D921374ACF003E9550 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE72212FEFD500E36AC5 /* UserTests.swift */; };
 		63822C2C212CDBAF000D2B9D /* UserForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63822C2B212CDBAF000D2B9D /* UserForm.swift */; };
 		63822C30212CDE0E000D2B9D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63822C2F212CDE0E000D2B9D /* TextField.swift */; };
+		639A8C7D21376E71001733D6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639A8C7C21376E71001733D6 /* AuthManager.swift */; };
 		63A84226211693C30038C68B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84225211693C30038C68B /* AppDelegate.swift */; };
 		63A8422D211693C30038C68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422C211693C30038C68B /* Assets.xcassets */; };
 		63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422E211693C30038C68B /* LaunchScreen.storyboard */; };
 		63A84246211693C30038C68B /* SpartanParker_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84245211693C30038C68B /* SpartanParker_iOSUITests.swift */; };
-		63AB52D6213015CF0079B005 /* DatabaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */; };
 		63C96AA5212AEDBD00F574D0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C96AA4212AEDBD00F574D0 /* UIColor.swift */; };
 		63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C96AA6212AF4D800F574D0 /* UIView.swift */; };
 		63CBFE5E212F7E1B00E36AC5 /* UserFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBFE58212F7D3800E36AC5 /* UserFormTests.swift */; };
@@ -73,6 +71,7 @@
 		637B91D42137359F003E9550 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		63822C2B212CDBAF000D2B9D /* UserForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForm.swift; sourceTree = "<group>"; };
 		63822C2F212CDE0E000D2B9D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		639A8C7C21376E71001733D6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		63A84222211693C20038C68B /* SpartanParker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpartanParker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A84225211693C30038C68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63A8422C211693C30038C68B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -216,6 +215,7 @@
 		63CBFE6D212FECE600E36AC5 /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				639A8C7C21376E71001733D6 /* AuthManager.swift */,
 				63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */,
 				63CBFE6E212FECFC00E36AC5 /* User.swift */,
 				637B91CD213609ED003E9550 /* ParkingSpot.swift */,
@@ -269,6 +269,7 @@
 				63A8421F211693C20038C68B /* Frameworks */,
 				63A84220211693C20038C68B /* Resources */,
 				06B09657EC193D10AA7F314F /* [CP] Embed Pods Frameworks */,
+				639A8C7E2137706E001733D6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -394,10 +395,50 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpartanParker-iOS/Pods-SpartanParker-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAutoScaling/AWSAutoScaling.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCloudWatch/AWSCloudWatch.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognito/AWSCognito.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoAuth/AWSCognitoAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSDynamoDB/AWSDynamoDB.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSEC2/AWSEC2.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSElasticLoadBalancing/AWSElasticLoadBalancing.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSIoT/AWSIoT.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSKinesis/AWSKinesis.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSLambda/AWSLambda.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSMachineLearning/AWSMachineLearning.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSMobileAnalytics/AWSMobileAnalytics.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSSES/AWSSES.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSSNS/AWSSNS.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSSQS/AWSSQS.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSSimpleDB/AWSSimpleDB.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAutoScaling.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCloudWatch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognito.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSDynamoDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSEC2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSElasticLoadBalancing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSIoT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSKinesis.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSLambda.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMachineLearning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileAnalytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSSES.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSSNS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSSQS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSSimpleDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +463,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		639A8C7E2137706E001733D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:|REMOVEME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
 		};
 		664B641200C52A43D8152905 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -475,6 +529,7 @@
 				63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */,
 				637B91BC21347860003E9550 /* SpotSearchViewController.swift in Sources */,
 				63822C2C212CDBAF000D2B9D /* UserForm.swift in Sources */,
+				639A8C7D21376E71001733D6 /* AuthManager.swift in Sources */,
 				63822C30212CDE0E000D2B9D /* TextField.swift in Sources */,
 				637B91C221347D34003E9550 /* UIFont.swift in Sources */,
 				637B91CE213609ED003E9550 /* ParkingSpot.swift in Sources */,
@@ -489,16 +544,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				637B91D021364109003E9550 /* ParkingSpotTests.swift in Sources */,
-				63AB52D6213015CF0079B005 /* DatabaseObject.swift in Sources */,
 				63CBFE5E212F7E1B00E36AC5 /* UserFormTests.swift in Sources */,
 				63CBFE68212FCD2200E36AC5 /* SegmentedControllerTests.swift in Sources */,
 				637B91C82134D2B2003E9550 /* UIColorTests.swift in Sources */,
 				637B91D921374ACF003E9550 /* UserTests.swift in Sources */,
-				637B91D1213642E6003E9550 /* ParkingSpot.swift in Sources */,
 				63CBFE60212F7E1B00E36AC5 /* TextFieldTests.swift in Sources */,
 				637B91CA2134E655003E9550 /* DatabaseObjectTests.swift in Sources */,
 				637B91C62134C6B8003E9550 /* AlertViewTests.swift in Sources */,
-				637B91D821374930003E9550 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

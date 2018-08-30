@@ -8,6 +8,8 @@
 
 import XCTest
 
+@testable import SpartanParker_iOS
+
 class UserTests: XCTestCase {
     
     let userDictionary: [String: Any] = [
@@ -20,7 +22,7 @@ class UserTests: XCTestCase {
         "password": "sadg89auyefhp9uios",
         "createdAt": "0001-01-01T00:00:00Z",
         "updatedAt": "9999-12-31T23:59:59Z",
-    ]
+        ]
     
     var fullName:  [String: String] { return userDictionary["fullName"] as! [String: String] }
     
@@ -53,6 +55,7 @@ class UserTests: XCTestCase {
     func test_serialized() {
         let data = user.serialized()
         let fullName = data["fullName"] as! [String : String]
+        XCTAssertEqual(data.count, userDictionary.count)
         XCTAssertEqual(fullName["first"], firstName)
         XCTAssertEqual(fullName["last"],  lastName)
         XCTAssertEqual(data["uid"]       as? String, uid)

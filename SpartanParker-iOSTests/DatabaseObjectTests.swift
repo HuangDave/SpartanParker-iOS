@@ -8,6 +8,8 @@
 
 import XCTest
 
+@testable import SpartanParker_iOS
+
 class DatabaseObjectTests: XCTestCase {
     
     let objectDictionary: [String: Any] = [
@@ -36,6 +38,7 @@ class DatabaseObjectTests: XCTestCase {
     
     func test_serialized() {
         let data = object.serialized()
+        XCTAssertEqual(data.count, objectDictionary.count)
         XCTAssertEqual(data["uid"]       as? String, uid)
         XCTAssertEqual(data["createdAt"] as? String, createdAt)
         XCTAssertEqual(data["updatedAt"] as? String, updatedAt)

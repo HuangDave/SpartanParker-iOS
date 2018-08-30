@@ -140,7 +140,6 @@ extension AuthenticationViewController: UserFormDelegate {
         }
         
         dismiss(animated: true, completion: nil)
-        //navigationController?.present(TabBarController(), animated: true, completion: nil)
     }
     
     func verifyLoginFields(_ form: UserForm) {

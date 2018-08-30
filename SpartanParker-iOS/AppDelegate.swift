@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AWSCore
+import AWSCognito
+import AWSCognitoIdentityProvider
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // REMOVEME:
+        // TODO: update identity pool id
+        //let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YOUR_IDENTITY_POOL_ID")
+        //let configuration = AWSServiceConfiguration(region: .USEast1, credentialsProvider: credentialsProvider)
+        //AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        let serviceConfiguration = AWSServiceConfiguration(region: .USEast1, credentialsProvider: nil)
+        let userPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: "YOUR_CLIENT_ID",
+                                                                            clientSecret: "YOUR_CLIENT_SECRET",
+                                                                            poolId: "YOUR_USER_POOL_ID")
+        AWSCognitoIdentityUserPool.register(with: serviceConfiguration,
+                                            userPoolConfiguration: userPoolConfiguration,
+                                            forKey: "UserPool")
+        let pool = AWSCognitoIdentityUserPool(forKey: "UserPool")
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1,
+                                                                identityPoolId: "YOUR_IDENTITY_POOL_ID",
+                                                                identityProviderManager: pool)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: RootViewController())
         window?.makeKeyAndVisible()
