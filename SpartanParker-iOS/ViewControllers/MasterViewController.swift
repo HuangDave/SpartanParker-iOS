@@ -9,31 +9,31 @@
 import UIKit
 
 class MasterViewController: UITabBarController {
-    private var loggedIn = true
+    private let spotSearchController = create(SpotSearchViewController()) {
+        $0.tabBarItem = UITabBarItem(title: "Search", image: nil, tag: 0)
+    }
+    private let qrScanController: QRScanViewController = create(QRScanViewController()) {
+        $0.tabBarItem = UITabBarItem(title: "Scan", image: nil, tag: 1)
+    }
+    // TODO: change to actual controller
+    private let historyController: UIViewController = create(UIViewController()) {
+        $0.tabBarItem = UITabBarItem(title: "History", image: nil, tag: 2)
+    }
+    // TODO: change to actual controller
+    private let accountController: UIViewController = create(UIViewController()) {
+        $0.tabBarItem = UITabBarItem(title: "Account", image: nil, tag: 3)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tabBar.tintColor       = .spartanBlue
+        navigationController?.navigationBar.backgroundColor = .white
+        tabBar.tintColor = .spartanBlue
         tabBar.backgroundColor = .white
-
-        let spotSearchController = SpotSearchViewController()
-        spotSearchController.tabBarItem = UITabBarItem(title: "Search", image: nil, tag: 0)
-        // TODO: change to actual controller
-        let guestParkingController = UIViewController()
-        guestParkingController.tabBarItem = UITabBarItem(title: "Scan", image: nil, tag: 1)
-        // TODO: change to actual controller
-        let historyController = UIViewController()
-        historyController.tabBarItem = UITabBarItem(title: "History", image: nil, tag: 2)
-        // TODO: change to actual controller
-        let accountController = UIViewController()
-        accountController.tabBarItem = UITabBarItem(title: "Account", image: nil, tag: 3)
-
         viewControllers = [
             spotSearchController,
-            guestParkingController,
+            qrScanController,
             historyController,
             accountController
-        ]
+            ]
     }
 }

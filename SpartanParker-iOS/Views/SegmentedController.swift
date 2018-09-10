@@ -29,7 +29,7 @@ class SegmentedController: UIControl {
     /// Used to move the position of the _highlightIndicator_.
     private var highlightIndicatorPosition: NSLayoutConstraint!
     /// Comma seperated list of titles for each segment.
-    var commaSeparatedTitles: String = "" {
+    var titles: [String] = [String]() {
         didSet { updateView() }
     }
     /// Color for highlight indicator.
@@ -47,6 +47,7 @@ class SegmentedController: UIControl {
     }
     /// Width of each segment is based on (frame.size.width / segments.count)
     private var segmentWidth: CGFloat {
+        guard segments.isEmpty == false else { return 0.0 }
         return frame.width / CGFloat(segments.count)
     }
 
@@ -114,10 +115,9 @@ class SegmentedController: UIControl {
     }
 
     private func generateSegmentControls() {
-        let segmentTitles: [String] = commaSeparatedTitles.components(separatedBy: ",")
-        for i in 0..<segmentTitles.count {
+        for i in 0..<titles.count {
             let segment = UIButton(type: .system)
-            segment.setTitle(segmentTitles[i], for: .normal)
+            segment.setTitle(titles[i], for: .normal)
             segment.setTitleColor(titleColor, for: .normal)
             segment.titleLabel!.textAlignment = .center
             segment.titleLabel!.font = UIFont.titleFont

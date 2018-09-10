@@ -10,6 +10,9 @@
 		41B9B160AC61A91691CF1D98 /* Pods_SpartanParker_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B038958A5F8253C698DBA8E /* Pods_SpartanParker_iOSUITests.framework */; };
 		632CBB3A213FA950008A67D2 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB39213FA950008A67D2 /* LoginForm.swift */; };
 		632CBB3C213FC8CD008A67D2 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB3B213FC8CD008A67D2 /* Authenticator.swift */; };
+		635C5280214754440010006C /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C527F214754440010006C /* GlobalHelpers.swift */; };
+		635C52822147DEC80010006C /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C52812147DEC80010006C /* QRScanViewController.swift */; };
+		6374D7832146FACC00402950 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6374D7822146FACC00402950 /* OptionButton.swift */; };
 		637B91BC21347860003E9550 /* SpotSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91BB21347860003E9550 /* SpotSearchViewController.swift */; };
 		637B91BE213478A5003E9550 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91BD213478A5003E9550 /* AlertView.swift */; };
 		637B91C221347D34003E9550 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B91C121347D34003E9550 /* UIFont.swift */; };
@@ -67,6 +70,9 @@
 		6302127B21392B6B0067CEDB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		632CBB39213FA950008A67D2 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		632CBB3B213FC8CD008A67D2 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		635C527F214754440010006C /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
+		635C52812147DEC80010006C /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
+		6374D7822146FACC00402950 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		637B91BB21347860003E9550 /* SpotSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSearchViewController.swift; sourceTree = "<group>"; };
 		637B91BD213478A5003E9550 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		637B91C121347D34003E9550 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 			children = (
 				63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */,
 				637B91D42137359F003E9550 /* MasterViewController.swift */,
+				635C52812147DEC80010006C /* QRScanViewController.swift */,
 				637B91BB21347860003E9550 /* SpotSearchViewController.swift */,
 				637B91C32134AF2D003E9550 /* ViewController.swift */,
 			);
@@ -255,6 +262,7 @@
 				63A8422C211693C30038C68B /* Assets.xcassets */,
 				63A84231211693C30038C68B /* Info.plist */,
 				63A84225211693C30038C68B /* AppDelegate.swift */,
+				635C527F214754440010006C /* GlobalHelpers.swift */,
 				63E4C4DB21408FB2000CE9C4 /* Print.swift */,
 			);
 			path = SupportingFiles;
@@ -264,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				637B91BD213478A5003E9550 /* AlertView.swift */,
+				6374D7822146FACC00402950 /* OptionButton.swift */,
 				63CBFE65212F8BA900E36AC5 /* SegmentedController.swift */,
 				63822C2F212CDE0E000D2B9D /* TextField.swift */,
 				63E2428221406D7100F9F525 /* Forms */,
@@ -526,6 +535,7 @@
 			files = (
 				63E35CC9211B3B4600735870 /* AuthenticationViewController.swift in Sources */,
 				63C96AA5212AEDBD00F574D0 /* UIColor.swift in Sources */,
+				635C52822147DEC80010006C /* QRScanViewController.swift in Sources */,
 				63CBFE71212FED2A00E36AC5 /* DatabaseObject.swift in Sources */,
 				637B91C42134AF2D003E9550 /* ViewController.swift in Sources */,
 				637B91BE213478A5003E9550 /* AlertView.swift in Sources */,
@@ -534,10 +544,12 @@
 				63E4C4DC21408FB2000CE9C4 /* Print.swift in Sources */,
 				63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */,
 				637B91BC21347860003E9550 /* SpotSearchViewController.swift in Sources */,
+				6374D7832146FACC00402950 /* OptionButton.swift in Sources */,
 				63822C2C212CDBAF000D2B9D /* UserForm.swift in Sources */,
 				63822C30212CDE0E000D2B9D /* TextField.swift in Sources */,
 				632CBB3A213FA950008A67D2 /* LoginForm.swift in Sources */,
 				637B91C221347D34003E9550 /* UIFont.swift in Sources */,
+				635C5280214754440010006C /* GlobalHelpers.swift in Sources */,
 				637B91CE213609ED003E9550 /* ParkingSpot.swift in Sources */,
 				63A84226211693C30038C68B /* AppDelegate.swift in Sources */,
 				63CBFE6F212FECFC00E36AC5 /* User.swift in Sources */,

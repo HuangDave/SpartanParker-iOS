@@ -14,61 +14,45 @@ class AlertView: UIView {
         case confirmation
     }
 
-    let titleLabel: UILabel = {
-        var label = UILabel()
-        label.font          = UIFont.boldSystemFont(ofSize: 20.0)
-        label.textColor     = .black
-        label.textAlignment = .center
-        return label
-    }()
+    let titleLabel: UILabel = create(UILabel()) {
+        $0.font          = UIFont.boldSystemFont(ofSize: 24.0)
+        $0.textColor     = .black
+        $0.textAlignment = .center
+    }
 
-    let messageLabel: UILabel = {
-        var label = UILabel()
-        label.font          = UIFont.boldSystemFont(ofSize: 18.0)
-        label.textColor     = UIColor(hex: 0x626262)
-        label.textAlignment = .center
-        label.numberOfLines = 5
-        return label
-    }()
+    let messageLabel: UILabel = create(UILabel()) {
+        $0.font          = UIFont.boldSystemFont(ofSize: 20.0)
+        $0.textColor     = .spartanDarkGray
+        $0.textAlignment = .center
+        $0.numberOfLines = 5
+    }
 
     lazy var cancelButton: UIButton? = {
         guard alertStyle != .alert else { return nil }
-        var button = UIButton()
-        button.titleLabel?.font          = UIFont.boldSystemFont(ofSize: 16.0)
-        button.titleLabel?.textColor     = UIColor.white
-        button.titleLabel?.textAlignment = .center
-        button.layer.cornerRadius        = UIView.Theme.cornerRadius
-        button.layer.masksToBounds       = true
-        button.backgroundColor           = UIColor(hex: 0xF59292)
-        button.setTitle("Cancel", for: .normal)
-        button.addTarget(self, action: #selector(didSelectCancel), for: .touchUpInside)
-        return button
+        return create(UIButton()) {
+            $0.titleLabel?.font          = UIFont.boldSystemFont(ofSize: 14.0)
+            $0.titleLabel?.textColor     = UIColor.white
+            $0.titleLabel?.textAlignment = .center
+            $0.layer.cornerRadius        = 20.0
+            $0.layer.masksToBounds       = true
+            $0.backgroundColor           = .spartanRed
+            $0.setTitle("CANCEL", for: .normal)
+            $0.addTarget(self, action: #selector(didSelectCancel), for: .touchUpInside)
+        }
     }()
 
-    let confirmButton: UIButton = {
-        var button = UIButton()
-        button.titleLabel?.font          = UIFont.boldSystemFont(ofSize: 16.0)
-        button.titleLabel?.textColor     = .white
-        button.titleLabel?.textAlignment = .center
-        button.layer.cornerRadius        = UIView.Theme.cornerRadius
-        button.layer.masksToBounds       = true
-        button.backgroundColor           = UIColor(hex: 0x68D596)
-        button.setTitle("Confirm", for: .normal)
-        button.addTarget(self, action: #selector(didSelectConfirm), for: .touchUpInside)
-        return button
-    }()
+    let confirmButton: UIButton = create(UIButton()) {
+        $0.titleLabel?.font          = UIFont.boldSystemFont(ofSize: 14.0)
+        $0.titleLabel?.textColor     = .white
+        $0.titleLabel?.textAlignment = .center
+        $0.layer.cornerRadius        = 20.0
+        $0.layer.masksToBounds       = true
+        $0.backgroundColor           = .spartanGreen
+        $0.setTitle("CONFIRM", for: .normal)
+        $0.addTarget(self, action: #selector(didSelectConfirm), for: .touchUpInside)
+    }
 
     private(set) var alertStyle: AlertStyle = .alert
-
-    var title: String? {
-        get { return titleLabel.text  }
-        set { titleLabel.text = newValue }
-    }
-
-    var message: String? {
-        get { return messageLabel.text     }
-        set { messageLabel.text = newValue }
-    }
 
     private var cancelHandler:  (() -> Void)?
     private var confirmHandler: (() -> Void)?
@@ -97,12 +81,15 @@ class AlertView: UIView {
         let titleLabelHeight: CGFloat = 50.0
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor,
+                                        constant: 10.0).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: titleLabelHeight).isActive = true
         addSubview(messageLabel)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         messageLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         messageLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -122,7 +109,6 @@ class AlertView: UIView {
             confirmButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             confirmButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
             confirmButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
-
         } else {
             let horizontalSpacing: CGFloat = 20.0
             let stackView = UIStackView(arrangedSubviews: [cancelButton!, confirmButton])
@@ -158,5 +144,16 @@ class AlertView: UIView {
 
     @objc func didSelectConfirm() {
         confirmHandler?()
+    }
+}
+
+extension AlertView {
+    var title: String? {
+        get { return titleLabel.text  }
+        set { titleLabel.text = newValue }
+    }
+    var message: String? {
+        get { return messageLabel.text     }
+        set { messageLabel.text = newValue }
     }
 }

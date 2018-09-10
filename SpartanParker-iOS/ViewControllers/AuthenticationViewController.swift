@@ -36,17 +36,14 @@ class AuthenticationViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        segmentedController = SegmentedController(frame: CGRect(x: 0,
-                                                                y: 0,
+        segmentedController = SegmentedController(frame: CGRect(x: 0, y: 0,
                                                                 width: view.frame.width,
                                                                 height: SegmentedController.defaultHeight))
         segmentedController.delegate       = self
         segmentedController.titleColor     = .spartanGray
         segmentedController.highlightColor = .spartanBlue
-        segmentedController.addBottomBorder(width: 0.5,
-                                            color: .lightGray,
-                                            opacity: 0.5)
-        segmentedController.commaSeparatedTitles = "Login,Register"
+        segmentedController.titles         = ["Login", "Register"]
+        segmentedController.addBottomBorder(width: 0.5, color: .lightGray, opacity: 0.5)
         view.addSubview(segmentedController)
         segmentedController.translatesAutoresizingMaskIntoConstraints = false
         segmentedController.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -128,8 +125,10 @@ extension AuthenticationViewController: UserFormDelegate {
             errorDescription = description
         } catch _ { return }
 
-        if let error = errorDescription {
-            self.presentAlert(message: error)
+        if let message = errorDescription {
+            self.present(alertView: AlertView(style: .alert), setup: {
+                $0.message = message
+            })
             return
         }
 
@@ -151,13 +150,13 @@ extension AuthenticationViewController: UserFormDelegate {
             User.register(email: email,
                           password: password,
                           completion: ({ [weak self] _ in
-
                             self?.dismiss(animated: true, completion: nil)
-
                           }), failed: { [weak self] error in
                             switch error {
                             case .emailExists(let message):
-                                self?.presentAlert(message: message)
+                                self?.present(alertView: AlertView(style: .alert), setup: {
+                                    $0.message = message
+                                })
                             }
             })
         default: return
@@ -176,8 +175,9 @@ extension AuthenticationViewController: AWSCognitoIdentityPasswordAuthentication
         if let authError = error as NSError?,
             let message = authError.userInfo["message"] as? String {
             DispatchQueue.main.async {
-                print(authError)
-                self.presentAlert(message: message)
+                self.present(alertView: AlertView(style: .alert), setup: {
+                    $0.message = message
+                })
             }
         }
     }
