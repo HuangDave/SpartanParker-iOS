@@ -11,19 +11,17 @@ import XCTest
 @testable import SpartanParker_iOS
 
 class TextFieldTests: XCTestCase {
-    
-    var  textField: TextField!
-    
+    var textField: TextField!
+
     override func setUp() {
         super.setUp()
     }
-    
+
     func test_init() {
-        
         let placeHolder = "Random placeholder test"
         let key = "test"
         let textField = TextField(placeHolder: placeHolder, key: key)
-        
+
         XCTAssertEqual(textField.frame.height, TextField.defaultHeight)
         XCTAssertEqual(textField.placeHolderText, placeHolder)
         XCTAssertEqual(textField.key, key)
@@ -33,7 +31,7 @@ class TextFieldTests: XCTestCase {
         XCTAssertEqual(textField.inputField.font, UIFont.descriptionFont)
         XCTAssertEqual(textField.inputField.clearButtonMode, .whileEditing)
     }
-    
+
     func test_placeHolder() {
         let placeHolder = "Some placeholder here"
         let textField = TextField()

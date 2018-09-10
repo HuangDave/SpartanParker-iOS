@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIFont {
-    
     static var titleFont:       UIFont { return UIFont.boldSystemFont(ofSize: 18.0) }
     static var descriptionFont: UIFont { return UIFont.systemFont(ofSize: 14.0)     }
 }

@@ -9,11 +9,10 @@
 import UIKit
 
 extension UIColor {
-    
     static var spartanLightGray: UIColor { return UIColor(hex: 0xEFEFEF) }
     static var spartanGray:      UIColor { return UIColor(hex: 0x6E6E6E) }
     static var spartanBlue:      UIColor { return UIColor(hex: 0x579AD3) }
-    
+
     convenience init(hex: UInt) {
         let red:   CGFloat = CGFloat((hex >> 16) & 0xFF) / 255.0
         let green: CGFloat = CGFloat((hex >>  8) & 0xFF) / 255.0

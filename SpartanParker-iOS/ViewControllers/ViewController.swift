@@ -9,44 +9,38 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     var alertView: AlertView?
-    
-    func presentAlertView(_ alertView: AlertView) {
-        guard self.alertView == nil else {
-            print("Already displaying an AlertView!")
+
+    func presentAlert(message: String) {
+        let alert = AlertView(style: .alert)
+        alert.message = message
+        alert.onConfirm {
+            self.dismissAlertView()
+        }
+        presentAlertView(alert)
+    }
+
+    func presentAlertView(_ view: AlertView) {
+        guard alertView == nil else {
             return
         }
-        
+
         let horizontalPadding: CGFloat = 20.0
-        
-        self.alertView = alertView
-        
-        view.addSubview(alertView)
-        alertView.translatesAutoresizingMaskIntoConstraints = false
-        alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        alertView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: horizontalPadding).isActive = true
-        alertView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -(horizontalPadding)).isActive = true
-        alertView.heightAnchor.constraint(equalToConstant: alertView.bounds.size.width).isActive = true
+        alertView = view
+        self.view.addSubview(alertView!)
+        alertView!.translatesAutoresizingMaskIntoConstraints = false
+        alertView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        alertView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        alertView!.leftAnchor.constraint(equalTo: self.view.leftAnchor,
+                                         constant: horizontalPadding).isActive = true
+        alertView!.rightAnchor.constraint(equalTo: self.view.rightAnchor,
+                                          constant: -(horizontalPadding)).isActive = true
+        alertView!.heightAnchor.constraint(equalToConstant: alertView!.bounds.size.width).isActive = true
     }
-    
+
     func dismissAlertView() {
-        
         guard alertView != nil else { return }
-        
         alertView?.removeFromSuperview()
         alertView = nil
-    }
-}
-
-extension UIViewController: UITextFieldDelegate {
-    
-    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
     }
 }

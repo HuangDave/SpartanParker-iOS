@@ -7,39 +7,39 @@
 //
 
 import UIKit
+import AWSCognitoAuth
+import AWSCognitoIdentityProvider
 
 class AuthenticationViewController: ViewController {
-    
     private enum AuthenticationForm: Int {
-        case login
-        case register
+        case login    = 0
+        case register = 1
     }
 
     private var segmentedController: SegmentedController!
-    
-    private var loginForm:    UserForm = UserForm()
-    private var registerForm: UserForm = UserForm()
-    
+    private var loginForm: LoginForm = LoginForm()
+    private var registerForm: RegisterForm = RegisterForm()
+    /// Constraint used for animating the switch between the login and register forms.
     private var loginFormCenterXConstraint:    NSLayoutConstraint!
+    ///
     private var loginFormBottomConstraint:     NSLayoutConstraint!
     private var registerFormBottomConstraint:  NSLayoutConstraint!
-    
+
     private var currentForm: AuthenticationForm = AuthenticationForm.login
-    
+
     private var userFormWidth: CGFloat { return view.frame.width }
 
-}
+    var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
 
-// MARK: - UIViewController Overrides
-extension AuthenticationViewController {
-    
+    // MARK: - UIViewController Overrides
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         view.backgroundColor = .white
-        
-        segmentedController = SegmentedController(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: SegmentedController.defaultHeight))
+        segmentedController = SegmentedController(frame: CGRect(x: 0,
+                                                                y: 0,
+                                                                width: view.frame.width,
+                                                                height: SegmentedController.defaultHeight))
         segmentedController.delegate       = self
         segmentedController.titleColor     = .spartanGray
         segmentedController.highlightColor = .spartanBlue
@@ -53,7 +53,7 @@ extension AuthenticationViewController {
         segmentedController.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         segmentedController.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         segmentedController.heightAnchor.constraint(equalToConstant: SegmentedController.defaultHeight).isActive = true
-        
+
         createLoginForm()
         createRegisterForm()
     }
@@ -61,12 +61,10 @@ extension AuthenticationViewController {
 
 // MARK: - SegmentedControllerDelegate Implementation
 extension AuthenticationViewController: SegmentedControllerDelegate {
-    
     func segmentedController(_ segmentedController: SegmentedController, didSelectSegmentAtIndex index: Int) {
-        
         guard currentForm.rawValue != index,
             let selectedForm = AuthenticationForm(rawValue: index) else { return }
-        
+
         switch selectedForm {
         case .login:    loginFormCenterXConstraint.constant = 0.0
         case .register: loginFormCenterXConstraint.constant = -(userFormWidth)
@@ -81,12 +79,9 @@ extension AuthenticationViewController: SegmentedControllerDelegate {
 
 // MARK: - Login & Register Form
 extension AuthenticationViewController: UserFormDelegate {
-    
     private func createLoginForm() {
-        
-        loginForm.userFormDelegate = self
+        loginForm.delegate = self
         view.addSubview(loginForm)
-        
         loginForm.translatesAutoresizingMaskIntoConstraints = false
         loginForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
         loginForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
@@ -94,98 +89,96 @@ extension AuthenticationViewController: UserFormDelegate {
         loginFormCenterXConstraint.isActive = true
         loginFormBottomConstraint = loginForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         loginFormBottomConstraint.isActive = true
-        
-        let emailField    = TextField(placeHolder: "Email",    key: "email")
-        let passwordField = TextField(placeHolder: "Password", key: "password")
-        passwordField.inputField.isSecureTextEntry = true
-        
-        loginForm.insertRow(textField: emailField)
-        loginForm.insertRow(textField: passwordField)
+
+        #if DEBUG
+        loginForm.emailField.text    = "huangd95@yahoo.com"
+        loginForm.passwordField.text = "Test1234"
+        #endif
     }
-    
+
     private func createRegisterForm() {
-        
-        registerForm.userFormDelegate  = self
-        registerForm.textFieldDelegate = self
+        registerForm.delegate = self
         view.addSubview(registerForm)
-        
         registerForm.translatesAutoresizingMaskIntoConstraints = false
         registerForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
         registerForm.leftAnchor.constraint(equalTo: loginForm.rightAnchor).isActive = true
         registerForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
         registerFormBottomConstraint = registerForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         registerFormBottomConstraint.isActive = true
-        
-        let firstNameField = TextField(placeHolder: "First",    key: "first_name")
-        let lastNameField  = TextField(placeHolder: "Last",     key: "last_name")
-        let emailField     = TextField(placeHolder: "Email",    key: "email")
-        let passwordField  = TextField(placeHolder: "Password", key: "password")
-        
-        emailField.inputField.keyboardType = .emailAddress
-        passwordField.inputField.isSecureTextEntry = true
-        
-        registerForm.insertRow(textFields: [firstNameField, lastNameField])
-        registerForm.insertRow(textField: emailField)
-        registerForm.insertRow(textField: passwordField)
+
+        #if DEBUG
+        registerForm.emailField.text        = "huangd95@yahoo.com"
+        registerForm.passwordField.text     = "Test1234"
+        registerForm.firstNameField.text    = "David"
+        registerForm.lastNameField.text     = "Huang"
+        registerForm.licensePlateField.text = "123sd94"
+        #endif
     }
-    
+
     func userFormDidSelectContinue(_ userForm: UserForm) {
-        
-        // guard let data = userForm.allInputs() else { return }
-        
+        view.endEditing(true)
+        // attempt to get input information and present an alert if any field was empty or invalid
+        var formInformation: [String: String]?
+        var errorDescription: String?
+        do {
+            formInformation = try userForm.getAllInputs()
+        } catch TextField.InputError.emtpy(let description) {
+            errorDescription = description
+        } catch TextField.InputError.invalid(let description) {
+            errorDescription = description
+        } catch _ { return }
+
+        if let error = errorDescription {
+            self.presentAlert(message: error)
+            return
+        }
+
+        #if DEBUG
+        let email:    String = "huangd95@yahoo.com"
+        let password: String = "Test1234"
+        #else
+        let email:    String = formInformation!["email"]!
+        let password: String = formInformation!["password"]!
+        #endif
+
         switch userForm {
-        case loginForm:    verifyLoginFields(userForm)
-        case registerForm: verifyRegisterFields(userForm)
+        case loginForm:
+            let details = AWSCognitoIdentityPasswordAuthenticationDetails(username: email,
+                                                                          password: password)
+            passwordAuthenticationCompletion?.set(result: details)
+
+        case registerForm:
+            User.register(email: email,
+                          password: password,
+                          completion: ({ [weak self] _ in
+
+                            self?.dismiss(animated: true, completion: nil)
+
+                          }), failed: { [weak self] error in
+                            switch error {
+                            case .emailExists(let message):
+                                self?.presentAlert(message: message)
+                            }
+            })
         default: return
         }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func verifyLoginFields(_ form: UserForm) {
-        let alertView = AlertView(style: .alert)
-        alertView.title   = "Test"
-        alertView.message = "description"
-        alertView.onConfirm {
-            self.dismissAlertView()
-        }
-        //presentAlertView(alertView)
-    }
-    
-    func verifyRegisterFields(_ form: UserForm) {
-        
-    }
-    
-    func displayInvalidCredentialAlert() {
-        
-    }
-    
-    func displayEmptyFieldAlert() {
-        
     }
 }
 
-extension AuthenticationViewController {
-    
-    override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        switch currentForm {
-        case .login:    loginFormBottomConstraint.constant    = 0.0
-        case .register: registerFormBottomConstraint.constant = -500.0
-        }
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-        return true
+extension AuthenticationViewController: AWSCognitoIdentityPasswordAuthentication {
+    func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput,
+                    passwordAuthenticationCompletionSource:
+        AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>) {
+        passwordAuthenticationCompletion = passwordAuthenticationCompletionSource
     }
-    
-    override func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        switch currentForm {
-        case .login:    loginFormBottomConstraint.constant    = 0.0
-        case .register: registerFormBottomConstraint.constant = 0.0
+
+    func didCompleteStepWithError(_ error: Error?) {
+        if let authError = error as NSError?,
+            let message = authError.userInfo["message"] as? String {
+            DispatchQueue.main.async {
+                print(authError)
+                self.presentAlert(message: message)
+            }
         }
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-        return true
     }
 }

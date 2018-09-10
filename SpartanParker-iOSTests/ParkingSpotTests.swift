@@ -10,8 +10,8 @@ import XCTest
 
 @testable import SpartanParker_iOS
 
+// swiftlint:disable force_cast force_try
 class ParkingSpotTests: XCTestCase {
-    
     let facultySpotDictionary: [String: Any] = [
         "uid": "8735utioefdsuw98",
         "garageId": "ihAU78YUfge",
@@ -19,9 +19,9 @@ class ParkingSpotTests: XCTestCase {
         "isOccupied": false,
         "spotType": "faculty",
         "createdAt": "0001-01-01T00:00:00Z",
-        "updatedAt": "9999-12-31T23:59:59Z",
+        "updatedAt": "9999-12-31T23:59:59Z"
         ]
-    
+
     let studentSpotDictionary: [String: Any] = [
         "uid": "8735uasUIdfoefdsuw98",
         "garageId": "ihAU78YadsfUfge",
@@ -29,22 +29,21 @@ class ParkingSpotTests: XCTestCase {
         "isOccupied": true,
         "spotType": "student",
         "createdAt": "0101-01-01T00:00:00Z",
-        "updatedAt": "9009-12-31T23:59:59Z",
+        "updatedAt": "9009-12-31T23:59:59Z"
         ]
-    
+
     var facultySpot: ParkingSpot!
     var studentSpot: ParkingSpot!
-    
+
     override func setUp() {
-        
         super.setUp()
-        
+
         var data    = try! JSONSerialization.data(withJSONObject: facultySpotDictionary, options: .prettyPrinted)
         facultySpot = try! JSONDecoder().decode(ParkingSpot.self, from: data)
         data        = try! JSONSerialization.data(withJSONObject: studentSpotDictionary, options: .prettyPrinted)
         studentSpot = try! JSONDecoder().decode(ParkingSpot.self, from: data)
     }
-    
+
     func test_init() {
         XCTAssertEqual(facultySpot.uid,        facultySpotDictionary["uid"]        as! String)
         XCTAssertEqual(facultySpot.garageId,   facultySpotDictionary["garageId"]   as! String)
@@ -53,7 +52,7 @@ class ParkingSpotTests: XCTestCase {
         XCTAssertEqual(facultySpot.spotType,   ParkingSpot.SpotType.faculty)
         XCTAssertEqual(facultySpot.createdAt,  facultySpotDictionary["createdAt"]  as! String)
         XCTAssertEqual(facultySpot.updatedAt,  facultySpotDictionary["updatedAt"]  as! String)
-        
+
         XCTAssertEqual(studentSpot.uid,        studentSpotDictionary["uid"]        as! String)
         XCTAssertEqual(studentSpot.garageId,   studentSpotDictionary["garageId"]   as! String)
         XCTAssertEqual(studentSpot.spotId,     studentSpotDictionary["spotId"]     as! String)
@@ -62,7 +61,7 @@ class ParkingSpotTests: XCTestCase {
         XCTAssertEqual(studentSpot.createdAt,  studentSpotDictionary["createdAt"]  as! String)
         XCTAssertEqual(studentSpot.updatedAt,  studentSpotDictionary["updatedAt"]  as! String)
     }
-    
+
     func test_serialized() {
         let facultySpotData = facultySpot.serialized()
         XCTAssertEqual(facultySpotData.count, facultySpotDictionary.count)
@@ -73,7 +72,7 @@ class ParkingSpotTests: XCTestCase {
         XCTAssertEqual(facultySpotData["spotType"]   as! String, facultySpotDictionary["spotType"]   as! String)
         XCTAssertEqual(facultySpotData["createdAt"]  as! String, facultySpotDictionary["createdAt"]  as! String)
         XCTAssertEqual(facultySpotData["updatedAt"]  as! String, facultySpotDictionary["updatedAt"]  as! String)
-        
+
         let studentSpotData = studentSpot.serialized()
         XCTAssertEqual(studentSpotData.count, studentSpotDictionary.count)
         XCTAssertEqual(studentSpotData["uid"]        as! String, studentSpotDictionary["uid"]        as! String)

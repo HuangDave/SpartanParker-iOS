@@ -8,14 +8,13 @@
 
 import UIKit
 
-class SpotSearchViewController: UIViewController {
-    
+class SpotSearchViewController: ViewController {
     private let guestParkingButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didSelectGuestParking), for: .touchUpInside)
         return button
     }()
-    
+
     private let registeredParkingButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didSelectRegisteredParking), for: .touchUpInside)
@@ -23,17 +22,15 @@ class SpotSearchViewController: UIViewController {
     }()
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         view.backgroundColor = .spartanGray
     }
-    
+
     @objc private func didSelectGuestParking(sender: UIButton) {
         sender.isEnabled = false
         defer { sender.isEnabled = true }
     }
-    
+
     @objc private func didSelectRegisteredParking(sender: UIButton) {
         sender.isEnabled = false
         defer { sender.isEnabled = true }
