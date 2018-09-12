@@ -12,7 +12,7 @@ class QRScanViewController: ViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tabBarController?.title = "Scam"
+        tabBarController?.title = "Scan"
     }
 
     override func viewDidLoad() {

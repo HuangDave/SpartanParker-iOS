@@ -136,5 +136,4 @@ class SegmentedController: UIControl {
         }
         delegate?.segmentedController(self, didSelectSegmentAtIndex: segment.tag)
     }
-
 }

@@ -73,8 +73,10 @@ extension User {
                         failed(RegistrationError.emailExists(message))
                     }
                 } else if let result = task.result {
-                    debugPrintMessage(result)
-                    completion(true)
+                    DispatchQueue.main.async {
+                        debugPrintMessage(result)
+                        completion(true)
+                    }
                 }
                 return nil
         }

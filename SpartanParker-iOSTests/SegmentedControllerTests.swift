@@ -11,7 +11,7 @@ import XCTest
 @testable import SpartanParker_iOS
 
 class SegmentedControllerTests: XCTestCase {
-    let items = "Item 1,Item 2,Item 3,Item 4"
+    let items = ["Item 1", "Item 2", "Item 3", "Item 4"]
     let totalSegmentCount = 4
 
     var segmentedController: SegmentedController!
@@ -29,7 +29,7 @@ class SegmentedControllerTests: XCTestCase {
     }
 
     func test_updateView() {
-        segmentedController.commaSeparatedTitles = items
+        segmentedController.titles = items
         segmentedController.updateView()
         XCTAssertTrue(segmentedController.segments.count == totalSegmentCount)
         XCTAssertTrue(segmentedController.segments[0].titleLabel?.text == "Item 1")
@@ -39,7 +39,7 @@ class SegmentedControllerTests: XCTestCase {
     }
 
     func test_invalidateView() {
-        segmentedController.commaSeparatedTitles = items
+        segmentedController.titles = items
         segmentedController.updateView()
         XCTAssertTrue(segmentedController.segments.count == totalSegmentCount)
         segmentedController.invalidateView()
@@ -55,7 +55,7 @@ class SegmentedControllerTests: XCTestCase {
         }
         let spySegmentedController = SpySegmentedController()
         segmentedController.delegate = spySegmentedController
-        segmentedController.commaSeparatedTitles = items
+        segmentedController.titles = items
         segmentedController.updateView()
         XCTAssertNil(spySegmentedController.tappedSegmentIndex)
         segmentedController.userDidTapSegment(segmentedController.segments[0])

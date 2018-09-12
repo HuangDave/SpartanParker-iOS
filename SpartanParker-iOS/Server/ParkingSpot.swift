@@ -23,6 +23,17 @@ class ParkingSpot: DatabaseObject {
         case student
     }
 
+    enum Duration: Int, CaseIterable {
+        case oneHour = 1
+        case twoHours
+        case threeHours
+        case fourHours
+
+        var desciption: String {
+            return "" // TODO: implement
+        }
+    }
+
     private(set) var garageId:   String   = ""
     private(set) var spotId:     String   = ""
     private(set) var isOccupied: Bool     = false
@@ -46,5 +57,15 @@ class ParkingSpot: DatabaseObject {
         data[CodingKeys.isOccupied.rawValue] = isOccupied
         data[CodingKeys.spotType.rawValue]   = spotType.rawValue
         return data
+    }
+}
+
+extension ParkingSpot {
+    class func searchForVacantSpot(success: (ParkingSpot) -> Void, failure: (Error) -> Void) {
+        // TODO: implement
+    }
+
+    func attemptToOccupy(forDuration duration: Duration, success: () -> Void, failure: (Error) -> Void) {
+        // TODO: implement
     }
 }

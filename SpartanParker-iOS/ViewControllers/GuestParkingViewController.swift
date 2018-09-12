@@ -9,22 +9,28 @@
 import UIKit
 
 class GuestParkingViewController: ViewController {
+    private var durationButtons: [OptionButton]!
+    private var parkingSpot: ParkingSpot!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        durationButtons = [OptionButton]()
+        ParkingSpot.Duration.allCases.forEach {
+            let tag = $0.rawValue
+            let description = $0.desciption
+            durationButtons.append(create(OptionButton(), setup: {
+                $0.setTitle(description, for: .normal)
+                $0.tag = tag
+            }))
+        }
     }
-    
 
-    /*
-    // MARK: - Navigation
+    private func userDidSelectDuration(sender: OptionButton) {
+        guard let duration = ParkingSpot.Duration(rawValue: sender.tag) else { return }
+        parkingSpot.attemptToOccupy(forDuration: duration, success: {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        }, failure: { error in
+            debugPrintMessage(error)
+        })
     }
-    */
-
 }

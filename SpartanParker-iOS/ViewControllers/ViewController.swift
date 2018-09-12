@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     var alertView: AlertView?
@@ -30,5 +31,16 @@ class ViewController: UIViewController {
         guard alertView != nil else { return }
         alertView?.removeFromSuperview()
         alertView = nil
+    }
+}
+
+extension ViewController {
+    func speak(_ message: String) -> AVSpeechSynthesizer {
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: message) // (attributedString: attributedMessage)
+        // utterance.rate = 1.0 TODO: change speech rate
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-us")
+        speechSynthesizer.speak(utterance)
+        return speechSynthesizer
     }
 }
