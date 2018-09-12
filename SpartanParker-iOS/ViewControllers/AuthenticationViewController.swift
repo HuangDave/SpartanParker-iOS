@@ -128,6 +128,12 @@ extension AuthenticationViewController: UserFormDelegate {
         if let message = errorDescription {
             self.present(alertView: AlertView(style: .alert), setup: {
                 $0.message = message
+                // TODO: refactor
+                $0.confirmButton.setTitle("BACK", for: .normal)
+                $0.confirmButton.backgroundColor = .spartanRed
+                $0.onConfirm {
+                    self.dismissAlertView()
+                }
             })
             return
         }
@@ -142,21 +148,40 @@ extension AuthenticationViewController: UserFormDelegate {
 
         switch userForm {
         case loginForm:
-            let details = AWSCognitoIdentityPasswordAuthenticationDetails(username: email,
-                                                                          password: password)
-            passwordAuthenticationCompletion?.set(result: details)
-
+            DispatchQueue.main.async {
+                let details = AWSCognitoIdentityPasswordAuthenticationDetails(username: email,
+                                                                              password: password)
+                self.passwordAuthenticationCompletion?.set(result: details)
+                self.passwordAuthenticationCompletion?.task.continueWith(block: { [weak self] task -> Any? in
+                    if task.isCompleted {
+                        debugPrintMessage("Successfully authenticated user...")
+                        self?.dismiss(animated: true, completion: nil)
+                    } else if let error = task.error as NSError? {
+                        debugPrintMessage(error)
+                        // TODO: handle authe error
+                    }
+                    return nil
+                })
+            }
         case registerForm:
             User.register(email: email,
                           password: password,
-                          completion: ({ [weak self] _ in
-                            self?.dismiss(animated: true, completion: nil)
+                          completion: ({ _ in
+                            self.dismiss(animated: true, completion: nil)
                           }), failed: { [weak self] error in
                             switch error {
                             case .emailExists(let message):
-                                self?.present(alertView: AlertView(style: .alert), setup: {
-                                    $0.message = message
-                                })
+                                DispatchQueue.main.async {
+                                    self?.present(alertView: AlertView(style: .alert), setup: {
+                                        $0.message = message
+                                        // TODO: refactor
+                                        $0.confirmButton.setTitle("BACK", for: .normal)
+                                        $0.confirmButton.backgroundColor = .spartanRed
+                                        $0.onConfirm {
+                                            self?.dismissAlertView()
+                                        }
+                                    })
+                                }
                             }
             })
         default: return
@@ -164,6 +189,7 @@ extension AuthenticationViewController: UserFormDelegate {
     }
 }
 
+// MARK: -
 extension AuthenticationViewController: AWSCognitoIdentityPasswordAuthentication {
     func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput,
                     passwordAuthenticationCompletionSource:
@@ -177,6 +203,12 @@ extension AuthenticationViewController: AWSCognitoIdentityPasswordAuthentication
             DispatchQueue.main.async {
                 self.present(alertView: AlertView(style: .alert), setup: {
                     $0.message = message
+                    // TODO: refactor
+                    $0.confirmButton.setTitle("BACK", for: .normal)
+                    $0.confirmButton.backgroundColor = .spartanRed
+                    $0.onConfirm {
+                        self.dismissAlertView()
+                    }
                 })
             }
         }

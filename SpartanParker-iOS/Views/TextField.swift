@@ -30,6 +30,7 @@ class TextField: UIControl {
         field.textColor       = .black
         field.font            = UIFont.descriptionFont
         field.clearButtonMode = .whileEditing
+        field.autocapitalizationType = .none
         return field
     }()
 
@@ -39,7 +40,7 @@ class TextField: UIControl {
             if let text = newValue {
                 inputField.attributedPlaceholder =
                     NSAttributedString(string: text,
-                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
             }
         }
     }

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var authenticationViewController: AuthenticationViewController?
 
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Authenticator.shared.userPool.delegate = self
         Authenticator.shared.userPool.currentUser()?.globalSignOut() // REMOVEME: remove this if not testing auth
 
