@@ -62,7 +62,7 @@ class SpotSearchViewController: ViewController {
         ParkingSpot.searchForVacantSpot(success: { vacantSpot in
             // should present audible alert to user to begin search
             presentSpotFoundAlert(spot: vacantSpot)
-        }, failure: { error in
+        }, failure: { _ in
 
         })
     }
