@@ -10,10 +10,25 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
+    var dimView: UIView?
     var alertView: AlertView?
 
     func present(alertView: AlertView, setup: (AlertView) -> Void) {
+        guard self.alertView == nil, dimView == nil else { return }
+
         setup(alertView)
+
+        dimView = UIView()
+        dimView!.backgroundColor = .black
+        dimView!.alpha = 0.5
+        dimView!.isExclusiveTouch = true
+        view.addSubview(dimView!)
+        dimView!.translatesAutoresizingMaskIntoConstraints = false
+        dimView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        dimView!.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        dimView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        dimView!.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+
         let horizontalPadding: CGFloat = 20.0
         self.alertView = alertView
         view.addSubview(self.alertView!)
@@ -28,17 +43,19 @@ class ViewController: UIViewController {
     }
 
     func dismissAlertView() {
-        guard alertView != nil else { return }
+        guard alertView != nil, dimView != nil else { return }
         alertView?.removeFromSuperview()
         alertView = nil
+        dimView?.removeFromSuperview()
+        dimView = nil
     }
 }
 
 extension ViewController {
+    @discardableResult
     func speak(_ message: String) -> AVSpeechSynthesizer {
         let speechSynthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: message) // (attributedString: attributedMessage)
-        // utterance.rate = 1.0 TODO: change speech rate
+        let utterance = AVSpeechUtterance(string: message)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-us")
         speechSynthesizer.speak(utterance)
         return speechSynthesizer

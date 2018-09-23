@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Authenticator.shared.userPool.delegate = self
-        Authenticator.shared.userPool.currentUser()?.globalSignOut() // REMOVEME: remove this if not testing auth
+        // Authenticator.shared.userPool.currentUser()?.globalSignOut() // REMOVEME: remove this if not testing auth
 
         window = UIWindow(frame: UIScreen.main.bounds)
         rootViewController = MasterViewController()

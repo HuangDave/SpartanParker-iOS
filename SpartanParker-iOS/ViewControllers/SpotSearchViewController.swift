@@ -29,19 +29,20 @@ class SpotSearchViewController: ViewController {
 
         let stackView = UIStackView(arrangedSubviews: [guestParkingButton,
                                                        registeredParkingButton])
-        stackView.axis         = .horizontal
+        stackView.axis         = .vertical
         stackView.alignment    = .fill
         stackView.distribution = .fillEqually
         stackView.spacing      = 20.0
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        stackView.leftAnchor.constraint(equalTo: view.leftAnchor,
+        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                       constant: 20.0).isActive = true
+        stackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
                                         constant: 20.0).isActive = true
-        stackView.rightAnchor.constraint(equalTo: view.rightAnchor,
+        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                          constant: -20.0).isActive = true
+        stackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
                                          constant: -20.0).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +73,7 @@ class SpotSearchViewController: ViewController {
 extension SpotSearchViewController {
     private func presentSearchingAlert() {
         // TODO: insert synthesized alert
+        speak("Just a moment...")
         // TDOO: should use voice recognition to get user input
         present(alertView: AlertView(style: .alert)) {
             $0.title = "Searching"
@@ -108,7 +110,7 @@ extension SpotSearchViewController {
 
     private func presentSpotNotFoundAlert() {
         let message = "SORRY! All garages are currently full."
-        _ = speak(message)
+        speak(message)
         // TODO: insert synthesized alert
         present(alertView: AlertView(style: .confirmation)) {
             $0.title = "No Spots Available"
