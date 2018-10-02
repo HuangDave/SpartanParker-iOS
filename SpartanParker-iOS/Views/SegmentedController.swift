@@ -24,7 +24,7 @@ class SegmentedController: UIControl {
     private(set) var segments: [UIButton] = []
     /// Indicates the current selected segment.
     private(set) var highlightIndicator: UIView = UIView()
-
+    /// Dynamic indicator width calculated from the segment width and the number of segments.
     private var highlightIndicatorWidth: NSLayoutConstraint?
     /// Used to move the position of the _highlightIndicator_.
     private var highlightIndicatorPosition: NSLayoutConstraint!
