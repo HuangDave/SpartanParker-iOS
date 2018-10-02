@@ -9,9 +9,24 @@
 import UIKit
 import AVFoundation
 
+// MARK: -
 class ViewController: UIViewController {
-    var dimView: UIView?
-    var alertView: AlertView?
+    private(set) var dimView: UIView?
+    private(set) var alertView: AlertView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.backgroundColor = .white
+        /*
+        navigationController?.navigationBar.barTintColor = .spartanDarkBlue
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        navigationController?.navigationBar.tintColor = .white */
+        navigationController?.navigationBar.tintColor = .black
+    }
+
+    // MARK: - AlertView Present / Dismiss
 
     func present(alertView: AlertView, setup: (AlertView) -> Void) {
         guard self.alertView == nil, dimView == nil else { return }
@@ -51,6 +66,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - Voice Synthesizer
 extension ViewController {
     @discardableResult
     func speak(_ message: String) -> AVSpeechSynthesizer {
