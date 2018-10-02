@@ -15,7 +15,7 @@ class RegisterForm: UserForm {
     let passwordField     = TextField(placeHolder: "Password",      key: "password")
     let licensePlateField = TextField(placeHolder: "License Plate", key: "license_plate")
 
-    override func setupForm() {
+    override func setupFields() {
         emailField.inputField.keyboardType = .emailAddress
         passwordField.inputField.isSecureTextEntry = true
 
@@ -26,11 +26,10 @@ class RegisterForm: UserForm {
         nameField.spacing      = 20.0
 
         cells = [
-            UserFormCell(content: nameField),
-            UserFormCell(content: emailField),
-            UserFormCell(content: passwordField),
-            UserFormCell(content: licensePlateField),
-            UserFormCell(content: continueButton)
+            TableViewCell<UIView>(content: nameField, setup: defaultCellSetup),
+            TableViewCell<UIView>(content: emailField, setup: defaultCellSetup),
+            TableViewCell<UIView>(content: passwordField, setup: defaultCellSetup),
+            TableViewCell<UIView>(content: licensePlateField, setup: defaultCellSetup)
         ]
         reloadForm()
     }

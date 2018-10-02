@@ -9,89 +9,54 @@
 import UIKit
 
 // MARK: -
-protocol UserFormDelegate: class {
-    func userFormDidSelectContinue(_ userForm: UserForm)
-}
-
-// MARK: -
-class UserFormCell: UITableViewCell {
-
-    static let cellReuseIdentifier: String = "UserFormCellReuseIdentifier"
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("This should not be used.")
-    }
-
-    init(content: UIView) {
-        super.init(style: .default, reuseIdentifier: UserFormCell.cellReuseIdentifier)
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        contentView.addSubview(content)
-
-        let horizontalPadding: CGFloat = 25.0
-        content.translatesAutoresizingMaskIntoConstraints = false
-        content.topAnchor.constraint(equalTo: topAnchor,
-                                     constant: (UserForm.verticalSpacing / 2)).isActive = true
-        content.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                        constant: -(UserForm.verticalSpacing / 2)).isActive = true
-        content.leftAnchor.constraint(equalTo: leftAnchor,
-                                      constant: horizontalPadding).isActive = true
-        content.rightAnchor.constraint(equalTo: rightAnchor,
-                                       constant: -(horizontalPadding)).isActive = true
-    }
-}
-
-// MARK: -
 class UserForm: UIControl {
+    // MARK: - UserForm Static Cell Constants
     static let defaultRowHeight:  CGFloat = 44.0
     static let horizontalPadding: CGFloat = 25.0
     static let verticalSpacing:   CGFloat = 32.0
-
-    weak var delegate: UserFormDelegate?
+    // MARK: -
     /// Table view for displaying TextFields.
-    private(set) var tableView: UITableView!
+    let tableView: UITableView = create(UITableView(frame: .zero, style: .grouped)) {
+        $0.backgroundColor        = .spartanLightGray
+        $0.isScrollEnabled        = true
+        $0.bounces                = true
+        $0.alwaysBounceHorizontal = false
+        $0.alwaysBounceVertical   = true
+        $0.separatorStyle         = .none
+        $0.allowsSelection        = false
+        $0.layer.backgroundColor = UIColor.spartanLightGray.cgColor
+    }
     /// References to all input fields displayed in the static cells.
     var inputFields: [TextField]?
     /// Array of static cells to display on the table view form
-    var cells: [UserFormCell] = [UserFormCell]()
-    /// Continue button is placed at the end of the user form in the last section of the table view.
-    let continueButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .spartanBlue
-        button.setTitle("Continue", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font    = UIFont.boldSystemFont(ofSize: 16)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius  = 14.0
-        button.addTarget(self, action: #selector(userDidSelectContinue), for: .touchUpInside)
-        return button
-    }()
+    var cells: [TableViewCell<UIView>] = [TableViewCell<UIView>]()
+    // Default constraint setup for each static table view cell.
+    var defaultCellSetup: (_ superView: UIView, _ customView: UIView) -> Void = {
+        let horizontalPadding: CGFloat = 25.0
+        $1.translatesAutoresizingMaskIntoConstraints = false
+        $1.topAnchor.constraint(equalTo: $0.topAnchor,
+                                constant: (UserForm.verticalSpacing / 2.0)).isActive = true
+        $1.bottomAnchor.constraint(equalTo: $0.bottomAnchor,
+                                   constant: -(UserForm.verticalSpacing / 2.0)).isActive = true
+        $1.leftAnchor.constraint(equalTo: $0.leftAnchor,
+                                 constant: horizontalPadding).isActive = true
+        $1.rightAnchor.constraint(equalTo: $0.rightAnchor,
+                                  constant: -(horizontalPadding)).isActive = true
+    }
 
     // MARK: - Initialization
-
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("Not Used")
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupView()
     }
 
-    private func commonInit() {
-        tableView = UITableView(frame: frame, style: .grouped)
-        tableView.dataSource             = self
-        tableView.delegate               = self
-        tableView.backgroundColor        = .spartanLightGray
-        tableView.isScrollEnabled        = true
-        tableView.bounces                = true
-        tableView.alwaysBounceHorizontal = false
-        tableView.alwaysBounceVertical   = true
-        tableView.separatorStyle         = .none
-        tableView.allowsSelection        = false
-        tableView.layer.backgroundColor = UIColor.spartanLightGray.cgColor
-
+    private func setupView() {
+        tableView.dataSource = self
+        tableView.delegate   = self
         addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -99,20 +64,18 @@ class UserForm: UIControl {
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 
-        setupForm()
+        setupFields()
     }
 
-    // MARK: -
-
+    // MARK: - Form Setup
     /// should override and add form setup...
-    func setupForm() {
-        reloadForm()
+    func setupFields() {
+
     }
 
     func reloadForm() {
         tableView.reloadData()
     }
-
     /// Override to return all input fields
     /// - Returns:
     ///     - Dictionary containing all verified inputs from input fields.
@@ -120,15 +83,10 @@ class UserForm: UIControl {
     func getAllInputs() throws -> [String: String] {
         return [:]
     }
-
-    @objc func userDidSelectContinue(sender: UIButton) {
-        delegate?.userFormDidSelectContinue(self)
-    }
 }
 
 // MARK: - UITableViewDelegate & UITableViewDataSource Implementation
 extension UserForm: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }

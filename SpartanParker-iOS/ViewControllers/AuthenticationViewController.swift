@@ -35,6 +35,12 @@ class AuthenticationViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // disable swipe for popping back navigation stack and add done button to navigation bar
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                                            target: self,
+                                                            action: #selector(didSelectDone))
         view.backgroundColor = .white
         segmentedController = SegmentedController(frame: CGRect(x: 0, y: 0,
                                                                 width: view.frame.width,
@@ -54,66 +60,15 @@ class AuthenticationViewController: ViewController {
         createLoginForm()
         createRegisterForm()
     }
-}
 
-// MARK: - SegmentedControllerDelegate Implementation
-extension AuthenticationViewController: SegmentedControllerDelegate {
-    func segmentedController(_ segmentedController: SegmentedController, didSelectSegmentAtIndex index: Int) {
-        guard currentForm.rawValue != index,
-            let selectedForm = AuthenticationForm(rawValue: index) else { return }
-
-        switch selectedForm {
-        case .login:    loginFormCenterXConstraint.constant = 0.0
-        case .register: loginFormCenterXConstraint.constant = -(userFormWidth)
-        }
-        currentForm = selectedForm
-        UIView.animate(withDuration: 0.4) {
-            self.view.endEditing(true)
-            self.view.layoutIfNeeded()
-        }
-    }
-}
-
-// MARK: - Login & Register Form
-extension AuthenticationViewController: UserFormDelegate {
-    private func createLoginForm() {
-        loginForm.delegate = self
-        view.addSubview(loginForm)
-        loginForm.translatesAutoresizingMaskIntoConstraints = false
-        loginForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
-        loginForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
-        loginFormCenterXConstraint = loginForm.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        loginFormCenterXConstraint.isActive = true
-        loginFormBottomConstraint = loginForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        loginFormBottomConstraint.isActive = true
-
-        #if DEBUG
-        loginForm.emailField.text    = "huangd95@yahoo.com"
-        loginForm.passwordField.text = "Test1234"
-        #endif
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationItem.backBarButtonItem?.isEnabled = false
     }
 
-    private func createRegisterForm() {
-        registerForm.delegate = self
-        view.addSubview(registerForm)
-        registerForm.translatesAutoresizingMaskIntoConstraints = false
-        registerForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
-        registerForm.leftAnchor.constraint(equalTo: loginForm.rightAnchor).isActive = true
-        registerForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
-        registerFormBottomConstraint = registerForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        registerFormBottomConstraint.isActive = true
-
-        #if DEBUG
-        registerForm.emailField.text        = "huangd95@yahoo.com"
-        registerForm.passwordField.text     = "Test1234"
-        registerForm.firstNameField.text    = "David"
-        registerForm.lastNameField.text     = "Huang"
-        registerForm.licensePlateField.text = "123sd94"
-        #endif
-    }
-
-    func userFormDidSelectContinue(_ userForm: UserForm) {
+    @objc private func didSelectDone() {
         view.endEditing(true)
+        let userForm = currentForm == .login ? loginForm : registerForm
         // attempt to get input information and present an alert if any field was empty or invalid
         var formInformation: [String: String]?
         var errorDescription: String?
@@ -186,6 +141,61 @@ extension AuthenticationViewController: UserFormDelegate {
             })
         default: return
         }
+    }
+}
+
+// MARK: - SegmentedControllerDelegate Implementation
+extension AuthenticationViewController: SegmentedControllerDelegate {
+    func segmentedController(_ segmentedController: SegmentedController, didSelectSegmentAtIndex index: Int) {
+        guard currentForm.rawValue != index,
+            let selectedForm = AuthenticationForm(rawValue: index) else { return }
+
+        switch selectedForm {
+        case .login:    loginFormCenterXConstraint.constant = 0.0
+        case .register: loginFormCenterXConstraint.constant = -(userFormWidth)
+        }
+        currentForm = selectedForm
+        UIView.animate(withDuration: 0.4) {
+            self.view.endEditing(true)
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+// MARK: - Login & Register Form Creation
+extension AuthenticationViewController {
+    private func createLoginForm() {
+        view.addSubview(loginForm)
+        loginForm.translatesAutoresizingMaskIntoConstraints = false
+        loginForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
+        loginForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
+        loginFormCenterXConstraint = loginForm.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        loginFormCenterXConstraint.isActive = true
+        loginFormBottomConstraint = loginForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        loginFormBottomConstraint.isActive = true
+
+        #if DEBUG
+        loginForm.emailField.text    = "huangd95@yahoo.com"
+        loginForm.passwordField.text = "Test1234"
+        #endif
+    }
+
+    private func createRegisterForm() {
+        view.addSubview(registerForm)
+        registerForm.translatesAutoresizingMaskIntoConstraints = false
+        registerForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
+        registerForm.leftAnchor.constraint(equalTo: loginForm.rightAnchor).isActive = true
+        registerForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
+        registerFormBottomConstraint = registerForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        registerFormBottomConstraint.isActive = true
+
+        #if DEBUG
+        registerForm.emailField.text        = "huangd95@yahoo.com"
+        registerForm.passwordField.text     = "Test1234"
+        registerForm.firstNameField.text    = "David"
+        registerForm.lastNameField.text     = "Huang"
+        registerForm.licensePlateField.text = "123sd94"
+        #endif
     }
 }
 

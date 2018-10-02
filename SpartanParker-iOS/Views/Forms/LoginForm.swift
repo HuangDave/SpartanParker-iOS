@@ -12,13 +12,12 @@ class LoginForm: UserForm {
     let emailField:    TextField = TextField(placeHolder: "Email",    key: "email")
     let passwordField: TextField = TextField(placeHolder: "Password", key: "password")
 
-    override func setupForm() {
+    override func setupFields() {
         emailField.inputField.keyboardType = .emailAddress
         passwordField.inputField.isSecureTextEntry = true
         cells = [
-            UserFormCell(content: emailField),
-            UserFormCell(content: passwordField),
-            UserFormCell(content: continueButton)
+            TableViewCell<UIView>(content: emailField, setup: defaultCellSetup),
+            TableViewCell<UIView>(content: passwordField, setup: defaultCellSetup)
         ]
         reloadForm()
     }

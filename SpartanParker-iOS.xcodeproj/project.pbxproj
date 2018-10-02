@@ -10,6 +10,7 @@
 		41B9B160AC61A91691CF1D98 /* Pods_SpartanParker_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B038958A5F8253C698DBA8E /* Pods_SpartanParker_iOSUITests.framework */; };
 		632CBB3A213FA950008A67D2 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB39213FA950008A67D2 /* LoginForm.swift */; };
 		632CBB3C213FC8CD008A67D2 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB3B213FC8CD008A67D2 /* Authenticator.swift */; };
+		63354DE421637EA600BE5848 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63354DE321637EA600BE5848 /* TableViewCell.swift */; };
 		635C5280214754440010006C /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C527F214754440010006C /* GlobalHelpers.swift */; };
 		635C52822147DEC80010006C /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C52812147DEC80010006C /* QRScanViewController.swift */; };
 		6374D7832146FACC00402950 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6374D7822146FACC00402950 /* OptionButton.swift */; };
@@ -70,6 +71,7 @@
 		6302127B21392B6B0067CEDB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		632CBB39213FA950008A67D2 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		632CBB3B213FC8CD008A67D2 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		63354DE321637EA600BE5848 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		635C527F214754440010006C /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		635C52812147DEC80010006C /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		6374D7822146FACC00402950 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				6374D7822146FACC00402950 /* OptionButton.swift */,
 				63CBFE65212F8BA900E36AC5 /* SegmentedController.swift */,
 				63822C2F212CDE0E000D2B9D /* TextField.swift */,
+				63354DE321637EA600BE5848 /* TableViewCell.swift */,
 				63E2428221406D7100F9F525 /* Forms */,
 			);
 			path = Views;
@@ -555,6 +558,7 @@
 				63CBFE6F212FECFC00E36AC5 /* User.swift in Sources */,
 				63E2428121406CCD00F9F525 /* RegisterForm.swift in Sources */,
 				63CBFE66212F8BA900E36AC5 /* SegmentedController.swift in Sources */,
+				63354DE421637EA600BE5848 /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

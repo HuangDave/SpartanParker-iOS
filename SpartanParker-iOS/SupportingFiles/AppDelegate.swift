@@ -38,9 +38,8 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
             authenticationViewController = AuthenticationViewController()
         }
         DispatchQueue.main.async {
-            self.rootViewController.navigationController?.present(self.authenticationViewController!,
-                                                                  animated: true,
-                                                                  completion: nil)
+            self.rootViewController.navigationController?.pushViewController(self.authenticationViewController!,
+                                                                             animated: true)
         }
         return authenticationViewController!
     }
