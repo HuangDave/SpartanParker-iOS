@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		41B9B160AC61A91691CF1D98 /* Pods_SpartanParker_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B038958A5F8253C698DBA8E /* Pods_SpartanParker_iOSUITests.framework */; };
 		632CBB3A213FA950008A67D2 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB39213FA950008A67D2 /* LoginForm.swift */; };
-		632CBB3C213FC8CD008A67D2 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB3B213FC8CD008A67D2 /* Authenticator.swift */; };
+		632CBB3C213FC8CD008A67D2 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CBB3B213FC8CD008A67D2 /* AuthenticationManager.swift */; };
 		63354DE421637EA600BE5848 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63354DE321637EA600BE5848 /* TableViewCell.swift */; };
 		635C5280214754440010006C /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C527F214754440010006C /* GlobalHelpers.swift */; };
 		635C52822147DEC80010006C /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C52812147DEC80010006C /* QRScanViewController.swift */; };
@@ -70,7 +70,7 @@
 		57E8EAC7D465F75A6B31180E /* Pods_SpartanParker_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6302127B21392B6B0067CEDB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		632CBB39213FA950008A67D2 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
-		632CBB3B213FC8CD008A67D2 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		632CBB3B213FC8CD008A67D2 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		63354DE321637EA600BE5848 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		635C527F214754440010006C /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		635C52812147DEC80010006C /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 		63CBFE6D212FECE600E36AC5 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				632CBB3B213FC8CD008A67D2 /* Authenticator.swift */,
+				632CBB3B213FC8CD008A67D2 /* AuthenticationManager.swift */,
 				63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */,
 				637B91CD213609ED003E9550 /* ParkingSpot.swift */,
 				63CBFE6E212FECFC00E36AC5 /* User.swift */,
@@ -542,7 +542,7 @@
 				63CBFE71212FED2A00E36AC5 /* DatabaseObject.swift in Sources */,
 				637B91C42134AF2D003E9550 /* ViewController.swift in Sources */,
 				637B91BE213478A5003E9550 /* AlertView.swift in Sources */,
-				632CBB3C213FC8CD008A67D2 /* Authenticator.swift in Sources */,
+				632CBB3C213FC8CD008A67D2 /* AuthenticationManager.swift in Sources */,
 				637B91D52137359F003E9550 /* MasterViewController.swift in Sources */,
 				63E4C4DC21408FB2000CE9C4 /* Print.swift in Sources */,
 				63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */,

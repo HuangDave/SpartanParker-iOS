@@ -23,20 +23,20 @@ class User: DatabaseObject {
     }
 
     struct FullName: Codable {
-        var first: String = ""
-        var last:  String = ""
+        var first: String?
+        var last:  String?
     }
 
-    var fullName: FullName = FullName()
-    var email:    String = ""
-    var password: String = ""
+    var fullName: FullName?
+    var email:    String?
+    var password: String?
 
     required init(from decoder: Decoder) throws {
         let container         = try decoder.container(keyedBy: CodingKeys.self)
         let fullNameContainer = try container.nestedContainer(keyedBy: FullNameKeys.self,
                                                               forKey: .fullName)
-        fullName.first        = try fullNameContainer.decode(String.self, forKey: .first)
-        fullName.last         = try fullNameContainer.decode(String.self, forKey: .last)
+        fullName?.first       = try fullNameContainer.decode(String.self, forKey: .first)
+        fullName?.last        = try fullNameContainer.decode(String.self, forKey: .last)
         email                 = try container.decode(String.self, forKey: .email)
         password              = try container.decode(String.self, forKey: .password)
         try super.init(from: decoder)
@@ -45,8 +45,8 @@ class User: DatabaseObject {
     override func serialized() -> JSON {
         var data = super.serialized()
         data[CodingKeys.fullName.rawValue] = [
-            FullNameKeys.first.rawValue: fullName.first,
-            FullNameKeys.last.rawValue:  fullName.last
+            FullNameKeys.first.rawValue: fullName?.first,
+            FullNameKeys.last.rawValue:  fullName?.last
         ]
         data[CodingKeys.email.rawValue]    = email
         data[CodingKeys.password.rawValue] = password
@@ -62,7 +62,7 @@ extension User {
 
     class func register(email: String, password: String,
                         completion: @escaping (Bool) -> Void, failed: @escaping (RegistrationError) -> Void) {
-        Authenticator.shared.userPool
+        AuthenticationManager.shared.userPool
             .signUp(email, password: password, userAttributes: nil, validationData: nil)
             .continueWith { task -> Any? in
                 if task.isCancelled {

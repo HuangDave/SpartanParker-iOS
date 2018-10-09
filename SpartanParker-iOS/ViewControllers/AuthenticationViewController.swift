@@ -93,13 +93,8 @@ class AuthenticationViewController: ViewController {
             return
         }
 
-        #if DEBUG
-        let email:    String = "huangd95@yahoo.com"
-        let password: String = "Test1234"
-        #else
         let email:    String = formInformation!["email"]!
         let password: String = formInformation!["password"]!
-        #endif
 
         switch userForm {
         case loginForm:
@@ -110,10 +105,10 @@ class AuthenticationViewController: ViewController {
                 self.passwordAuthenticationCompletion?.task.continueWith(block: { [weak self] task -> Any? in
                     if task.isCompleted {
                         debugPrintMessage("Successfully authenticated user...")
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.navigationController?.popViewController(animated: true)
                     } else if let error = task.error as NSError? {
                         debugPrintMessage(error)
-                        // TODO: handle authe error
+                        // TODO: handle auth error
                     }
                     return nil
                 })
@@ -173,11 +168,6 @@ extension AuthenticationViewController {
         loginFormCenterXConstraint.isActive = true
         loginFormBottomConstraint = loginForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         loginFormBottomConstraint.isActive = true
-
-        #if DEBUG
-        loginForm.emailField.text    = "huangd95@yahoo.com"
-        loginForm.passwordField.text = "Test1234"
-        #endif
     }
 
     private func createRegisterForm() {
@@ -188,14 +178,6 @@ extension AuthenticationViewController {
         registerForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
         registerFormBottomConstraint = registerForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         registerFormBottomConstraint.isActive = true
-
-        #if DEBUG
-        registerForm.emailField.text        = "huangd95@yahoo.com"
-        registerForm.passwordField.text     = "Test1234"
-        registerForm.firstNameField.text    = "David"
-        registerForm.lastNameField.text     = "Huang"
-        registerForm.licensePlateField.text = "123sd94"
-        #endif
     }
 }
 
