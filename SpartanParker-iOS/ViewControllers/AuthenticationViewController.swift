@@ -6,6 +6,8 @@
 //  Copyright © 2018 David. All rights reserved.
 //
 
+// TODO: add loading alert / spinner during authentication requests.
+
 import UIKit
 import AWSCognitoAuth
 import AWSCognitoIdentityProvider
@@ -16,12 +18,16 @@ class AuthenticationViewController: ViewController {
         case register = 1
     }
 
+    override var accessibilityLabel: String? {
+        get { return "AuthenticationViewController" }
+        set { }
+    }
+
     private var segmentedController: SegmentedController!
     private var loginForm: LoginForm = LoginForm()
     private var registerForm: RegisterForm = RegisterForm()
     /// Constraint used for animating the switch between the login and register forms.
     private var loginFormCenterXConstraint:    NSLayoutConstraint!
-    ///
     private var loginFormBottomConstraint:     NSLayoutConstraint!
     private var registerFormBottomConstraint:  NSLayoutConstraint!
 
@@ -71,14 +77,30 @@ class AuthenticationViewController: ViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
-    @objc private func didSelectDone() {
+    // MARK: User Interaction
+    @objc private func didSelectDone(button: UIBarButtonItem) {
+        button.isEnabled = false
+
         view.endEditing(true)
+
+        #if DEBUG
+        loginForm.emailField.inputField.text    = "huangd95@gmail.com"
+        loginForm.passwordField.inputField.text = "test1234"
+
+        registerForm.sjsuIdField.inputField.text       = "009238996"
+        registerForm.firstNameField.inputField.text    = "David"
+        registerForm.lastNameField.inputField.text     = "Huang"
+        registerForm.emailField.inputField.text        = "huangd95@gmail.com"
+        registerForm.passwordField.inputField.text     = "test1234"
+        registerForm.licensePlateField.inputField.text = "abc1234"
+        #endif
+
         let userForm = currentForm == .login ? loginForm : registerForm
         // attempt to get input information and present an alert if any field was empty or invalid
-        var formInformation: [String: String]?
+        var formAttributes: [String: AWSCognitoIdentityUserAttributeType] = [:]
         var errorDescription: String?
         do {
-            formInformation = try userForm.getAllInputs()
+            formAttributes = try userForm.getAllInputs()
         } catch TextField.InputError.emtpy(let description) {
             errorDescription = description
         } catch TextField.InputError.invalid(let description) {
@@ -86,59 +108,13 @@ class AuthenticationViewController: ViewController {
         } catch _ { return }
 
         if let message = errorDescription {
-            self.present(alertView: AlertView(style: .alert), setup: {
-                $0.message = message
-                // TODO: refactor
-                $0.confirmButton.setTitle("BACK", for: .normal)
-                $0.confirmButton.backgroundColor = .spartanRed
-                $0.onConfirm {
-                    self.dismissAlertView()
-                }
-            })
+            presentErrorAlert(message: message, buttonTitle: "Back")
             return
         }
 
-        let email:    String = formInformation!["email"]!
-        let password: String = formInformation!["password"]!
-
         switch userForm {
-        case loginForm:
-            DispatchQueue.main.async {
-                let details = AWSCognitoIdentityPasswordAuthenticationDetails(username: email,
-                                                                              password: password)
-                self.passwordAuthenticationCompletion?.set(result: details)
-                self.passwordAuthenticationCompletion?.task.continueWith(block: { [weak self] task -> Any? in
-                    if task.isCompleted {
-                        debugPrintMessage("Successfully authenticated user...")
-                        self?.navigationController?.popViewController(animated: true)
-                    } else if let error = task.error as NSError? {
-                        debugPrintMessage(error)
-                        // TODO: handle auth error
-                    }
-                    return nil
-                })
-            }
-        case registerForm:
-            User.register(email: email,
-                          password: password,
-                          completion: ({ _ in
-                            self.dismiss(animated: true, completion: nil)
-                          }), failed: { [weak self] error in
-                            switch error {
-                            case .emailExists(let message):
-                                DispatchQueue.main.async {
-                                    self?.present(alertView: AlertView(style: .alert), setup: {
-                                        $0.message = message
-                                        // TODO: refactor
-                                        $0.confirmButton.setTitle("BACK", for: .normal)
-                                        $0.confirmButton.backgroundColor = .spartanRed
-                                        $0.onConfirm {
-                                            self?.dismissAlertView()
-                                        }
-                                    })
-                                }
-                            }
-            })
+        case loginForm:    loginUser(attributes: formAttributes)
+        case registerForm: registerUser(attributes: formAttributes)
         default: return
         }
     }
@@ -162,10 +138,11 @@ extension AuthenticationViewController: SegmentedControllerDelegate {
     }
 }
 
-// MARK: - Login & Register Form Creation
+// MARK: Login Form
 extension AuthenticationViewController {
     private func createLoginForm() {
         view.addSubview(loginForm)
+        loginForm.accessibilityIdentifier = "LoginForm"
         loginForm.translatesAutoresizingMaskIntoConstraints = false
         loginForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
         loginForm.widthAnchor.constraint(equalToConstant: userFormWidth).isActive = true
@@ -175,8 +152,35 @@ extension AuthenticationViewController {
         loginFormBottomConstraint.isActive = true
     }
 
+    private func loginUser(attributes: [String: AWSCognitoIdentityUserAttributeType]) {
+        let email     = attributes["email"]!.value!
+        let password  = attributes["password"]!.value!
+
+        if let user = AWSManager.Cognito.userPool.currentUser() {
+            user.getSession(email, password: password, validationData: nil)
+                .continueWith { [weak self] task -> Any? in
+                    if let error = task.error as NSError? {
+                        // TODO: should handle errors
+                        debugPrintMessage("loginUser: \(error.localizedDescription)")
+                    } else {
+                        if user.isSignedIn {
+                            DispatchQueue.main.async {
+                                self?.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    }
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                    return nil
+            }
+        }
+    }
+}
+
+// MARK: Register Form
+extension AuthenticationViewController {
     private func createRegisterForm() {
         view.addSubview(registerForm)
+        registerForm.accessibilityIdentifier = "RegisterForm"
         registerForm.translatesAutoresizingMaskIntoConstraints = false
         registerForm.topAnchor.constraint(equalTo: segmentedController.bottomAnchor).isActive = true
         registerForm.leftAnchor.constraint(equalTo: loginForm.rightAnchor).isActive = true
@@ -184,9 +188,38 @@ extension AuthenticationViewController {
         registerFormBottomConstraint = registerForm.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         registerFormBottomConstraint.isActive = true
     }
+
+    private func registerUser(attributes: [String: AWSCognitoIdentityUserAttributeType]) {
+        let sjsuId    = attributes["sjsuId"]!
+        let email     = attributes["email"]!
+        let password  = attributes["password"]!
+        let firstName = attributes["firstName"]!
+        let lastName  = attributes["lastName"]!
+
+        User.register(email: email.value!,
+                      password: password.value!,
+                      attributes: [
+                        // TODO: use cognito attributes
+                        //sjsuId,
+                        //firstName,
+                        //lastName
+            ], success: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }, failure: { [weak self] error in
+                var message = ""
+                switch error {
+                case .emailExists: message = "This email is already registered!."
+                case .other(let errorMessage): message = errorMessage!
+                }
+                DispatchQueue.main.async {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                    self?.presentErrorAlert(message: message, buttonTitle: "Back")
+                }
+        })
+    }
 }
 
-// MARK: -
+// MARK: - AWSCognitoIdentityPasswordAuthentication Implementation
 extension AuthenticationViewController: AWSCognitoIdentityPasswordAuthentication {
     func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput,
                     passwordAuthenticationCompletionSource:
@@ -198,15 +231,10 @@ extension AuthenticationViewController: AWSCognitoIdentityPasswordAuthentication
         if let authError = error as NSError?,
             let message = authError.userInfo["message"] as? String {
             DispatchQueue.main.async {
-                self.present(alertView: AlertView(style: .alert), setup: {
-                    $0.message = message
-                    // TODO: refactor
-                    $0.confirmButton.setTitle("BACK", for: .normal)
-                    $0.confirmButton.backgroundColor = .spartanRed
-                    $0.onConfirm {
-                        self.dismissAlertView()
-                    }
-                })
+                switch authError.code {
+                case 34: self.presentErrorAlert(message: "This email is not registered", buttonTitle: "Back")
+                default: self.presentErrorAlert(message: message, buttonTitle: "Back")
+                }
             }
         }
     }

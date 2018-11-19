@@ -11,6 +11,7 @@ import XCTest
 @testable import SpartanParker_iOS
 
 // swiftlint:disable force_cast force_try
+/*
 class UserTests: XCTestCase {
     let userDictionary: [String: Any] = [
         "uid": "8735utioefdsuw98",
@@ -65,3 +66,4 @@ class UserTests: XCTestCase {
         XCTAssertEqual(data["updatedAt"] as? String, updatedAt)
     }
 }
+*/

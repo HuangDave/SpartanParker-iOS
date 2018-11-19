@@ -26,8 +26,15 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
     }
 
-    // MARK: - AlertView Present / Dismiss
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if AWSManager.Cognito.userPool.currentUser() == nil {
+            // (UIApplication.shared.delegate as? AppDelegate)?.startPasswordAuthentication()
+        }
+    }
+}
+// MARK: - AlertView Present / Dismiss
+extension ViewController {
     func present(alertView: AlertView, setup: (AlertView) -> Void) {
         guard self.alertView == nil, dimView == nil else { return }
 
@@ -55,6 +62,18 @@ class ViewController: UIViewController {
         self.alertView!.rightAnchor.constraint(equalTo: self.view.rightAnchor,
                                               constant: -(horizontalPadding)).isActive = true
         self.alertView!.heightAnchor.constraint(equalToConstant: self.alertView!.bounds.size.width).isActive = true
+    }
+
+    func presentErrorAlert(message: String, buttonTitle: String) {
+        present(alertView: AlertView(style: .alert), setup: {
+            $0.accessibilityIdentifier = "ErrorAlertView"
+            $0.message = message
+            $0.confirmButton.setTitle(buttonTitle, for: .normal)
+            $0.confirmButton.backgroundColor = .spartanRed
+            $0.onConfirm {
+                self.dismissAlertView()
+            }
+        })
     }
 
     func dismissAlertView() {

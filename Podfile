@@ -6,7 +6,6 @@ use_frameworks!
 
 target 'SpartanParker-iOS' do
   
-  pod 'Alamofire', '~> 4.7'
   pod 'AWSCognito'
   pod 'AWSCognitoAuth'
   pod 'AWSCognitoIdentityProvider'
@@ -25,7 +24,11 @@ target 'SpartanParker-iOS' do
 
   target 'SpartanParker-iOSUITests' do
     inherit! :search_paths
-    # Pods for testing
+    
+    pod 'AWSCognito'
+    pod 'AWSCognitoAuth'
+    pod 'AWSCognitoIdentityProvider'
+    pod 'AWSCore', '~> 2.6.13'
   end
 
 end

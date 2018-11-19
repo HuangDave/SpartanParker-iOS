@@ -1,27 +1,27 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AWSCognito (2.6.31):
-    - AWSCore (= 2.6.31)
-  - AWSCognitoAuth (2.6.31):
+  - AWSCognito (2.6.35):
+    - AWSCore (= 2.6.35)
+  - AWSCognitoAuth (2.7.0):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
-  - AWSCognitoIdentityProvider (2.6.31):
+  - AWSCognitoIdentityProvider (2.6.35):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
-    - AWSCore (= 2.6.31)
+    - AWSCore (= 2.6.35)
   - AWSCognitoIdentityProviderASF (1.0.1)
-  - AWSCore (2.6.31)
-  - AWSDynamoDB (2.6.31):
-    - AWSCore (= 2.6.31)
-  - AWSLambda (2.6.31):
-    - AWSCore (= 2.6.31)
-  - AWSS3 (2.6.31):
-    - AWSCore (= 2.6.31)
-  - RxCocoa (4.3.1):
+  - AWSCore (2.6.35)
+  - AWSDynamoDB (2.6.35):
+    - AWSCore (= 2.6.35)
+  - AWSLambda (2.6.35):
+    - AWSCore (= 2.6.35)
+  - AWSS3 (2.6.35):
+    - AWSCore (= 2.6.35)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
-  - RxSwift (4.3.1)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
   - AWSCognito
   - AWSCognitoAuth
   - AWSCognitoIdentityProvider
@@ -35,7 +35,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - AWSCognito
     - AWSCognitoAuth
     - AWSCognitoIdentityProvider
@@ -44,24 +43,25 @@ SPEC REPOS:
     - AWSDynamoDB
     - AWSLambda
     - AWSS3
+    - RxAtomic
     - RxCocoa
     - RxSwift
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AWSCognito: c6bc1f7814ca3484b8ed76ba7f319ffea7c19e68
-  AWSCognitoAuth: 8b26c297c0f4b00f8fa8cac8fe2ce24ee53e2369
-  AWSCognitoIdentityProvider: c74a83c8226a9f43607f2772742000bccb5cc58a
+  AWSCognito: 6b96ae976b5f59881c1bb406e0c7d08494651dee
+  AWSCognitoAuth: 35b40d51918b6743cb4d107a054f3a61f344a08b
+  AWSCognitoIdentityProvider: 0a041bd229a105d73f3a4d7eb90f696f1b5bd422
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
-  AWSCore: c7abfb87ef802d1c4b5dd56db64ac8b4a7823ef0
-  AWSDynamoDB: eb3eb7d49b14f1e523afa80373a8ab0fbde935a9
-  AWSLambda: b178a3eea78c9d3f6d88d3ec711ea03a80ac37f7
-  AWSS3: 5647e89f9ac8e7033f3e5507dbb3eccc37f82b75
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  AWSCore: 2dab62ef2e5ca5d8c72c6cbdb3a6ea1532c27c2b
+  AWSDynamoDB: f4902fc37384dcf9547e2d8a32a5b208d4d1d996
+  AWSLambda: 60b52f6445e99810c991294c51215f9b171e7d0e
+  AWSS3: 282a590bb47e9cd88de24979fb28954399c41c52
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 0165ee04cd24c5c5ae2bdc1c58a34130f98f97e1
+PODFILE CHECKSUM: 766f61d2fa6f512f0a1a853ceecc715ae06c9216
 
 COCOAPODS: 1.5.3

@@ -29,6 +29,7 @@
 		63822C2C212CDBAF000D2B9D /* UserForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63822C2B212CDBAF000D2B9D /* UserForm.swift */; };
 		63822C30212CDE0E000D2B9D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63822C2F212CDE0E000D2B9D /* TextField.swift */; };
 		638E9DC1216450D90076685E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E9DC0216450D90076685E /* MasterViewController.swift */; };
+		6390451221A0228B003C3D4F /* TestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6390451121A0228B003C3D4F /* TestUser.swift */; };
 		63A84226211693C30038C68B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A84225211693C30038C68B /* AppDelegate.swift */; };
 		63A8422D211693C30038C68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422C211693C30038C68B /* Assets.xcassets */; };
 		63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8422E211693C30038C68B /* LaunchScreen.storyboard */; };
@@ -46,7 +47,8 @@
 		63E2428121406CCD00F9F525 /* RegisterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2428021406CCD00F9F525 /* RegisterForm.swift */; };
 		63E35CC9211B3B4600735870 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */; };
 		63E4C4DC21408FB2000CE9C4 /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E4C4DB21408FB2000CE9C4 /* Print.swift */; };
-		63F92028216CB3AD002DCABD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F92027216CB3AD002DCABD /* AuthenticationManager.swift */; };
+		63F6BC97219A6555001467D4 /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F6BC96219A6555001467D4 /* LoginUITests.swift */; };
+		63F92028216CB3AD002DCABD /* AWSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F92027216CB3AD002DCABD /* AWSManager.swift */; };
 		63F9202A216CB6F2002DCABD /* PermitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F92029216CB6F2002DCABD /* PermitViewController.swift */; };
 		8ED6B6B8287E9579733EBBE1 /* Pods_SpartanParker_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E8EAC7D465F75A6B31180E /* Pods_SpartanParker_iOSTests.framework */; };
 		AC128F88CEC8BE23DE4EE843 /* Pods_SpartanParker_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F339DBE16CFC336CE606C0B6 /* Pods_SpartanParker_iOS.framework */; };
@@ -98,6 +100,7 @@
 		63822C2B212CDBAF000D2B9D /* UserForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForm.swift; sourceTree = "<group>"; };
 		63822C2F212CDE0E000D2B9D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		638E9DC0216450D90076685E /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		6390451121A0228B003C3D4F /* TestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUser.swift; sourceTree = "<group>"; };
 		63A84222211693C20038C68B /* SpartanParker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpartanParker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A84225211693C30038C68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63A8422C211693C30038C68B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,7 +125,9 @@
 		63E2428021406CCD00F9F525 /* RegisterForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterForm.swift; sourceTree = "<group>"; };
 		63E35CC8211B3B4600735870 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		63E4C4DB21408FB2000CE9C4 /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
-		63F92027216CB3AD002DCABD /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		63F6BC9321978CDD001467D4 /* SpartanParker-iOSUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpartanParker-iOSUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		63F6BC96219A6555001467D4 /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
+		63F92027216CB3AD002DCABD /* AWSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSManager.swift; sourceTree = "<group>"; };
 		63F92029216CB6F2002DCABD /* PermitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermitViewController.swift; sourceTree = "<group>"; };
 		9B038958A5F8253C698DBA8E /* Pods_SpartanParker_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpartanParker_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6549C467BB2D3B5BCFA9DFA /* Pods-SpartanParker-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpartanParker-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpartanParker-iOSUITests/Pods-SpartanParker-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				63A8423C211693C30038C68B /* Info.plist */,
+				6390451121A0228B003C3D4F /* TestUser.swift */,
 				637B91C52134C6B8003E9550 /* AlertViewTests.swift */,
 				637B91C92134E655003E9550 /* DatabaseObjectTests.swift */,
 				63B56A1C2137A54A00913F26 /* FullNameTests.swift */,
@@ -248,6 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				63A84247211693C30038C68B /* Info.plist */,
+				63F6BC9321978CDD001467D4 /* SpartanParker-iOSUITests-Bridging-Header.h */,
+				63F6BC96219A6555001467D4 /* LoginUITests.swift */,
 			);
 			path = "SpartanParker-iOSUITests";
 			sourceTree = "<group>";
@@ -286,7 +294,7 @@
 		63CBFE6D212FECE600E36AC5 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				63F92027216CB3AD002DCABD /* AuthenticationManager.swift */,
+				63F92027216CB3AD002DCABD /* AWSManager.swift */,
 				63CBFE70212FED2A00E36AC5 /* DatabaseObject.swift */,
 				637B91CD213609ED003E9550 /* ParkingSpot.swift */,
 				63CBFE6E212FECFC00E36AC5 /* User.swift */,
@@ -392,6 +400,7 @@
 				63A8423D211693C30038C68B /* Sources */,
 				63A8423E211693C30038C68B /* Frameworks */,
 				63A8423F211693C30038C68B /* Resources */,
+				E8EB67CF2F408A5842AF72E4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -422,6 +431,7 @@
 					};
 					63A84240211693C30038C68B = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 63A84221211693C20038C68B;
 					};
 				};
@@ -524,7 +534,7 @@
 				"${BUILT_PRODUCTS_DIR}/AWSDynamoDB/AWSDynamoDB.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSLambda/AWSLambda.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
@@ -538,7 +548,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSDynamoDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSLambda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -559,6 +569,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		E8EB67CF2F408A5842AF72E4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SpartanParker-iOSUITests/Pods-SpartanParker-iOSUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCognito/AWSCognito.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoAuth/AWSCognitoAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognito.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpartanParker-iOSUITests/Pods-SpartanParker-iOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		EF249D2FDA37CD3906B4149F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -593,7 +629,7 @@
 				637B91C42134AF2D003E9550 /* ViewController.swift in Sources */,
 				63354DE221637D4400BE5848 /* ParkingPermitCardView.swift in Sources */,
 				637B91BE213478A5003E9550 /* AlertView.swift in Sources */,
-				63F92028216CB3AD002DCABD /* AuthenticationManager.swift in Sources */,
+				63F92028216CB3AD002DCABD /* AWSManager.swift in Sources */,
 				63E4C4DC21408FB2000CE9C4 /* Print.swift in Sources */,
 				63C96AA7212AF4D800F574D0 /* UIView.swift in Sources */,
 				637B91BC21347860003E9550 /* SpotSearchViewController.swift in Sources */,
@@ -627,6 +663,7 @@
 				637B91C82134D2B2003E9550 /* UIColorTests.swift in Sources */,
 				637B91D921374ACF003E9550 /* UserTests.swift in Sources */,
 				63CBFE60212F7E1B00E36AC5 /* TextFieldTests.swift in Sources */,
+				6390451221A0228B003C3D4F /* TestUser.swift in Sources */,
 				63B56A1D2137A54A00913F26 /* FullNameTests.swift in Sources */,
 				637B91CA2134E655003E9550 /* DatabaseObjectTests.swift in Sources */,
 				637B91C62134C6B8003E9550 /* AlertViewTests.swift in Sources */,
@@ -637,6 +674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F6BC97219A6555001467D4 /* LoginUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,8 +908,10 @@
 			baseConfigurationReference = 3B2BF39DA96FABC9656AB8BF /* Pods-SpartanParker-iOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "SpartanParker-iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -880,6 +920,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpartanParker-iOSUITests/SpartanParker-iOSUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "SpartanParker-iOS";
@@ -891,8 +933,10 @@
 			baseConfigurationReference = A6549C467BB2D3B5BCFA9DFA /* Pods-SpartanParker-iOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F9YSVH8J7;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "SpartanParker-iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -901,6 +945,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpartanParker-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpartanParker-iOSUITests/SpartanParker-iOSUITests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "SpartanParker-iOS";

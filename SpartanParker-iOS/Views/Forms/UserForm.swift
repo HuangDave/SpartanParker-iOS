@@ -8,12 +8,15 @@
 
 import UIKit
 
+import AWSCognitoIdentityProvider
+
 // MARK: -
 class UserForm: UIControl {
     // MARK: - UserForm Static Cell Constants
     static let defaultRowHeight:  CGFloat = 44.0
     static let horizontalPadding: CGFloat = 25.0
     static let verticalSpacing:   CGFloat = 32.0
+
     // MARK: -
     /// Table view for displaying TextFields.
     let tableView: UITableView = create(UITableView(frame: .zero, style: .grouped)) {
@@ -44,6 +47,8 @@ class UserForm: UIControl {
                                   constant: -(horizontalPadding)).isActive = true
     }
 
+    private(set) var tableViewBottomConstraint: NSLayoutConstraint!
+
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not Used")
@@ -60,10 +65,10 @@ class UserForm: UIControl {
         addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        tableViewBottomConstraint.isActive = true
         setupFields()
     }
 
@@ -79,9 +84,8 @@ class UserForm: UIControl {
     /// Override to return all input fields
     /// - Returns:
     ///     - Dictionary containing all verified inputs from input fields.
-    ///     - Not nil if an input field was invalid or empty.
-    func getAllInputs() throws -> [String: String] {
-        return [:]
+    func getAllInputs() throws -> [String : AWSCognitoIdentityUserAttributeType]  {
+        fatalError("Should override to serialize attributes.")
     }
 }
 

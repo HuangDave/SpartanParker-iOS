@@ -8,6 +8,8 @@
 
 import UIKit
 
+import AWSCognitoIdentityProvider
+
 class LoginForm: UserForm {
     let emailField:    TextField = TextField(placeHolder: "Email",    key: "email")
     let passwordField: TextField = TextField(placeHolder: "Password", key: "password")
@@ -22,7 +24,7 @@ class LoginForm: UserForm {
         reloadForm()
     }
 
-    override func getAllInputs() throws -> [String : String] {
+    override func getAllInputs() throws -> [String : AWSCognitoIdentityUserAttributeType] {
         guard let email = emailField.text, !email.isEmpty else {
             throw TextField.InputError.emtpy("Email field cannot be empty!")
         }
@@ -30,8 +32,9 @@ class LoginForm: UserForm {
             throw TextField.InputError.emtpy("Password field cannot be empty!")
         }
         return [
-            emailField.key:    email,
-            passwordField.key: password
+            // sjsuIdField.key:    AWSCognitoIdentityUserAttributeType(name: sjsuIdField.key,    value: sjsuId),
+            emailField.key:     AWSCognitoIdentityUserAttributeType(name: emailField.key,     value: email),
+            passwordField.key:  AWSCognitoIdentityUserAttributeType(name: passwordField.key,  value: password)
         ]
     }
 }

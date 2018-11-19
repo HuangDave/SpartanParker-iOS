@@ -8,14 +8,16 @@
 
 import Foundation
 
-// MARK: -
-class ParkingSpot: DatabaseObject {
+import AWSCore
+import AWSDynamoDB
 
-    private enum CodingKeys: String, CodingKey {
-        case garageId
-        case spotId
-        case isOccupied
-        case spotType
+// MARK: -
+class ParkingSpot: AWSDynamoDBObjectModel {
+    enum Duration: UInt, CaseIterable {
+        case oneHour = 1
+        case twoHours
+        case threeHours
+        case fourHours
     }
 
     enum SpotType: String {
@@ -23,49 +25,60 @@ class ParkingSpot: DatabaseObject {
         case student
     }
 
-    enum Duration: Int, CaseIterable {
-        case oneHour = 1
-        case twoHours
-        case threeHours
-        case fourHours
+    enum ParkingSpotError {
+        case noVacantSpot
+        case other
+    }
 
-        var desciption: String {
-            return "" // TODO: implement
+    //@objc var garageId: String?
+    @objc var spotID:    String!
+    @objc var location:  String!
+    @objc var spotType:  String!
+    @objc var studentID: String?
+    @objc var vacant:    Bool = true
+
+    // MARK:
+
+    class func getVacantSpot(success: @escaping (ParkingSpot) -> Void,
+                             failure: @escaping (ParkingSpotError) -> Void) {
+        let scanExpression = AWSDynamoDBScanExpression()
+        scanExpression.limit = 20
+        AWSDynamoDBObjectMapper.default()
+            .scan(ParkingSpot.self, expression: scanExpression)
+            .continueWith { result -> Any? in
+                if let parkingSpots = result.result?.items as? [ParkingSpot] {
+                    if !(parkingSpots.isEmpty), let vacantSpot = parkingSpots.first {
+                        success(vacantSpot)
+                    } else {
+                        failure(ParkingSpotError.noVacantSpot)
+                    }
+                } else {
+                    failure(ParkingSpotError.other)
+                }
+                return nil
         }
     }
 
-    private(set) var garageId:   String   = ""
-    private(set) var spotId:     String   = ""
-    private(set) var isOccupied: Bool     = false
-    private(set) var spotType:   SpotType = .student
+    // MARK:
 
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        garageId      = try container.decode(String.self, forKey: .garageId)
-        spotId        = try container.decode(String.self, forKey: .spotId)
-        isOccupied    = try container.decode(Bool.self,   forKey: .isOccupied)
-        if let type = SpotType(rawValue: try container.decode(String.self, forKey: .spotType)) {
-            spotType = type
-        }
-    }
-
-    override func serialized() -> JSON {
-        var data = super.serialized()
-        data[CodingKeys.garageId.rawValue]   = garageId
-        data[CodingKeys.spotId.rawValue]     = spotId
-        data[CodingKeys.isOccupied.rawValue] = isOccupied
-        data[CodingKeys.spotType.rawValue]   = spotType.rawValue
-        return data
+    func occupy(duration: Duration,
+                success: () -> Void,
+                failure: (Error) -> Void) {
+        // TODO: implement
     }
 }
 
-extension ParkingSpot {
-    class func searchForVacantSpot(success: (ParkingSpot) -> Void, failure: (Error) -> Void) {
-        // TODO: implement
+// MARK: - AWSDynamoDBModeling
+extension ParkingSpot: AWSDynamoDBModeling {
+    class func dynamoDBTableName() -> String {
+        return "VacantSpotDB"
     }
 
-    func attemptToOccupy(forDuration duration: Duration, success: () -> Void, failure: (Error) -> Void) {
-        // TODO: implement
+    class func hashKeyAttribute() -> String {
+        return "SpotId"
+    }
+
+    class func rangeKeyAttribute() -> String {
+        return ""
     }
 }

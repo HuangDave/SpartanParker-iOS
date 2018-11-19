@@ -129,6 +129,8 @@ class AlertView: UIView {
         }
     }
 
+    // MARK: Handlers
+
     func onCancel(_ cancel: @escaping (() -> Void)) {
         cancelHandler = cancel
     }
@@ -147,6 +149,7 @@ class AlertView: UIView {
     }
 }
 
+// MARK: - Accessors
 extension AlertView {
     var title: String? {
         get { return titleLabel.text  }

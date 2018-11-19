@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+import AWSCognito
 import AWSCognitoIdentityProvider
 
 // MARK: -
@@ -56,29 +58,65 @@ class User: DatabaseObject {
 
 // MARK: -
 extension User {
-    enum RegistrationError: Error {
-        case emailExists(String)
+    enum LoginError: Error {
+        case invalidPassword
+        case other(String?)
     }
 
-    class func register(email: String, password: String,
-                        completion: @escaping (Bool) -> Void, failed: @escaping (RegistrationError) -> Void) {
-        AuthenticationManager.shared.userPool
-            .signUp(email, password: password, userAttributes: nil, validationData: nil)
+    enum RegistrationError: Error {
+        case emailExists
+        case other(String?)
+    }
+
+    class func login(email: String, password: String,
+                     attributes: [AWSCognitoIdentityUserAttributeType],
+                     success: @escaping () -> Void,
+                     failure: @escaping (LoginError) -> Void) {
+        AWSManager.Cognito.userPool.getUser()
+            .getSession(email,
+                        password: password,
+                        validationData: attributes)
             .continueWith { task -> Any? in
-                if task.isCancelled {
-                    debugPrintMessage("Registration cancelled.")
-                } else if let error = task.error as NSError? {
-                    debugPrintMessage("User.register(email:password:completion:failed:) - \(error)")
-                    if error.code == 37, let message = error.userInfo["message"] as? String {
-                        failed(RegistrationError.emailExists(message))
+                if let error = task.error as NSError? {
+                    switch error.code {
+                    default: failure(LoginError.other("Failed to login"))
                     }
-                } else if let result = task.result {
+                } else {
                     DispatchQueue.main.async {
-                        debugPrintMessage(result)
-                        completion(true)
+                        success()
                     }
                 }
                 return nil
         }
+    }
+
+    class func register(email: String, password: String,
+                        attributes: [AWSCognitoIdentityUserAttributeType],
+                        success: @escaping () -> Void,
+                        failure: @escaping (RegistrationError) -> Void) {
+        AWSManager.Cognito.userPool
+            .signUp(email, password: password, userAttributes: attributes, validationData: nil)
+            .continueWith { task -> Any? in
+                if let error = task.error as NSError? {
+                    switch error.code {
+                    case 37: failure(RegistrationError.emailExists)
+                    default:
+                        debugPrintMessage("User.register(email:password:completion:failed:) - \(error)")
+                        let message = error.userInfo["message"] as? String
+                        failure(RegistrationError.other(message))
+                    }
+                } else if let result = task.result {
+                    DispatchQueue.main.async {
+                        success()
+                    }
+                }
+                return nil
+        }
+    }
+
+    class func logout() {
+        AWSManager.Cognito.userPool.currentUser()?.globalSignOut()
+        AWSManager.Cognito.userPool.currentUser()?.signOutAndClearLastKnownUser()
+        AWSCognito.default().wipe()
     }
 }

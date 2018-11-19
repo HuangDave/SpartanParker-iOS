@@ -8,6 +8,8 @@
 
 import UIKit
 
+import AWSDynamoDB
+
 // MARK: -
 class SpotSearchViewController: ViewController {
     private let guestParkingButton: OptionButton = create(OptionButton()) {
@@ -53,18 +55,20 @@ class SpotSearchViewController: ViewController {
     @objc private func didSelectGuestParking(sender: UIButton) {
         sender.isEnabled = false
         defer { sender.isEnabled = true }
-        presentSearchingAlert()
+
+
+
+        //presentSearchingAlert()
     }
 
     @objc private func didSelectRegisteredParking(sender: UIButton) {
         sender.isEnabled = false
         defer { sender.isEnabled = true }
         presentSearchingAlert()
-        ParkingSpot.searchForVacantSpot(success: { vacantSpot in
-            // should present audible alert to user to begin search
-            presentSpotFoundAlert(spot: vacantSpot)
-        }, failure: { _ in
+        ParkingSpot.getVacantSpot(success: { [weak self] vacantSpot in
 
+        }, failure: { [weak self] error in
+            // self?.presentErrorAlert(message: <#T##String#>, buttonTitle: <#T##String#>)
         })
     }
 }

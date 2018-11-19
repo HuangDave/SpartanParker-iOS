@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import AWSCore
 import AWSCognitoAuth
 import AWSCognitoIdentityProvider
@@ -15,14 +16,25 @@ import AWSCognitoIdentityProvider
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    var rootViewController: MasterViewController!
-    var authenticationViewController: AuthenticationViewController?
+    private(set) var rootViewController:           MasterViewController!
+    // private(set) var authenticationViewController: AuthenticationViewController?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        AuthenticationManager.shared.userPool.delegate = self
-        // REMOVEME: remove this if not testing auth
-        // AuthenticationManager.shared.userPool.currentUser()?.globalSignOut()
+        #if DEBUG
+        AWSDDLog.sharedInstance.logLevel = .verbose
+        #endif
+
+        AWSManager.shared.registerCognito()
+        AWSManager.Cognito.userPool.delegate = self
+
+        #if DEBUG
+        // User.logout()
+        #endif
+
+        if let user = AWSManager.Cognito.userPool.currentUser() {
+            user.getDetails()
+        }
 
         window = UIWindow(frame: UIScreen.main.bounds)
         rootViewController = MasterViewController()
@@ -34,14 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
     func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
-        debugPrintMessage("Requesting Authentication from User...")
-        if authenticationViewController == nil {
-            authenticationViewController = AuthenticationViewController()
-        }
+        debugPrintMessage("AppDelegate:startPasswordAuthentication: Requesting Authentication from User...")
+        let authenticationViewController = AuthenticationViewController()
         DispatchQueue.main.async {
-            self.rootViewController.navigationController?.pushViewController(self.authenticationViewController!,
+            self.rootViewController.navigationController?.pushViewController(authenticationViewController,
                                                                              animated: true)
         }
-        return authenticationViewController!
+        return authenticationViewController
     }
 }
