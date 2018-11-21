@@ -1,7 +1,7 @@
 PODS:
   - AWSCognito (2.6.35):
     - AWSCore (= 2.6.35)
-  - AWSCognitoAuth (2.7.0):
+  - AWSCognitoAuth (2.7.2):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
   - AWSCognitoIdentityProvider (2.6.35):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
@@ -14,12 +14,21 @@ PODS:
     - AWSCore (= 2.6.35)
   - AWSS3 (2.6.35):
     - AWSCore (= 2.6.35)
+  - PromiseKit (6.5.3):
+    - PromiseKit/CorePromise (= 6.5.3)
+    - PromiseKit/Foundation (= 6.5.3)
+    - PromiseKit/UIKit (= 6.5.3)
+  - PromiseKit/CorePromise (6.5.3)
+  - PromiseKit/Foundation (6.5.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.5.3):
+    - PromiseKit/CorePromise
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
-  - SwiftLint (0.27.0)
+  - SwiftLint (0.28.1)
 
 DEPENDENCIES:
   - AWSCognito
@@ -29,6 +38,7 @@ DEPENDENCIES:
   - AWSDynamoDB
   - AWSLambda
   - AWSS3
+  - PromiseKit
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - SwiftLint
@@ -43,6 +53,7 @@ SPEC REPOS:
     - AWSDynamoDB
     - AWSLambda
     - AWSS3
+    - PromiseKit
     - RxAtomic
     - RxCocoa
     - RxSwift
@@ -50,18 +61,19 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AWSCognito: 6b96ae976b5f59881c1bb406e0c7d08494651dee
-  AWSCognitoAuth: 35b40d51918b6743cb4d107a054f3a61f344a08b
+  AWSCognitoAuth: 52401cdb87333a921383281d858e1ff4332a7b38
   AWSCognitoIdentityProvider: 0a041bd229a105d73f3a4d7eb90f696f1b5bd422
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
   AWSCore: 2dab62ef2e5ca5d8c72c6cbdb3a6ea1532c27c2b
   AWSDynamoDB: f4902fc37384dcf9547e2d8a32a5b208d4d1d996
   AWSLambda: 60b52f6445e99810c991294c51215f9b171e7d0e
   AWSS3: 282a590bb47e9cd88de24979fb28954399c41c52
+  PromiseKit: c609029bdd801f792551a504c695c7d3098b42cd
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  SwiftLint: 7f5f7de0da74a649b16616cb5246ae323489656e
 
-PODFILE CHECKSUM: 766f61d2fa6f512f0a1a853ceecc715ae06c9216
+PODFILE CHECKSUM: 345a973b37200936c17ede5a3a23fb389613c044
 
 COCOAPODS: 1.5.3

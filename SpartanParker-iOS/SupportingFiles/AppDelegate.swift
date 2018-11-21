@@ -16,8 +16,7 @@ import AWSCognitoIdentityProvider
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    private(set) var rootViewController:           MasterViewController!
-    // private(set) var authenticationViewController: AuthenticationViewController?
+    private(set) var rootViewController: MasterViewController!
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -26,12 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         AWSManager.shared.registerCognito()
-        AWSManager.Cognito.userPool.delegate = self
-
-        #if DEBUG
         // User.logout()
-        #endif
-
+        AWSManager.Cognito.userPool.delegate = self
         if let user = AWSManager.Cognito.userPool.currentUser() {
             user.getDetails()
         }

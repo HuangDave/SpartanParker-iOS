@@ -10,7 +10,7 @@ import UIKit
 
 import AWSDynamoDB
 
-// MARK: -
+/// The SpotSearchViewController allows the user to search for a vacant parking spot.
 class SpotSearchViewController: ViewController {
     private let guestParkingButton: OptionButton = create(OptionButton()) {
         $0.setTitle("Guest Parking", for: .normal)
@@ -22,8 +22,8 @@ class SpotSearchViewController: ViewController {
         $0.addTarget(self, action: #selector(didSelectRegisteredParking), for: .touchUpInside)
     }
 
+    /// True if the user cancels the search.
     private var searchCancelled: Bool = false
-    private var vacantSpots: [ParkingSpot]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,79 +55,98 @@ class SpotSearchViewController: ViewController {
     @objc private func didSelectGuestParking(sender: UIButton) {
         sender.isEnabled = false
         defer { sender.isEnabled = true }
-
-
-
         //presentSearchingAlert()
     }
 
     @objc private func didSelectRegisteredParking(sender: UIButton) {
         sender.isEnabled = false
         defer { sender.isEnabled = true }
-        presentSearchingAlert()
-        ParkingSpot.getVacantSpot(success: { [weak self] vacantSpot in
-
-        }, failure: { [weak self] error in
-            // self?.presentErrorAlert(message: <#T##String#>, buttonTitle: <#T##String#>)
-        })
+        searchForVacantSpot()
     }
-}
 
-// MARK: - Spot Search Alerts
-extension SpotSearchViewController {
+    private func searchForVacantSpot() {
+        presentSearchingAlert()
+        ParkingSpot.getVacantSpot()
+            .done { [weak self] vacantSpot in
+                guard self?.searchCancelled != true else { return }
+                self?.presentParkingSpotInformation(parkingSpot: vacantSpot)
+            }
+            .catch { [weak self] error in
+                guard self?.searchCancelled != true else { return }
+                if let fetchError = error as? ParkingSpot.FetchError {
+                    switch fetchError {
+                    case .noVacantSpot:
+                        self?.presentNoVacantSpotsFoundAlert()
+                    case .other:
+                        self?.presentErrorAlert(message: "An error occurred while searching for a vacant spot",
+                                                buttonTitle: "Try Again")
+                    }
+                } else {
+                    // TODO:
+                }
+        }
+    }
+
+    // MARK: - Alert Views
+
+    /// Present an alert view notifying the user the search for a vacant spot is in progress.
     private func presentSearchingAlert() {
-        // TODO: insert synthesized alert
-        speak("Just a moment...")
-        // TDOO: should use voice recognition to get user input
+        // speak("Just a moment...")
+        searchCancelled = false
         present(alertView: AlertView(style: .alert)) {
             $0.title = "Searching"
             $0.message = "Just a moment..."
             $0.confirmButton.setTitle("CANCEL", for: .normal)
             $0.confirmButton.backgroundColor = .spartanRed
+            $0.confirmButton.rx.controlEvent(.touchUpInside)
+                .subscribe({ _ in
+                    self.dismissAlertView()
+                    self.searchCancelled = true
+                }).disposed(by: disposeBag)
+        }
+    }
+
+    /// Dismises the searching alert view and present an AlertView with the vacant parking
+    /// spot's information
+    ///
+    /// - Parameters:
+    ///     - parkingSpot: Fetched vacant parking spot.
+    private func presentParkingSpotInformation(parkingSpot: ParkingSpot) {
+        debugPrintMessage("Presenting spot found alert view")
+        dismissAlertView()
+        present(alertView: AlertView(style: .alert)) {
+            $0.title = "Spot Found!"
+            $0.message = parkingSpot.location + "\n\n" + parkingSpot.spotId
+            $0.messageLabel.lineBreakMode = .byWordWrapping
+            $0.confirmButton.backgroundColor = .spartanGreen
+            $0.confirmButton.setTitle("Go", for: .normal)
             $0.onConfirm {
                 self.dismissAlertView()
-                // TODO: cancel search request
-                // TODO: should cancel alert on voice recognition
-                self.searchCancelled = true
-                self.presentSpotNotFoundAlert()
             }
         }
     }
 
-    private func presentSpotFoundAlert(spot: ParkingSpot) {
-        DispatchQueue.main.async {
-            // TODO: insert synthesized alert
-            // TDOO: should use voice recognition to get user input and guide the user to
-            //       the vacant parking spot
-            self.present(alertView: AlertView(style: .alert)) {
-                $0.title = "Spot Found"
-                $0.message = "" // TODO: set spot information
-                $0.confirmButton.setTitle("GO", for: .normal)
-                $0.onConfirm {
-                    self.dismissAlertView()
-                    // TODO: add QR scan for guest parking
-                    // TODO: add payment process for registered parking
-                }
-            }
-        }
-    }
-
-    private func presentSpotNotFoundAlert() {
-        let message = "SORRY! All garages are currently full."
-        speak(message)
-        // TODO: insert synthesized alert
+    /// Present an AlertView notifying the user that no vacant spots were found.
+    ///
+    /// The user will be presented with the option to:
+    ///
+    /// 1. Cancel the search
+    /// 2. Try to search again.
+    private func presentNoVacantSpotsFoundAlert() {
+        debugPrintMessage("Presenting garages full alert view")
+        // speak("All garages are currently full!")
+        dismissAlertView()
         present(alertView: AlertView(style: .confirmation)) {
-            $0.title = "No Spots Available"
-            $0.message = message
-            $0.cancelButton?.setTitle("CANCEL", for: .normal)
-            $0.confirmButton.setTitle("TRY AGAIN", for: .normal)
-            $0.onCancel { // cancel...
+            $0.title = "No Vacant Spot!"
+            $0.message = "All garages are currently full!"
+            $0.cancelButton!.setTitle("Cancel", for: .normal)
+            $0.confirmButton.setTitle("Try Again", for: .normal)
+            $0.onCancel {
                 self.dismissAlertView()
             }
-            $0.onConfirm { // try again...
+            $0.onConfirm {
                 self.dismissAlertView()
-                // TODO: refresh spot search
-                self.presentSearchingAlert()
+                self.searchForVacantSpot()
             }
         }
     }

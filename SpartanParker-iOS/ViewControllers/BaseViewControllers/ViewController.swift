@@ -9,30 +9,23 @@
 import UIKit
 import AVFoundation
 
+import RxSwift
+
 // MARK: -
 class ViewController: UIViewController {
+
+    private(set) var disposeBag: DisposeBag = DisposeBag()
+
     private(set) var dimView: UIView?
     private(set) var alertView: AlertView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .white
-        /*
-        navigationController?.navigationBar.barTintColor = .spartanDarkBlue
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white
-        ]
-        navigationController?.navigationBar.tintColor = .white */
         navigationController?.navigationBar.tintColor = .black
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if AWSManager.Cognito.userPool.currentUser() == nil {
-            // (UIApplication.shared.delegate as? AppDelegate)?.startPasswordAuthentication()
-        }
-    }
 }
+
 // MARK: - AlertView Present / Dismiss
 extension ViewController {
     func present(alertView: AlertView, setup: (AlertView) -> Void) {
@@ -40,28 +33,30 @@ extension ViewController {
 
         setup(alertView)
 
-        dimView = UIView()
-        dimView!.backgroundColor = .black
-        dimView!.alpha = 0.5
-        dimView!.isExclusiveTouch = true
-        view.addSubview(dimView!)
-        dimView!.translatesAutoresizingMaskIntoConstraints = false
-        dimView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        dimView!.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        dimView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        dimView!.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        DispatchQueue.main.async {
+            self.dimView = UIView()
+            self.dimView!.backgroundColor = .black
+            self.dimView!.alpha = 0.5
+            self.dimView!.isExclusiveTouch = true
+            self.view.addSubview(self.dimView!)
+            self.dimView!.translatesAutoresizingMaskIntoConstraints = false
+            self.dimView!.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+            self.dimView!.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+            self.dimView!.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            self.dimView!.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
 
-        let horizontalPadding: CGFloat = 20.0
-        self.alertView = alertView
-        view.addSubview(self.alertView!)
-        self.alertView!.translatesAutoresizingMaskIntoConstraints = false
-        self.alertView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.alertView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        self.alertView!.leftAnchor.constraint(equalTo: self.view.leftAnchor,
-                                             constant: horizontalPadding).isActive = true
-        self.alertView!.rightAnchor.constraint(equalTo: self.view.rightAnchor,
-                                              constant: -(horizontalPadding)).isActive = true
-        self.alertView!.heightAnchor.constraint(equalToConstant: self.alertView!.bounds.size.width).isActive = true
+            let horizontalPadding: CGFloat = 20.0
+            self.alertView = alertView
+            self.view.addSubview(self.alertView!)
+            self.alertView!.translatesAutoresizingMaskIntoConstraints = false
+            self.alertView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            self.alertView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            self.alertView!.leftAnchor.constraint(equalTo: self.view.leftAnchor,
+                                                  constant: horizontalPadding).isActive = true
+            self.alertView!.rightAnchor.constraint(equalTo: self.view.rightAnchor,
+                                                   constant: -(horizontalPadding)).isActive = true
+            self.alertView!.heightAnchor.constraint(equalToConstant: self.alertView!.bounds.size.width).isActive = true
+        }
     }
 
     func presentErrorAlert(message: String, buttonTitle: String) {

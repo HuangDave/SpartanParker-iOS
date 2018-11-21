@@ -16,20 +16,15 @@ private class AccountOptionCell: UITableViewCell {
 
     init(content: UIView) {
         super.init(style: .default, reuseIdentifier: "")
-        backgroundColor = .clear
-        selectionStyle = .none
-
+        backgroundColor             = .clear
+        selectionStyle              = .none
         contentView.backgroundColor = .clear
         contentView.addSubview(content)
         content.translatesAutoresizingMaskIntoConstraints = false
-        content.topAnchor.constraint(equalTo: topAnchor,
-                                     constant: 5.0).isActive = true
-        content.leftAnchor.constraint(equalTo: leftAnchor,
-                                     constant: 10.0).isActive = true
-        content.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                     constant: -5.0).isActive = true
-        content.rightAnchor.constraint(equalTo: rightAnchor,
-                                     constant: -10.0).isActive = true
+        content.topAnchor.constraint(equalTo: topAnchor, constant: 5.0).isActive = true
+        content.leftAnchor.constraint(equalTo: leftAnchor, constant: 10.0).isActive = true
+        content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5.0).isActive = true
+        content.rightAnchor.constraint(equalTo: rightAnchor, constant: -10.0).isActive = true
     }
 }
 
@@ -93,6 +88,7 @@ class AccountViewController: ViewController {
     }
 }
 
+// MARK: - UITableViewDataSource & UITableViewDelegate Implemenation
 extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return optionCells.count
@@ -112,14 +108,13 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let option = AccountOption(rawValue: indexPath.row) else { return }
+        var destinationViewController: UIViewController?
         switch option {
         case .basicInformation:   return
-        case .passwordChange:     navigationController?.pushViewController(PasswordChangeViewController(),
-                                                                           animated: true)
-        case .vehicleInformation: navigationController?.pushViewController(VehicleInformationViewController(),
-                                                                           animated: true)
-        case .permitInformation:  navigationController?.pushViewController(PermitViewController(),
-                                                                           animated: true)
+        case .passwordChange:     destinationViewController = PasswordChangeViewController()
+        case .vehicleInformation: destinationViewController = VehicleInformationViewController()
+        case .permitInformation:  destinationViewController = PermitViewController()
         }
+        navigationController?.pushViewController(destinationViewController!, animated: true)
     }
 }

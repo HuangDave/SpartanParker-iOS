@@ -31,7 +31,7 @@ class MasterViewController: UITabBarController {
                                      selectedImage: UIImage(named: "account_selected"))
     }
 
-    override func viewDidLoad() {       
+    override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .spartanBlue
         tabBar.backgroundColor = .white

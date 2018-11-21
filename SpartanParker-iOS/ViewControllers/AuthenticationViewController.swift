@@ -6,9 +6,8 @@
 //  Copyright © 2018 David. All rights reserved.
 //
 
-// TODO: add loading alert / spinner during authentication requests.
-
 import UIKit
+
 import AWSCognitoAuth
 import AWSCognitoIdentityProvider
 
@@ -18,21 +17,13 @@ class AuthenticationViewController: ViewController {
         case register = 1
     }
 
-    override var accessibilityLabel: String? {
-        get { return "AuthenticationViewController" }
-        set { }
-    }
-
     private var segmentedController: SegmentedController!
     private var loginForm: LoginForm = LoginForm()
     private var registerForm: RegisterForm = RegisterForm()
-    /// Constraint used for animating the switch between the login and register forms.
     private var loginFormCenterXConstraint:    NSLayoutConstraint!
     private var loginFormBottomConstraint:     NSLayoutConstraint!
     private var registerFormBottomConstraint:  NSLayoutConstraint!
-
     private var currentForm: AuthenticationForm = AuthenticationForm.login
-
     private var userFormWidth: CGFloat { return view.frame.width }
 
     var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
@@ -47,24 +38,10 @@ class AuthenticationViewController: ViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
                                                             target: self,
                                                             action: #selector(didSelectDone))
-        view.backgroundColor = .white
-        segmentedController = SegmentedController(frame: CGRect(x: 0, y: 0,
-                                                                width: view.frame.width,
-                                                                height: SegmentedController.defaultHeight))
-        segmentedController.delegate       = self
-        segmentedController.titleColor     = .spartanGray
-        segmentedController.highlightColor = .spartanBlue
-        segmentedController.titles         = ["Login", "Register"]
-        segmentedController.addBottomBorder(width: 0.5, color: .lightGray, opacity: 0.5)
-        view.addSubview(segmentedController)
-        segmentedController.translatesAutoresizingMaskIntoConstraints = false
-        segmentedController.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        segmentedController.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        segmentedController.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        segmentedController.heightAnchor.constraint(equalToConstant: SegmentedController.defaultHeight).isActive = true
-
-        createLoginForm()
-        createRegisterForm()
+        view.backgroundColor = UIColor.spartanLightGray
+        setupSegmentedController()
+        setupLoginForm()
+        setupRegisterForm()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -80,10 +57,9 @@ class AuthenticationViewController: ViewController {
     // MARK: User Interaction
     @objc private func didSelectDone(button: UIBarButtonItem) {
         button.isEnabled = false
-
         view.endEditing(true)
 
-        #if DEBUG
+        #if DEBUG // REMOVEME:
         loginForm.emailField.inputField.text    = "huangd95@gmail.com"
         loginForm.passwordField.inputField.text = "test1234"
 
@@ -113,8 +89,10 @@ class AuthenticationViewController: ViewController {
         }
 
         switch userForm {
-        case loginForm:    loginUser(attributes: formAttributes)
-        case registerForm: registerUser(attributes: formAttributes)
+        case loginForm:
+            loginUser(email: formAttributes["email"]!.value!, password: formAttributes["password"]!.value!)
+        case registerForm:
+            registerUser(attributes: formAttributes)
         default: return
         }
     }
@@ -122,6 +100,25 @@ class AuthenticationViewController: ViewController {
 
 // MARK: - SegmentedControllerDelegate Implementation
 extension AuthenticationViewController: SegmentedControllerDelegate {
+    /// Initialize and set constraints for segmented controller to switch between
+    /// the login and register forms
+    private func setupSegmentedController() {
+        segmentedController = SegmentedController(frame: CGRect(x: 0, y: 0,
+                                                                width: view.frame.width,
+                                                                height: SegmentedController.defaultHeight))
+        segmentedController.delegate       = self
+        segmentedController.titleColor     = .spartanGray
+        segmentedController.highlightColor = .spartanBlue
+        segmentedController.titles         = ["Login", "Register"]
+        segmentedController.addBottomBorder(width: 0.5, color: .lightGray, opacity: 0.5)
+        view.addSubview(segmentedController)
+        segmentedController.translatesAutoresizingMaskIntoConstraints = false
+        segmentedController.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        segmentedController.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        segmentedController.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        segmentedController.heightAnchor.constraint(equalToConstant: SegmentedController.defaultHeight).isActive = true
+    }
+
     func segmentedController(_ segmentedController: SegmentedController, didSelectSegmentAtIndex index: Int) {
         guard currentForm.rawValue != index,
             let selectedForm = AuthenticationForm(rawValue: index) else { return }
@@ -140,7 +137,7 @@ extension AuthenticationViewController: SegmentedControllerDelegate {
 
 // MARK: Login Form
 extension AuthenticationViewController {
-    private func createLoginForm() {
+    private func setupLoginForm() {
         view.addSubview(loginForm)
         loginForm.accessibilityIdentifier = "LoginForm"
         loginForm.translatesAutoresizingMaskIntoConstraints = false
@@ -152,33 +149,25 @@ extension AuthenticationViewController {
         loginFormBottomConstraint.isActive = true
     }
 
-    private func loginUser(attributes: [String: AWSCognitoIdentityUserAttributeType]) {
-        let email     = attributes["email"]!.value!
-        let password  = attributes["password"]!.value!
-
-        if let user = AWSManager.Cognito.userPool.currentUser() {
-            user.getSession(email, password: password, validationData: nil)
-                .continueWith { [weak self] task -> Any? in
-                    if let error = task.error as NSError? {
-                        // TODO: should handle errors
-                        debugPrintMessage("loginUser: \(error.localizedDescription)")
-                    } else {
-                        if user.isSignedIn {
-                            DispatchQueue.main.async {
-                                self?.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                    }
-                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
-                    return nil
+    private func loginUser(email: String, password: String) {
+        User.login(email: email, password: password)
+            .done { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
             }
+            .catch { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.presentErrorAlert(message: error.localizedDescription, buttonTitle: "Back")
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                }
         }
     }
 }
 
 // MARK: Register Form
 extension AuthenticationViewController {
-    private func createRegisterForm() {
+    private func setupRegisterForm() {
         view.addSubview(registerForm)
         registerForm.accessibilityIdentifier = "RegisterForm"
         registerForm.translatesAutoresizingMaskIntoConstraints = false
@@ -190,32 +179,27 @@ extension AuthenticationViewController {
     }
 
     private func registerUser(attributes: [String: AWSCognitoIdentityUserAttributeType]) {
-        let sjsuId    = attributes["sjsuId"]!
         let email     = attributes["email"]!
         let password  = attributes["password"]!
-        let firstName = attributes["firstName"]!
-        let lastName  = attributes["lastName"]!
-
-        User.register(email: email.value!,
-                      password: password.value!,
-                      attributes: [
-                        // TODO: use cognito attributes
-                        //sjsuId,
-                        //firstName,
-                        //lastName
-            ], success: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            }, failure: { [weak self] error in
+        User.register(email: email.value!, password: password.value!, attributes: [])
+            .done { [weak self] _ in
+                debugPrintMessage("Successfully Registered User")
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+            .catch { [weak self] error in
                 var message = ""
-                switch error {
-                case .emailExists: message = "This email is already registered!."
+                // swiftlint:disable force_cast
+                switch (error as! User.RegistrationError) {
+                case .emailExists:             message = "This email is already registered!."
                 case .other(let errorMessage): message = errorMessage!
                 }
                 DispatchQueue.main.async {
                     self?.navigationItem.rightBarButtonItem?.isEnabled = true
                     self?.presentErrorAlert(message: message, buttonTitle: "Back")
                 }
-        })
+        }
     }
 }
 

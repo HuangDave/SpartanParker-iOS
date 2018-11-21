@@ -75,9 +75,9 @@ class TextField: UIControl {
 
         addSubview(inputField)
         inputField.translatesAutoresizingMaskIntoConstraints = false
-        inputField.topAnchor.constraint(equalTo: topAnchor, constant:  0).isActive = true
-        inputField.bottomAnchor.constraint(equalTo: bottomAnchor, constant:  0).isActive = true
-        inputField.leftAnchor.constraint(equalTo: leftAnchor, constant:  32.0).isActive = true
+        inputField.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        inputField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        inputField.leftAnchor.constraint(equalTo: leftAnchor, constant: 32.0).isActive = true
         inputField.rightAnchor.constraint(equalTo: rightAnchor, constant: -10.0).isActive = true
     }
 }

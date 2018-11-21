@@ -53,12 +53,12 @@ class LoginUITests: XCTestCase {
     }
 
     func test_register() {
-        let sjsuId       = "123456789"
+        //let sjsuId       = "123456789"
         let firstName    = "David"
         let lastName     = "Huang"
         let email        = "huangd95@gmail.com"
         let password     = "test1234"
-        let licensePlate = "ab1234c"
+        //let licensePlate = "ab1234c"
 
         let app = XCUIApplication()
         let tablesQuery = app.otherElements["RegisterForm"].tables
@@ -68,7 +68,7 @@ class LoginUITests: XCTestCase {
         let lastNameField     = tablesQuery.textFields["registerLastNameField"]
         let emailField        = tablesQuery.textFields["registerEmailField"]
         let passwordField     = tablesQuery.textFields["registerPasswordField"]
-        let licensePlateField = tablesQuery.textFields["registerLicensePlateField"]
+        //let licensePlateField = tablesQuery.textFields["registerLicensePlateField"]
 
         app.buttons["Register"].tap()
 
@@ -96,10 +96,5 @@ class LoginUITests: XCTestCase {
         password.forEach {
             app.keys[String($0)].tap()
         }
-    }
-
-    func test_validCredentials() {
-        let email = "huangd95@gmail.com"
-        let password = "test1234"
     }
 }

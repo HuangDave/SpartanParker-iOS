@@ -47,10 +47,10 @@ class ParkingPermitCardView: UIView {
 
     var permit: ParkingPermit! {
         didSet {
-            permitTypeLabel.text = permit.type!.rawValue
+            // permitTypeLabel.text = permit.type!.rawValue
             licensePlateLabel.text = permit.licensePlate
             expirationDateLabel.text = permit.expirationDate
-            permitTypeBackground.backgroundColor = permit.type!.color
+            // permitTypeBackground.backgroundColor = permit.type!.color
         }
     }
 
@@ -104,9 +104,12 @@ class ParkingPermitCardView: UIView {
 
         let permitTypeLabelOffset: CGFloat = 10.0
         permitTypeBackground.addSubview(permitTypeLabel)
-        permitTypeLabel.topAnchor.constraint(equalTo: permitTypeBackground.topAnchor, constant: permitTypeLabelOffset).isActive = true
-        permitTypeLabel.leftAnchor.constraint(equalTo: permitTypeBackground.leftAnchor, constant: -permitTypeLabelOffset).isActive = true
-        permitTypeLabel.bottomAnchor.constraint(equalTo: permitTypeBackground.bottomAnchor, constant: -permitTypeLabelOffset).isActive = true
+        permitTypeLabel.topAnchor.constraint(equalTo: permitTypeBackground.topAnchor,
+                                             constant: permitTypeLabelOffset).isActive = true
+        permitTypeLabel.leftAnchor.constraint(equalTo: permitTypeBackground.leftAnchor,
+                                              constant: -permitTypeLabelOffset).isActive = true
+        permitTypeLabel.bottomAnchor.constraint(equalTo: permitTypeBackground.bottomAnchor,
+                                                constant: -permitTypeLabelOffset).isActive = true
         permitTypeLabel.widthAnchor.constraint(equalTo: permitTypeLabel.heightAnchor).isActive = true
     }
 }

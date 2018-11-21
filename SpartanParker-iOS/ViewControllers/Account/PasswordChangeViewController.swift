@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PasswordChangeViewController: ViewController {
+import PromiseKit
+
+class PasswordChangeViewController: ViewController, EditingController {
     let oldPasswordField = create(TextField(placeHolder: "Old Password", key: "old_password")) {
         $0.inputField.isSecureTextEntry = true
     }
@@ -25,10 +27,6 @@ class PasswordChangeViewController: ViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
                                                             target: self,
                                                             action: #selector(didSelectSave))
-        oldPasswordField.delegate     = self
-        newPasswordField.delegate     = self
-        confirmPasswordField.delegate = self
-
         view.addSubview(oldPasswordField)
         view.addSubview(newPasswordField)
         view.addSubview(confirmPasswordField)
@@ -73,12 +71,29 @@ class PasswordChangeViewController: ViewController {
         confirmPasswordField.heightAnchor.constraint(equalToConstant: TextField.defaultHeight).isActive = true
     }
 
-    @objc private func didSelectSave() {
-        // TODO: update user password
-        // TODO: display alert if old password or new passwords do not match
+    @objc func didSelectSave() {
+        view.endEditing(true)
+        guard let oldPassword = oldPasswordField.text,
+              let newPassword = newPasswordField.text,
+              let confirmPassword = confirmPasswordField.text else {
+                return
+        }
+        if newPassword != confirmPassword {
+            presentErrorAlert(message: "New Password does not match!", buttonTitle: "Back")
+        }
+
+        _ = User.changePassword(oldPassword: oldPassword, newPassword: newPassword)
+            .done { [weak self] _ in
+                self?.present(alertView: AlertView(style: .alert), setup: {
+                    $0.message = "Password Updated!"
+                    $0.confirmButton.backgroundColor = .spartanGreen
+                    $0.confirmButton.titleLabel?.text = "OK"
+                    $0.onConfirm {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                })
+            }.catch { [weak self] error in
+                self?.presentErrorAlert(message: error.localizedDescription, buttonTitle: "Try Again")
+            }
     }
-}
-
-extension PasswordChangeViewController: UITextFieldDelegate {
-
 }

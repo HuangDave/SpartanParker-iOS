@@ -13,6 +13,7 @@ target 'SpartanParker-iOS' do
   pod 'AWSDynamoDB'
   pod 'AWSLambda'
   pod 'AWSS3'
+  pod 'PromiseKit'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'SwiftLint'
