@@ -48,13 +48,19 @@ class ParkingPermit: DatabaseObject {
     @objc var permitId:       String!
     @objc var userId:         String!
     @objc var licensePlate:   String!
-    @objc var vehicleId:      String!
     @objc var type:           String!
+    @objc var createdAt:      String!
     @objc var expirationDate: String!
 
-    /// Expriation date in the following format: MM/YYYY
+    /// Expriation date in the following format: MM/DD/YYYY
     var formatedExpirationDate: String {
-        return ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        let date = dateFormatter.date(from: expirationDate)
+        let components = NSCalendar.current.dateComponents([.month, .day, .year],
+                                                           from: date!)
+        return "\((components.month!))/\(components.day!)/\(components.year!)"
     }
 
     // MARK: - AWSDynamoDBModeling Overrides
@@ -77,10 +83,10 @@ class ParkingPermit: DatabaseObject {
     /// - Returns: Returns a Promise with the user's permit or a FetchError.
     class func by(userId: String) -> Promise<ParkingPermit> {
         let query = AWSDynamoDBQueryExpression()
-        query.indexName                = "userId-index"
-        query.keyConditionExpression   = "#userId = :userId"
-        query.expressionAttributeNames = ["#userId": "userId"]
-        query.limit                    = 1
+        query.indexName                 = "userId-index"
+        query.keyConditionExpression    = "#userId = :userId"
+        query.expressionAttributeNames  = ["#userId": "userId"]
+        query.expressionAttributeValues = [":userId": userId]
         return Query<ParkingPermit>.get(expression: query)
     }
 }

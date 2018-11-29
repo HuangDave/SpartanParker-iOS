@@ -29,16 +29,16 @@ class PermitViewController: ViewController {
         view.backgroundColor = .spartanLightGray
 
         let permitCardHeight: CGFloat = 240.0
+        let padding: CGFloat = 15.0
         view.addSubview(permitCardView)
         permitCardView.translatesAutoresizingMaskIntoConstraints = false
         permitCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         permitCardView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         permitCardView.leftAnchor.constraint(equalTo: view.leftAnchor,
-                                             constant: 15.0).isActive = true
+                                             constant: padding).isActive = true
         permitCardView.rightAnchor.constraint(equalTo: view.rightAnchor,
-                                              constant: -15.0).isActive = true
-        permitCardView.heightAnchor.constraint(equalToConstant: permitCardHeight)
-            .isActive = true
+                                              constant: -padding).isActive = true
+        permitCardView.heightAnchor.constraint(equalToConstant: permitCardHeight).isActive = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -50,7 +50,7 @@ class PermitViewController: ViewController {
     // MARK: -
 
     private func fetchPermit() {
-        guard let userId = User.currentUser?.username else {
+        guard let userId: String = User.currentUser?.username else {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -62,14 +62,17 @@ class PermitViewController: ViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
+        debugPrintMessage("userId: \(userId))")
         ParkingPermit.by(userId: userId)
             .done { [weak self] permit in
+                debugPrintMessage(permit)
                 DispatchQueue.main.async {
                     self?.dismissAlertView()
                     self?.permit = permit
                 }
             }
             .catch { [weak self] error in
+                debugPrintMessage("PERMIT FETCH ERROR: \(error)")
                 DispatchQueue.main.async {
                     self?.dismissAlertView()
                     self?.presentNoPermitFoundAlert()
@@ -79,27 +82,28 @@ class PermitViewController: ViewController {
 
     private func presentNoPermitFoundAlert() {
         present(alertView: AlertView(style: .confirmation)) {
-            $0.message = "You currently do not have a parking permit. Would you like to purchase one?"
+            $0.message = "You currently do not have a parking permit. " +
+                         "Would you like to purchase a semester permit?"
             $0.cancelButton?.setTitle("Back", for: .normal)
             $0.confirmButton.setTitle("Purchase", for: .normal)
             $0.onCancel {
                 self.navigationController?.popViewController(animated: true)
             }
             $0.onConfirm {
-                // TODO: present table view for permit purchase
+                self.didSelectPurchsePermit()
             }
         }
     }
 
     private func didSelectPurchsePermit() {
         let paymentRequest = PKPaymentRequest()
-        paymentRequest.merchantIdentifier = PaymentConfigurations.merchantId
-        paymentRequest.supportedNetworks = PaymentConfigurations.supportedNetworks
+        paymentRequest.merchantIdentifier   = PaymentConfigurations.merchantId
+        paymentRequest.supportedNetworks    = PaymentConfigurations.supportedNetworks
         paymentRequest.merchantCapabilities = PaymentConfigurations.capabilities
-        paymentRequest.countryCode = PaymentConfigurations.countryCode
-        paymentRequest.currencyCode = PaymentConfigurations.currencyCode
-        paymentRequest.paymentSummaryItems = [
-            PKPaymentSummaryItem(label: "Semester Permit", amount: 200.00)
+        paymentRequest.countryCode          = PaymentConfigurations.countryCode
+        paymentRequest.currencyCode         = PaymentConfigurations.currencyCode
+        paymentRequest.paymentSummaryItems  = [
+            PKPaymentSummaryItem(label: "Semester Permit", amount: ParkingPermit.PermitType.student.price)
         ]
         applePayController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
         applePayController?.delegate = self
@@ -116,6 +120,33 @@ extension PermitViewController: PKPaymentAuthorizationViewControllerDelegate {
                                                 errors: []))
     }
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true) {
+            self.applePayController = nil
+            self.dismissAlertView()
+
+            let userId = User.currentUser!.username!
+            let currentDate = Date()
+
+            let transaction            = Transaction()
+            transaction?.transactionId = UUID().uuidString
+            transaction?.userId        = User.currentUser!.username!
+            transaction?.type          = Transaction.TransactionType.permitPurchase.rawValue
+            transaction?.amount        = ParkingPermit.PermitType.student.price
+            transaction?.createdAt     = currentDate.description
+
+            _ = Vehicle.get(userId: userId).done { vehicle in
+                let permit = ParkingPermit()
+                permit?.permitId = UUID().uuidString
+                permit?.userId = userId
+                permit?.licensePlate = vehicle.licensePlate
+                permit?.type = ParkingPermit.PermitType.student.rawValue
+                permit?.createdAt = currentDate.description
+                permit?.expirationDate = currentDate.addingTimeInterval(180 * 24 * 60 * 60).description
+
+                _ = permit?.save().done { _ in
+                    _ = transaction?.save()
+                }
+            }
+        }
     }
 }

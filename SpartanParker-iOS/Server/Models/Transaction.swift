@@ -16,12 +16,25 @@ class Transaction: DatabaseObject {
         case permitPurchase
     }
 
-    @objc private(set) var transactionId: String!
+    @objc var transactionId: String!
     @objc var userId: String!
     @objc var type: String!
     @objc var duration: NSNumber?
     @objc var amount: NSNumber!
     @objc var createdAt: String!
+
+    var formattedDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        let date = dateFormatter.date(from: createdAt)
+        let components = NSCalendar.current.dateComponents([.month, .day, .year, .hour, .minute],
+                                                           from: date!)
+        let hour       = components.hour!
+        let minutes    = components.minute!
+        let timeString = "\(hour % 12):\(minutes < 10 ? "0" : "")\(minutes) \(hour > 12 ? "PM" : "AM")"
+        return "\((components.month!))/\(components.day!)/\(components.year!) \(timeString)"
+    }
 
     // MARK: - AWSDynamoDBModeling Overrides
 
@@ -31,19 +44,6 @@ class Transaction: DatabaseObject {
 
     override class func hashKeyAttribute() -> String {
         return "transactionId"
-    }
-
-    // MARK: -
-
-    required init!(coder: NSCoder!) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    init(type: TransactionType) {
-        super.init()
-        transactionId = UUID().uuidString
-        userId = User.currentUser!.username!
-        self.type = type.rawValue
     }
 
     // MARK: Query
@@ -56,6 +56,10 @@ class Transaction: DatabaseObject {
     /// - Returns: Returns a Promise with all transaction records.
     class func getAll(userId: String) -> Promise<[Transaction]> {
         let query = AWSDynamoDBQueryExpression()
+        query.indexName = "userId-index"
+        query.keyConditionExpression    = "#userId = :userId"
+        query.expressionAttributeNames  = ["#userId": "userId"]
+        query.expressionAttributeValues = [":userId": userId]
         return Query<Transaction>.get(expression: query)
     }
 }

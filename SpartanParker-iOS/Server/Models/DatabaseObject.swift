@@ -11,9 +11,6 @@ import PromiseKit
 
 /// Base DynamobDB object class.
 class DatabaseObject: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
-
-    // MARK: - AWSDynamoDBModeling Implementation
-
     class func dynamoDBTableName() -> String {
         fatalError("Should be overriden to provide table name")
     }

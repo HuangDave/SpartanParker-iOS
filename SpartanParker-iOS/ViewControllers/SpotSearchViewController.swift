@@ -90,11 +90,8 @@ class SpotSearchViewController: ViewController {
             .done { [weak self] (parkingSpot: ParkingSpot) in
                 self?.currentSpot = parkingSpot
                 self?.presentCurrentOccupiedSpot()
-                // let viewController = ParkingSpotViewController()
-                // viewController.parkingSpot = parkingSpot
-                // self?.navigationController?.pushViewController(viewController, animated: true)
             }
-            .catch { [weak self] error in
+            .catch { [weak self] _ in
                 self?.searchForVacantSpot()
         }
     }
@@ -117,7 +114,7 @@ class SpotSearchViewController: ViewController {
                                                 buttonTitle: "Try Again")
                     }
                 } else {
-                    // TODO: handle
+                    debugPrintMessage("SPOT SEARCH ERROR: \(error)")
                 }
         }
     }
@@ -149,6 +146,7 @@ class SpotSearchViewController: ViewController {
         debugPrintMessage("Presenting spot found alert view")
         dismissAlertView()
         vacantSpot = parkingSpot
+        speak("Spot Found at vacantSpot!.location")
         present(alertView: AlertView(style: .alert)) {
             $0.title = "Spot Found!"
             $0.message = parkingSpot.formattedLocation
@@ -163,11 +161,6 @@ class SpotSearchViewController: ViewController {
                             self?.currentSpot = self?.vacantSpot
                             self?.vacantSpot = nil
                             self?.presentCurrentOccupiedSpot()
-                            /*
-                            self?.presentCurrentOccupiedSpot()
-                            let viewController = ParkingSpotViewController()
-                            viewController.parkingSpot = self.vacantSpot
-                            self.navigationController?.pushViewController(viewController, animated: true) */
                         }.catch({ error in
                             debugPrintMessage(error)
                         })
@@ -188,20 +181,25 @@ class SpotSearchViewController: ViewController {
         })
         pickerAlert.onConfirm {
             self.duration = pickerAlert.duration
-            self.transaction = Transaction(type: .parking)
-            self.transaction?.duration = self.duration!.rawValue as NSNumber?
-            self.transaction?.amount = self.duration!.price
-            self.transaction?.createdAt = Date().description
+
+            self.transaction                = Transaction()
+            self.transaction?.transactionId = UUID().uuidString
+            self.transaction?.userId        = User.currentUser!.username!
+            self.transaction?.type          = Transaction.TransactionType.parking.rawValue
+            self.transaction?.duration      = self.duration!.rawValue as NSNumber?
+            self.transaction?.amount        = self.duration!.price
+            self.transaction?.createdAt     = Date().description
 
             let paymentRequest = PKPaymentRequest()
-            paymentRequest.merchantIdentifier = PaymentConfigurations.merchantId
-            paymentRequest.supportedNetworks = PaymentConfigurations.supportedNetworks
+            paymentRequest.merchantIdentifier   = PaymentConfigurations.merchantId
+            paymentRequest.supportedNetworks    = PaymentConfigurations.supportedNetworks
             paymentRequest.merchantCapabilities = PaymentConfigurations.capabilities
-            paymentRequest.countryCode = PaymentConfigurations.countryCode
-            paymentRequest.currencyCode = PaymentConfigurations.currencyCode
-            paymentRequest.paymentSummaryItems = [
+            paymentRequest.countryCode          = PaymentConfigurations.countryCode
+            paymentRequest.currencyCode         = PaymentConfigurations.currencyCode
+            paymentRequest.paymentSummaryItems  = [
                 PKPaymentSummaryItem(label: self.duration!.description, amount: self.duration!.price)
             ]
+
             self.applePayController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
             self.applePayController?.delegate = self
             self.present(self.applePayController!, animated: true, completion: nil)
@@ -215,7 +213,7 @@ class SpotSearchViewController: ViewController {
     /// 2. Try to search again.
     private func presentNoVacantSpotsFoundAlert() {
         debugPrintMessage("Presenting garages full alert view")
-        // speak("All garages are currently full!")
+        speak("All garages are currently full!")
         dismissAlertView()
         present(alertView: AlertView(style: .confirmation)) {
             $0.title = "No Vacant Spot!"
@@ -272,14 +270,11 @@ extension SpotSearchViewController: PKPaymentAuthorizationViewControllerDelegate
                         self?.currentSpot = self?.vacantSpot
                         self?.vacantSpot = nil
                         self?.presentCurrentOccupiedSpot()
-                        //let viewController = ParkingSpotViewController()
-                        //viewController.parkingSpot = self.vacantSpot
-                        //self.navigationController?.pushViewController(viewController, animated: true)
                     }
                     .catch { error in
                         debugPrintMessage(error)
+                    }
                 }
-                } // TODO: refactor
                 .catch { error in
                     debugPrintMessage(error)
             }

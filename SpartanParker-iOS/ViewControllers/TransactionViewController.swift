@@ -1,7 +1,9 @@
 import UIKit
 
 class TransactionViewController: ViewController {
-    private let tableView = create(UITableView()) {
+    static let cellReuseIdentifier = "TransactionReuseCellIdentifier"
+
+    private let tableView = create(UITableView(frame: .zero, style: .plain)) {
         $0.backgroundColor              = .spartanLightGray
         $0.isScrollEnabled              = true
         $0.bounces                      = true
@@ -15,8 +17,16 @@ class TransactionViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .spartanLightGray
-        tableView.delegate = self
+        tableView.register(TransactionTableViewCell.self,
+                           forCellReuseIdentifier: TransactionViewController.cellReuseIdentifier)
+        tableView.delegate   = self
         tableView.dataSource = self
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -24,14 +34,13 @@ class TransactionViewController: ViewController {
         reload()
     }
     /// Queries the user's transaction records and reloads the table view to display the results.
-    /// TODO: should use pagination for displaying Tranasaction records
     private func reload() {
         _ = Transaction.getAll(userId: User.currentUser!.username!)
             .done { [weak self] transactions in
                 self?.transactions = transactions
                 self?.tableView.reloadData()
             }
-            .catch { [weak self] error in
+            .catch { error in
                 debugPrintMessage(error)
         }
     }
@@ -49,10 +58,15 @@ extension TransactionViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200.0
+        return 100.0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TransactionViewController.cellReuseIdentifier,
+                                                 for: indexPath) as? TransactionTableViewCell else {
+                                                    fatalError("")
+        }
+        cell.transaction = transactions![indexPath.row]
+        return cell
     }
 }

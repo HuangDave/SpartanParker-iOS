@@ -24,6 +24,7 @@ class Query<T: DatabaseObject> {
                     if let result = output.result?.items.first as? T {
                         promise.fulfill(result)
                     } else {
+                        // debugPrintMessage("ERROR: \(output.error)")
                         promise.reject(FetchError.other)
                     }
                     return nil

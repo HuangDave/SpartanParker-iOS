@@ -9,7 +9,6 @@
 import UIKit
 
 class TextField: UIControl {
-
     enum InputError: Error {
         case invalid(String)
         case emtpy(String)
@@ -49,6 +48,8 @@ class TextField: UIControl {
         get { return inputField.text     }
         set { inputField.text = newValue }
     }
+
+    // MARK: - Initialization
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

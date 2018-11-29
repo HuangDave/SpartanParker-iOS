@@ -14,11 +14,6 @@ class MasterViewController: UITabBarController {
                                      image: UIImage(named: "search"),
                                      selectedImage: UIImage(named: "search_selected"))
     }
-    private let qrScanController = create(QRScanViewController()) {
-        $0.tabBarItem = UITabBarItem(title: "Scan",
-                                     image: UIImage(named: "scan"),
-                                     selectedImage: UIImage(named: "scan_selected"))
-    }
     private let transactionController = create(TransactionViewController()) {
         $0.tabBarItem = UITabBarItem(title: "History",
                                      image: UIImage(named: "history"),

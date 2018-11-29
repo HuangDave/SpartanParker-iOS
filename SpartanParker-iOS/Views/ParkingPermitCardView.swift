@@ -10,64 +10,79 @@ import UIKit
 
 class ParkingPermitCardView: UIView {
     // MARK: - Labels
-    private let permitNumberLabel: UILabel = create(UILabel()) {
+    let permitUnavailableLabel: UILabel = create(UILabel()) {
+        $0.backgroundColor = .clear
+        $0.text = "You do not have a permit!"
+        $0.textColor = UIColor.spartanGray
+        $0.font = UIFont.boldSystemFont(ofSize: 18.0)
+        $0.textAlignment = .center
+    }
+    let permitNumberLabel: UILabel = create(UILabel()) {
         $0.backgroundColor = .clear
         $0.textColor = .white
         $0.font = UIFont.boldSystemFont(ofSize: 16.0)
         $0.textAlignment = .center
-
     }
-    private let permitTypeLabel: UILabel = create(UILabel()) {
+    let permitTypeLabel: UILabel = create(UILabel()) {
         $0.backgroundColor = .white
         $0.textColor = .black
         $0.font = UIFont.boldSystemFont(ofSize: 26.0)
         $0.textAlignment = .center
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius  = UIView.Theme.cornerRadius / 2.0
     }
-    private let licensePlateLabel: UILabel = create(UILabel()) {
+    let licensePlateLabel: UILabel = create(UILabel()) {
         $0.backgroundColor = .clear
         $0.textColor = .black
         $0.font = UIFont.boldSystemFont(ofSize: 16.0)
         $0.textAlignment = .left
     }
-    private let expirationDateLabel: UILabel = create(UILabel()) {
+    let expirationDateLabel: UILabel = create(UILabel()) {
         $0.backgroundColor = .clear
         $0.textColor = .black
         $0.font = UIFont.boldSystemFont(ofSize: 16.0)
         $0.textAlignment = .right
     }
+
     // MARK: - Card Background
-    private let permitTypeBackground: UIView = create(UIView()) {
+    let permitTypeBackground: UIView = create(UIView()) {
         $0.clipsToBounds = true
     }
-    private let logoImageView: UIImageView = create(UIImageView()) {
+    let logoImageView: UIImageView = create(UIImageView()) {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "sjsulogo")
+        $0.image = UIImage(named: "sjsu_logo")
+        $0.isOpaque = true
+        $0.alpha = 0.15
     }
 
-    var permit: ParkingPermit! {
+    var permit: ParkingPermit? {
         didSet {
-            // permitTypeLabel.text = permit.type!.rawValue
-            licensePlateLabel.text = permit.licensePlate
-            expirationDateLabel.text = permit.expirationDate
-            // permitTypeBackground.backgroundColor = permit.type!.color
+            displayPermitInformation()
         }
     }
 
-    // MARK: - Init
-
+    // MARK: -
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not used")
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(permitTypeBackground)
-        addSubview(logoImageView)
-        setupBackgroundConstraints()
-        setupLabelConstraints()
+        setupView()
     }
 
     // MARK: - Constraint Configurations
+    private func setupView() {
+        backgroundColor     = .white
+        layer.masksToBounds = true
+        layer.cornerRadius  = UIView.Theme.cornerRadius
+
+        addSubview(permitTypeBackground)
+        addSubview(logoImageView)
+
+        setupBackgroundConstraints()
+        setupLabelConstraints()
+    }
 
     private func setupBackgroundConstraints() {
         let permitTypeBackgroundHeight: CGFloat = 60.0
@@ -88,22 +103,90 @@ class ParkingPermitCardView: UIView {
     }
 
     private func setupLabelConstraints() {
+        addSubview(permitUnavailableLabel)
+        permitUnavailableLabel.translatesAutoresizingMaskIntoConstraints = false
+        permitUnavailableLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        permitUnavailableLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+
         let permitNumberLabelWidth:  CGFloat = 130.0
         let permitNumberLabelHeight: CGFloat = 60.0
         permitTypeBackground.addSubview(permitNumberLabel)
+        permitNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         permitNumberLabel.centerXAnchor.constraint(equalTo: permitTypeBackground.centerXAnchor).isActive = true
         permitNumberLabel.centerYAnchor.constraint(equalTo: permitTypeBackground.centerYAnchor).isActive = true
         permitNumberLabel.widthAnchor.constraint(equalToConstant: permitNumberLabelWidth).isActive = true
         permitNumberLabel.heightAnchor.constraint(equalToConstant: permitNumberLabelHeight).isActive = true
 
         let permitTypeLabelOffset: CGFloat = 10.0
+        let permitTypeLabelHeight: CGFloat = 40.0
         permitTypeBackground.addSubview(permitTypeLabel)
+        permitTypeLabel.translatesAutoresizingMaskIntoConstraints = false
         permitTypeLabel.topAnchor.constraint(equalTo: permitTypeBackground.topAnchor,
                                              constant: permitTypeLabelOffset).isActive = true
-        permitTypeLabel.leftAnchor.constraint(equalTo: permitTypeBackground.leftAnchor,
-                                              constant: -permitTypeLabelOffset).isActive = true
+        permitTypeLabel.rightAnchor.constraint(equalTo: permitTypeBackground.rightAnchor,
+                                               constant: -permitTypeLabelOffset).isActive = true
         permitTypeLabel.bottomAnchor.constraint(equalTo: permitTypeBackground.bottomAnchor,
                                                 constant: -permitTypeLabelOffset).isActive = true
-        permitTypeLabel.widthAnchor.constraint(equalTo: permitTypeLabel.heightAnchor).isActive = true
+        permitTypeLabel.widthAnchor.constraint(equalToConstant: permitTypeLabelHeight).isActive = true
+
+        let bottomLabelOffset:            CGFloat = 25.0
+        let bottomLabelHorizontalPadding: CGFloat = 20.0
+        let licenseLabelWidth:            CGFloat = 160.0
+        let licenseLabelHeight:           CGFloat = 20.0
+        addSubview(licensePlateLabel)
+        licensePlateLabel.translatesAutoresizingMaskIntoConstraints = false
+        licensePlateLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                  constant: -bottomLabelOffset).isActive = true
+        licensePlateLabel.leftAnchor.constraint(equalTo: leftAnchor,
+                                                constant: bottomLabelHorizontalPadding).isActive = true
+        licensePlateLabel.widthAnchor.constraint(equalToConstant: licenseLabelWidth).isActive = true
+        licensePlateLabel.heightAnchor.constraint(equalToConstant: licenseLabelHeight).isActive = true
+
+        addSubview(expirationDateLabel)
+        expirationDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        expirationDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                    constant: -bottomLabelOffset).isActive = true
+        expirationDateLabel.rightAnchor.constraint(equalTo: rightAnchor,
+                                                   constant: -bottomLabelHorizontalPadding).isActive = true
+        expirationDateLabel.widthAnchor.constraint(equalToConstant: licenseLabelWidth).isActive = true
+        expirationDateLabel.heightAnchor.constraint(equalToConstant: licenseLabelHeight).isActive = true
+    }
+}
+
+// MARK: - Label Accessors
+extension ParkingPermitCardView {
+    var unavailableText: String? { return permitUnavailableLabel.text }
+    var permitNumber:    String? { return permitNumberLabel.text }
+    var permitType:      String? { return permitTypeLabel.text }
+    var licensePlate:    String? { return licensePlateLabel.text }
+    var expirationDate:  String? { return expirationDateLabel.text }
+}
+
+// MARK: - Displaying Permit Information
+extension ParkingPermitCardView {
+    private func displayPermitInformation() {
+        guard let permit = self.permit else {
+            displayPermitUnavailable()
+            return
+        }
+        permitUnavailableLabel.isHidden = true
+        permitNumberLabel.isHidden   = false
+        permitTypeLabel.isHidden     = false
+        licensePlateLabel.isHidden   = false
+        expirationDateLabel.isHidden = false
+        permitNumberLabel.text = permit.permitId
+        permitTypeLabel.text = "S"
+        licensePlateLabel.text = permit.licensePlate
+        expirationDateLabel.text = "Exp: \(permit.formatedExpirationDate)"
+        permitTypeBackground.backgroundColor = .spartanYellow
+    }
+
+    private func displayPermitUnavailable() {
+        permitUnavailableLabel.isHidden = false
+        permitNumberLabel.isHidden   = true
+        permitTypeLabel.isHidden     = true
+        licensePlateLabel.isHidden   = true
+        expirationDateLabel.isHidden = true
+        permitTypeBackground.backgroundColor = .lightGray
     }
 }

@@ -103,7 +103,6 @@ extension User {
     /// - Returns: Returns the registered user as an AWSCognitoIdentityUser.
     final class func register(email: String, password: String,
                               licensePlate: String) -> Promise<AWSCognitoIdentityUser> {
-        // TODO: should refactor
         return Promise { promise in
             AWSManager.Cognito.userPool
                 .signUp(email, password: password,
@@ -140,7 +139,6 @@ extension User {
                                 }
                             }.catch { error in
                                 debugPrintMessage("User.register(email:password:attributes:) - Error \(error)")
-                                // TODO: should handle error
                         }
                     }
                     return nil

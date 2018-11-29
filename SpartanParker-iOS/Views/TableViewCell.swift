@@ -9,7 +9,6 @@
 import UIKit
 
 class TableViewCell<CustomContentView: UIView>: UITableViewCell {
-
     class var cellReuseIdentifier: String { return "TableViewCellReuseIdentifier" }
 
     private(set) var customContentView: CustomContentView!
@@ -35,6 +34,5 @@ class TableViewCell<CustomContentView: UIView>: UITableViewCell {
         } else {
             setup!(contentView, customContentView)
         }
-
     }
 }
