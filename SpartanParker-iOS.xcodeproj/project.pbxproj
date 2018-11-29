@@ -23,6 +23,7 @@
 		63354DD721634F9300BE5848 /* ParkingPermit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63354DD621634F9300BE5848 /* ParkingPermit.swift */; };
 		63354DE221637D4400BE5848 /* ParkingPermitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63354DE121637D4400BE5848 /* ParkingPermitCardView.swift */; };
 		63354DE421637EA600BE5848 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63354DE321637EA600BE5848 /* TableViewCell.swift */; };
+		63577B6021AF77F000C14B60 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 63577B5F21AF77F000C14B60 /* README.md */; };
 		635C5280214754440010006C /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C527F214754440010006C /* GlobalHelpers.swift */; };
 		635C52822147DEC80010006C /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C52812147DEC80010006C /* QRScanViewController.swift */; };
 		6374D7832146FACC00402950 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6374D7822146FACC00402950 /* OptionButton.swift */; };
@@ -101,6 +102,7 @@
 		63354DD621634F9300BE5848 /* ParkingPermit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingPermit.swift; sourceTree = "<group>"; };
 		63354DE121637D4400BE5848 /* ParkingPermitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingPermitCardView.swift; sourceTree = "<group>"; };
 		63354DE321637EA600BE5848 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		63577B5F21AF77F000C14B60 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		635C527F214754440010006C /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		635C52812147DEC80010006C /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		6374D7822146FACC00402950 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		63A84219211693C20038C68B = {
 			isa = PBXGroup;
 			children = (
+				63577B5F21AF77F000C14B60 /* README.md */,
 				6302127B21392B6B0067CEDB /* .swiftlint.yml */,
 				63A84224211693C20038C68B /* SpartanParker-iOS */,
 				63A84239211693C30038C68B /* SpartanParker-iOSTests */,
@@ -507,6 +510,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63577B6021AF77F000C14B60 /* README.md in Resources */,
 				63A84230211693C30038C68B /* LaunchScreen.storyboard in Resources */,
 				63A8422D211693C30038C68B /* Assets.xcassets in Resources */,
 			);
