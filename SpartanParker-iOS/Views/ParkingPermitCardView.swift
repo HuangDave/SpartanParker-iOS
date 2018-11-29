@@ -35,7 +35,6 @@ class ParkingPermitCardView: UIView {
         $0.font = UIFont.boldSystemFont(ofSize: 16.0)
         $0.textAlignment = .right
     }
-
     // MARK: - Card Background
     private let permitTypeBackground: UIView = create(UIView()) {
         $0.clipsToBounds = true
@@ -54,7 +53,7 @@ class ParkingPermitCardView: UIView {
         }
     }
 
-    // MARK: -
+    // MARK: - Init
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not used")
@@ -62,18 +61,13 @@ class ParkingPermitCardView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
-    }
-
-    // MARK: - Constraint Configurations
-
-    private func setupView() {
         addSubview(permitTypeBackground)
         addSubview(logoImageView)
-
         setupBackgroundConstraints()
         setupLabelConstraints()
     }
+
+    // MARK: - Constraint Configurations
 
     private func setupBackgroundConstraints() {
         let permitTypeBackgroundHeight: CGFloat = 60.0

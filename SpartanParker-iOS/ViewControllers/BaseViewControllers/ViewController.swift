@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .black
+        view.backgroundColor = .white
     }
 }
 

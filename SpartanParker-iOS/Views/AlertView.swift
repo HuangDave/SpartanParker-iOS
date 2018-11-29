@@ -68,7 +68,7 @@ class AlertView: UIView {
         commonInit()
     }
 
-    private func commonInit() {
+    func commonInit() {
         layer.cornerRadius  = UIView.Theme.cornerRadius
         layer.masksToBounds = true
         clipsToBounds       = true

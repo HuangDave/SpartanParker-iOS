@@ -31,14 +31,14 @@ private class AccountOptionCell: UITableViewCell {
 // MARK: -
 class AccountViewController: ViewController {
     private enum AccountOption: Int, CaseIterable {
-        case basicInformation = 0
+        // case basicInformation = 0
         case passwordChange
         case vehicleInformation
         case permitInformation
 
         var description: String {
             switch self {
-            case .basicInformation:   return "Basic Information"
+            // case .basicInformation:   return "Basic Information"
             case .passwordChange:     return "Password Change"
             case .vehicleInformation: return "Vehicle Information"
             case .permitInformation:  return "Permit Information"
@@ -110,7 +110,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         guard let option = AccountOption(rawValue: indexPath.row) else { return }
         var destinationViewController: UIViewController?
         switch option {
-        case .basicInformation:   return
+        // case .basicInformation:   return
         case .passwordChange:     destinationViewController = PasswordChangeViewController()
         case .vehicleInformation: destinationViewController = VehicleInformationViewController()
         case .permitInformation:  destinationViewController = PermitViewController()

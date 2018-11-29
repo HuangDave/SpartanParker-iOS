@@ -17,12 +17,14 @@ class AuthenticationViewController: ViewController {
         case register = 1
     }
 
+    // MARK: -
+
     private var segmentedController: SegmentedController!
     private var loginForm: LoginForm = LoginForm()
     private var registerForm: RegisterForm = RegisterForm()
-    private var loginFormCenterXConstraint:    NSLayoutConstraint!
-    private var loginFormBottomConstraint:     NSLayoutConstraint!
-    private var registerFormBottomConstraint:  NSLayoutConstraint!
+    private var loginFormCenterXConstraint: NSLayoutConstraint!
+    private var loginFormBottomConstraint: NSLayoutConstraint!
+    private var registerFormBottomConstraint: NSLayoutConstraint!
     private var currentForm: AuthenticationForm = AuthenticationForm.login
     private var userFormWidth: CGFloat { return view.frame.width }
 
@@ -55,21 +57,11 @@ class AuthenticationViewController: ViewController {
     }
 
     // MARK: User Interaction
+
     @objc private func didSelectDone(button: UIBarButtonItem) {
         button.isEnabled = false
+        defer { button.isEnabled = true }
         view.endEditing(true)
-
-        #if DEBUG // REMOVEME:
-        loginForm.emailField.inputField.text    = "huangd95@gmail.com"
-        loginForm.passwordField.inputField.text = "test1234"
-
-        registerForm.sjsuIdField.inputField.text       = "009238996"
-        registerForm.firstNameField.inputField.text    = "David"
-        registerForm.lastNameField.inputField.text     = "Huang"
-        registerForm.emailField.inputField.text        = "huangd95@gmail.com"
-        registerForm.passwordField.inputField.text     = "test1234"
-        registerForm.licensePlateField.inputField.text = "abc1234"
-        #endif
 
         let userForm = currentForm == .login ? loginForm : registerForm
         // attempt to get input information and present an alert if any field was empty or invalid
@@ -90,7 +82,8 @@ class AuthenticationViewController: ViewController {
 
         switch userForm {
         case loginForm:
-            loginUser(email: formAttributes["email"]!.value!, password: formAttributes["password"]!.value!)
+            loginUser(email: formAttributes["email"]!.value!,
+                      password: formAttributes["password"]!.value!)
         case registerForm:
             registerUser(attributes: formAttributes)
         default: return
@@ -158,7 +151,9 @@ extension AuthenticationViewController {
             }
             .catch { [weak self] error in
                 DispatchQueue.main.async {
-                    self?.presentErrorAlert(message: error.localizedDescription, buttonTitle: "Back")
+                    // swiftlint:disable force_cast
+                    self?.presentErrorAlert(message: (error as! User.LoginError).localizedDescription,
+                                            buttonTitle: "Back")
                     self?.navigationItem.rightBarButtonItem?.isEnabled = true
                 }
         }
@@ -179,9 +174,12 @@ extension AuthenticationViewController {
     }
 
     private func registerUser(attributes: [String: AWSCognitoIdentityUserAttributeType]) {
-        let email     = attributes["email"]!
-        let password  = attributes["password"]!
-        User.register(email: email.value!, password: password.value!, attributes: [])
+        let email = attributes["email"]!
+        let password = attributes["password"]!
+        let licensePlate = attributes["licensePlate"]!
+        User.register(email: email.value!,
+                      password: password.value!,
+                      licensePlate: licensePlate.value!)
             .done { [weak self] _ in
                 debugPrintMessage("Successfully Registered User")
                 DispatchQueue.main.async {

@@ -12,18 +12,23 @@ import AWSCore
 import AWSDynamoDB
 import PromiseKit
 
-// MARK: -
-final class ParkingSpot: AWSDynamoDBObjectModel {
+class ParkingSpot: DatabaseObject {
     enum Duration: UInt, CaseIterable {
         case oneHour = 1
         case twoHours
         case threeHours
         case fourHours
-    }
 
-    enum FetchError: Error {
-        case noVacantSpot
-        case other
+        var description: String { return String("\(rawValue) Hour(s)")}
+
+        var price: NSDecimalNumber {
+            switch self {
+            case .oneHour:    return NSDecimalNumber(decimal: 2.00)
+            case .twoHours:   return NSDecimalNumber(decimal: 3.00)
+            case .threeHours: return NSDecimalNumber(decimal: 4.00)
+            case .fourHours:  return NSDecimalNumber(decimal: 5.00)
+            }
+        }
     }
 
     @objc private(set) var spotId: String!
@@ -35,16 +40,31 @@ final class ParkingSpot: AWSDynamoDBObjectModel {
     @objc private(set) var isOccupied: Bool = false
     @objc private(set) var occupant: String?
     @objc private(set) var duration: NSNumber!
-    @objc private(set) var startTime: Date?
-    @objc private(set) var endTime: Date?
+    @objc private(set) var startTime: String?
+    @objc private(set) var endTime: String?
+
+    var formattedLocation: String {
+        return location + "\n\n" + spotId
+    }
+
+    // MARK: - AWSDynamoDBModeling Overrides
+
+    override class func dynamoDBTableName() -> String {
+        return "ParkingSpot"
+    }
+
+    override class func hashKeyAttribute() -> String {
+        return "spotId"
+    }
+
+    // MARK: -
 
     /// Retreives a vacant parking spot entry.
     ///
     /// - Returns: Returns a vacant parking spot if one is found.
     class func getVacantSpot() -> Promise<ParkingSpot> {
-        // TODO: should use query instead of scan when searching through a larger amount of spots
         let scan = AWSDynamoDBScanExpression()
-        scan.limit = 10
+        // scan.limit = 10
         scan.filterExpression = "isOccupied = :isOccupied AND isAwaitingUser = :isAwaitingUser"
         scan.expressionAttributeValues = [
             ":isOccupied":     false,
@@ -60,30 +80,41 @@ final class ParkingSpot: AWSDynamoDBObjectModel {
                             promise.fulfill(vacantSpot)
                         } else {
                             debugPrintMessage("No vacant spots found!")
-                            promise.reject(FetchError.noVacantSpot)
+                            promise.reject(Query.FetchError.notFound)
                         }
                     } else {
-                        promise.reject(FetchError.other)
+                        promise.reject(Query.FetchError.other)
                     }
                     return nil
             }
         }
     }
 
-    func occupy(duration: Duration) -> Promise<ParkingSpot> {
-        return Promise { promise in
-            // TODO: implement
-        }
+    func occupy(occupant: String) -> Promise<Void> {
+        isOccupied = true
+        isAwaitingUser = false
+        self.occupant = occupant
+        return save()
     }
-}
-
-// MARK: - AWSDynamoDBModeling Implementation
-extension ParkingSpot: AWSDynamoDBModeling {
-    class func dynamoDBTableName() -> String {
-        return "ParkingSpot"
+    /// Sets the parking spot to occupied and saves the occupant, duration, and the start and end times.
+    ///
+    /// - Parameters:
+    ///     - occupant: Id of the occupant
+    ///     - duration: Amount of the time in hours
+    /// - Returns:
+    func occupy(occupant: String, duration: Duration) -> Promise<Void> {
+        let currentTime = Date()
+        isOccupied = true
+        isAwaitingUser = false
+        self.occupant = occupant
+        self.duration = NSNumber(value: duration.rawValue)
+        startTime = currentTime.description
+        endTime = currentTime.addingTimeInterval(TimeInterval(duration.rawValue * 60 * 60)).description
+        return save()
     }
-
-    class func hashKeyAttribute() -> String {
-        return "spotId"
+    func unOccupy() -> Promise<Void> {
+        isOccupied = false
+        occupant = nil
+        return save()
     }
 }

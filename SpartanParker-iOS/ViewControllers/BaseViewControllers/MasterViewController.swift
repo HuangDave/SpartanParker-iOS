@@ -14,18 +14,17 @@ class MasterViewController: UITabBarController {
                                      image: UIImage(named: "search"),
                                      selectedImage: UIImage(named: "search_selected"))
     }
-    private let qrScanController: QRScanViewController = create(QRScanViewController()) {
+    private let qrScanController = create(QRScanViewController()) {
         $0.tabBarItem = UITabBarItem(title: "Scan",
                                      image: UIImage(named: "scan"),
                                      selectedImage: UIImage(named: "scan_selected"))
     }
-    // TODO: change to actual controller
-    private let historyController: UIViewController = create(UIViewController()) {
+    private let transactionController = create(TransactionViewController()) {
         $0.tabBarItem = UITabBarItem(title: "History",
                                      image: UIImage(named: "history"),
                                      selectedImage: UIImage(named: "history_selected"))
     }
-    private let accountController: AccountViewController = create(AccountViewController()) {
+    private let accountController = create(AccountViewController()) {
         $0.tabBarItem = UITabBarItem(title: "Account",
                                      image: UIImage(named: "account"),
                                      selectedImage: UIImage(named: "account_selected"))
@@ -37,8 +36,8 @@ class MasterViewController: UITabBarController {
         tabBar.backgroundColor = .white
         viewControllers = [
             spotSearchController,
-            qrScanController,
-            historyController,
+            // qrScanController,
+            transactionController,
             accountController
         ]
     }

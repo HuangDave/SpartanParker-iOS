@@ -10,7 +10,7 @@ import UIKit
 
 import PromiseKit
 
-class PasswordChangeViewController: ViewController, EditingController {
+class PasswordChangeViewController: ViewController {
     let oldPasswordField = create(TextField(placeHolder: "Old Password", key: "old_password")) {
         $0.inputField.isSecureTextEntry = true
     }
@@ -73,16 +73,16 @@ class PasswordChangeViewController: ViewController, EditingController {
 
     @objc func didSelectSave() {
         view.endEditing(true)
+
         guard let oldPassword = oldPasswordField.text,
-              let newPassword = newPasswordField.text,
-              let confirmPassword = confirmPasswordField.text else {
+            let newPassword = newPasswordField.text,
+            let confirmPassword = confirmPasswordField.text else {
+                presentErrorAlert(message: "Fields must not be empty!", buttonTitle: "Back")
                 return
         }
-        if newPassword != confirmPassword {
-            presentErrorAlert(message: "New Password does not match!", buttonTitle: "Back")
-        }
-
-        _ = User.changePassword(oldPassword: oldPassword, newPassword: newPassword)
+        _ = User.changePassword(oldPassword: oldPassword,
+                                newPassword: newPassword,
+                                confirmPassword: confirmPassword)
             .done { [weak self] _ in
                 self?.present(alertView: AlertView(style: .alert), setup: {
                     $0.message = "Password Updated!"
@@ -93,7 +93,9 @@ class PasswordChangeViewController: ViewController, EditingController {
                     }
                 })
             }.catch { [weak self] error in
-                self?.presentErrorAlert(message: error.localizedDescription, buttonTitle: "Try Again")
-            }
+                // swiftlint:disable force_cast
+                self?.presentErrorAlert(message: (error as! User.PasswordChangeError).localizedDescription,
+                                        buttonTitle: "Try Again")
+        }
     }
 }

@@ -1,8 +1,8 @@
 //
-//  ParkingSpotTests.swift
+//  VehicleTests.swift
 //  SpartanParker-iOSTests
 //
-//  Created by DAVID HUANG on 8/28/18.
+//  Created by DAVID HUANG on 11/26/18.
 //  Copyright © 2018 David. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ import AWSDynamoDB
 
 @testable import SpartanParker_iOS
 
-class ParkingSpotTests: XCTestCase {
+class VehicleTests: XCTestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
@@ -24,13 +24,15 @@ class ParkingSpotTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_getVacantSpot() {
+    func test_get() {
         let timeout = 10.0
         let expect  = expectation(description: "Get vacant parking spot")
-        var vacantSpot: ParkingSpot?
-        _ = ParkingSpot.getVacantSpot()
-            .done { spot in
-                vacantSpot = spot
+        let userId = User.currentUser!.username!
+        var vehicle: Vehicle?
+        _ = Vehicle.get(userId: userId)
+            .done { result in
+                vehicle = result
+                debugPrintMessage(result)
                 expect.fulfill()
             }
             .catch { error in
@@ -38,9 +40,6 @@ class ParkingSpotTests: XCTestCase {
                 expect.fulfill()
         }
         waitForExpectations(timeout: timeout, handler: nil)
-        XCTAssertNotNil(vacantSpot, "Should not be nil")
-        XCTAssertFalse(vacantSpot!.isAwaitingUser, "Expected: \(false), Result: \(vacantSpot!.isAwaitingUser)")
-        XCTAssertFalse(vacantSpot!.isOccupied, "Expected: \(false), Result: \(vacantSpot!.isOccupied)")
-        XCTAssertNil(vacantSpot!.occupant, "Should be nil")
+        XCTAssertNotNil(vehicle, "Vehicle not be nil")
     }
 }

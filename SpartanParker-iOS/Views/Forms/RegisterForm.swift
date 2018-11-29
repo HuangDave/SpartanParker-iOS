@@ -39,7 +39,6 @@ class RegisterForm: UserForm {
     var disposeBag = DisposeBag()
 
     override func setupFields() {
-        // TODO: should refactor
         sjsuIdField.inputField.rx.controlEvent(.editingChanged)
             .subscribe({ _ in
                 let maxSjsuIdLength: Int = 9
@@ -105,12 +104,22 @@ class RegisterForm: UserForm {
         guard let password = passwordField.text, !password.isEmpty else {
             throw TextField.InputError.emtpy("Password field cannot be empty!")
         }
+        guard let licensePlate = licensePlateField.text, !licensePlate.isEmpty else {
+            throw TextField.InputError.emtpy("Password field cannot be empty!")
+        }
         return [
-            sjsuIdField.key:    AWSCognitoIdentityUserAttributeType(name: sjsuIdField.key,    value: sjsuId),
-            firstNameField.key: AWSCognitoIdentityUserAttributeType(name: firstNameField.key, value: firstName),
-            lastNameField.key:  AWSCognitoIdentityUserAttributeType(name: lastNameField.key,  value: lastName),
-            emailField.key:     AWSCognitoIdentityUserAttributeType(name: emailField.key,     value: email),
-            passwordField.key:  AWSCognitoIdentityUserAttributeType(name: passwordField.key,  value: password)
+            sjsuIdField.key:    AWSCognitoIdentityUserAttributeType(name: sjsuIdField.key,
+                                                                    value: sjsuId),
+            firstNameField.key: AWSCognitoIdentityUserAttributeType(name: firstNameField.key,
+                                                                    value: firstName),
+            lastNameField.key:  AWSCognitoIdentityUserAttributeType(name: lastNameField.key,
+                                                                    value: lastName),
+            emailField.key:     AWSCognitoIdentityUserAttributeType(name: emailField.key,
+                                                                    value: email),
+            passwordField.key:  AWSCognitoIdentityUserAttributeType(name: passwordField.key,
+                                                                    value: password),
+            licensePlateField.key: AWSCognitoIdentityUserAttributeType(name: licensePlateField.key,
+                                                                       value: licensePlate)
         ]
     }
 

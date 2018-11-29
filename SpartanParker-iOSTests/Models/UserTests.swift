@@ -24,8 +24,26 @@ class UserTests: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - Password Change Tests
+    func test_save() {
+        let expect  = expectation(description: "Change password with incorrect old password")
+        let timeout = 5.0
+        var expectedError: Error?
+        let user = User()
+        user?.userId = "1234"
+        user?.email = "test@email.com"
+        user?.save()
+            .done {
+                expect.fulfill()
+            }.catch { error in
+                expectedError = error
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: timeout, handler: nil)
+        XCTAssertNil(expectedError)
+    }
 
+    // MARK: - Password Change Tests
+/*
     func test_changeIncorrectOldPassword() {
         let expect  = expectation(description: "Change password with incorrect old password")
         let timeout = 5.0
@@ -73,4 +91,5 @@ class UserTests: XCTestCase {
         waitForExpectations(timeout: timeout, handler: nil)
         XCTAssertNil(resetError) */
     }
+*/
 }
